@@ -1,15 +1,13 @@
-package src.main.java.org.example;
-/*
-UserInformationProvider:
-	- AuthenticationProvider
-	- PersonalProvider
-AuthenticationInformation:
-	- Credentials
-	- CredentialsProvider
-PersonalInformation:
-	- User
-	- UserProvider
- */
-public class Main {
+package org.example;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Main
+{
+    public static void main(String[] args)
+    {
+        SpringApplication.run(Main.class, args);
+    }
 }
