@@ -1,10 +1,12 @@
-package src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider;
+package src.main.java.org.example.TravelAgencyPersistence.NotificationsStore;
+
+import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
 
 import java.util.ArrayList;
 
 public class NotificationRepo {
     private ArrayList<Notification> Notifications;
-    NotificationRepo()
+    public NotificationRepo()
     {
         Notifications = new ArrayList<Notification>();
         Notification n1 = new Notification();
