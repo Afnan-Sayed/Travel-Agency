@@ -1,7 +1,5 @@
 package src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider;
 
-import src.main.java.org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
-
 import java.security.PublicKey;
 import java.util.ArrayList;
 

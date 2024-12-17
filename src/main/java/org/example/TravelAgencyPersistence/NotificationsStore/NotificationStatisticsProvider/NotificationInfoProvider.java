@@ -46,6 +46,20 @@ public class NotificationInfoProvider {
                 .filter(n -> n.mail.equalsIgnoreCase(email))
                 .count();
     }
+    // count of successful notifications
+    public int getCountOfSuccessfulNotifications() {
+        return (int) repo.getAllNotifications().stream()
+                .filter(n -> n.status == 0)
+                .count();
+    }
+
+    // count of failed notifications
+    public int getCountOfFailedNotifications() {
+        return (int) repo.getAllNotifications().stream()
+                .filter(n -> n.status != 0)
+                .count();
+    }
+
 
     // most frequent receiver ID
     public int getMostFrequentReceiverID() {

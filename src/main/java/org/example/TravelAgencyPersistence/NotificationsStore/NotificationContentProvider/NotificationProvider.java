@@ -40,6 +40,22 @@ public class NotificationProvider {
                 .collect(Collectors.toList());
     }
 
+    // notifications succeeded
+    public ArrayList<Notification> getSuccessfulNotifications() {
+        return (ArrayList<Notification>) repo.getAllNotifications()
+                .stream()
+                .filter(notification -> notification.status == 0)
+                .collect(Collectors.toList());
+    }
+
+    // notifications failed
+    public ArrayList<Notification> getFailedNotifications() {
+        return (ArrayList<Notification>) repo.getAllNotifications()
+                .stream()
+                .filter(notification -> notification.status != 0)
+                .collect(Collectors.toList());
+    }
+
     // add a new notification
     public void addNotification(Notification notification) {
         repo.addNotification(notification);

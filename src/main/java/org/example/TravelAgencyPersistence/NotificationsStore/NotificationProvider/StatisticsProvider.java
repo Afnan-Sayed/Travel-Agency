@@ -35,6 +35,13 @@ public class StatisticsProvider {
         return infoProvider.getMostFrequentReceiverID();
     }
 
+    public int getNoOfSuccessfulNotifications() {
+        return infoProvider.getCountOfSuccessfulNotifications();
+    }
+
+    public int getNoOfFailedNotifications() {
+        return infoProvider.getCountOfFailedNotifications();
+    }
 
     public Map<String, List<Notification>> groupNotificationsByEmail() {
         return infoProvider.groupNotificationsByEmail();
