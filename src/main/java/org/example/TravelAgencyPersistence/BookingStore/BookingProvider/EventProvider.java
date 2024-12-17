@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyPersistence.BookingStore.BookingProvider;
+package org.example.TravelAgencyPersistence.BookingStore.BookingProvider;
 
 public class EventProvider {
 }

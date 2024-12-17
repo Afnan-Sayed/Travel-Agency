@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
+package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
 public class NotificationRetriever {
 }

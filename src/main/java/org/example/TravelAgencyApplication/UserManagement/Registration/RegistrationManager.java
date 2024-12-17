@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyApplication.UserManagement.Registration;
+package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 public class RegistrationManager {
 }
