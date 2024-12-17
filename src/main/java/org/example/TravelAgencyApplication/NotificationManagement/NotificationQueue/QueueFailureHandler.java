@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue;
+package org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue;
 
 public class QueueFailureHandler {
 }

@@ -1,4 +1,9 @@
-package src.main.java.org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
+package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
 
-public class Credentials {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class Credentials
+{
+
 }
