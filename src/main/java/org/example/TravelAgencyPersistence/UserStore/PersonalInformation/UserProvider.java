@@ -1,4 +1,7 @@
-package src.main.java.org.example.TravelAgencyPersistence.UserStore.PersonalInformation;
+package org.example.TravelAgencyPersistence.UserStore.PersonalInformation;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class UserProvider {
 }

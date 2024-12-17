@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyApplication.BookingManagement.EventBooking;
+package org.example.TravelAgencyApplication.BookingManagement.EventBooking;
 
 public class EventBooker {
 }
