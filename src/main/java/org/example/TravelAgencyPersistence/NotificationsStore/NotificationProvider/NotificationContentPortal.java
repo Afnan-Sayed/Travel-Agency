@@ -11,14 +11,16 @@ import java.util.Map;
 
 public class NotificationContentPortal {
     private static NotificationContentPortal portal; // Single instance (Lazy Initialization)
-    private final NotificationProvider notificationProvider;
-    private final NotificationInfoProvider infoProvider;
+    private final ContentProvider contentProvider;
+    private final StatisticsProvider statisticsProvider;
 
     // Private Constructor
     private NotificationContentPortal() {
         NotificationRepo repo = new NotificationRepo();
-        notificationProvider = new NotificationProvider(repo);
-        infoProvider = new NotificationInfoProvider(repo);
+        NotificationProvider NP = new NotificationProvider(repo);
+        NotificationInfoProvider IP = new NotificationInfoProvider(repo);
+        contentProvider = new ContentProvider(NP);
+        statisticsProvider = new StatisticsProvider(IP);
     }
 
     // Public Method to Return the Singleton Instance
@@ -31,52 +33,68 @@ public class NotificationContentPortal {
 
     // ContentProvider functionalities
     public ArrayList<Notification> getNotificationsByUserID(int userID) {
-        return notificationProvider.getNotifOfUserByID(userID);
+        return contentProvider.getNotificationsByUserID(userID);
     }
 
     public ArrayList<Notification> getNotificationsByEmail(String email) {
-        return notificationProvider.getNotifByEmail(email);
+        return contentProvider.getNotificationsByEmail(email);
     }
 
     public ArrayList<Notification> getNotificationsByTemplateID(int templateID) {
-        return notificationProvider.getNotifByTemplateID(templateID);
+        return contentProvider.getNotificationsByTemplateID(templateID);
     }
 
     public ArrayList<Notification> getAllNotifications() {
-        return notificationProvider.getAllNotifications();
+        return contentProvider.getAllNotifications();
+    }
+
+    public ArrayList<Notification> getSuccessfulNotifications() {
+        return contentProvider.getAllSuccessfulNotifications();
+    }
+
+    public ArrayList<Notification> getFailedNotifications() {
+        return contentProvider.getAllFailedNotifications();
     }
 
     public void addNotification(Notification notification) {
-        notificationProvider.addNotification(notification);
+        contentProvider.addNotification(notification);
     }
 
     public void deleteNotification(int receiverID, String message) {
-        notificationProvider.deleteNotification(receiverID, message);
+        contentProvider.deleteNotification(receiverID, message);
     }
 
     // StatisticsProvider functionalities
     public int getTotalNotifications() {
-        return infoProvider.getTotalNotifications();
+        return statisticsProvider.getTotalNotifications();
     }
 
     public String getMostUsedEmail() {
-        return infoProvider.getMostUsedEmail();
+        return statisticsProvider.getMostUsedEmail();
     }
 
     public int getMostUsedTemplateID() {
-        return infoProvider.getMostUsedTemplateID();
+        return statisticsProvider.getMostUsedTemplateID();
     }
 
     public int getCountOfEmail(String email) {
-        return infoProvider.getCountOfEmail(email);
+        return statisticsProvider.getCountOfEmail(email);
     }
 
     public int getMostFrequentReceiverID() {
-        return infoProvider.getMostFrequentReceiverID();
+        return statisticsProvider.getMostFrequentReceiverID();
+    }
+
+    public int getNoOfSuccessfulNotifications() {
+        return statisticsProvider.getNoOfSuccessfulNotifications();
+    }
+
+    public int getNoOfFailedNotifications() {
+        return statisticsProvider.getNoOfFailedNotifications();
     }
 
 
     public Map<String, List<Notification>> groupNotificationsByEmail() {
-        return infoProvider.groupNotificationsByEmail();
+        return statisticsProvider.groupNotificationsByEmail();
     }
 }

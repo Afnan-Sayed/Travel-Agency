@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class ContentProvider {
     private NotificationProvider notificationProvider;
 
-    // Constructor
+
     public ContentProvider(NotificationProvider notificationProvider) {
         this.notificationProvider = notificationProvider;
     }
 
-    // Delegate methods to NotificationProvider
+
     public ArrayList<Notification> getNotificationsByUserID(int userID) {
         return notificationProvider.getNotifOfUserByID(userID);
     }
@@ -30,6 +30,14 @@ public class ContentProvider {
         return notificationProvider.getAllNotifications();
     }
 
+    public ArrayList<Notification> getAllSuccessfulNotifications() {
+        return notificationProvider.getSuccessfulNotifications();
+    }
+
+    public ArrayList<Notification> getAllFailedNotifications() {
+        return notificationProvider.getFailedNotifications();
+    }
+
     public void addNotification(Notification notification) {
         notificationProvider.addNotification(notification);
     }
@@ -37,4 +45,5 @@ public class ContentProvider {
     public void deleteNotification(int receiverID, String message) {
         notificationProvider.deleteNotification(receiverID, message);
     }
+
 }
