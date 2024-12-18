@@ -36,6 +36,11 @@ public class CredentialsRepository
         if (credentialsMap.containsKey(userId))
             throw new IllegalArgumentException("Credentials for this UserID already exist");
 
+        //ensure userId in credentials matches "join condition"
+        if (credentials.userID != userId)
+            throw new IllegalArgumentException
+                    ("mismatch between UserID in AuthenticationCredentials and UserPersonalInfo");
+
         credentialsMap.put(userId, credentials);
     }
 
@@ -64,6 +69,10 @@ public class CredentialsRepository
         checkUserExistence (userId);
 
         AuthenticationCredentials existingCredentials = credentialsMap.get(userId);
+
+        //ensure userId consistency if it's being updated
+        if (newCredentials.userID != 0 && newCredentials.userID != userId)
+            throw new IllegalArgumentException("Cannot update userId to a different value");
 
         if (newCredentials.username != null)
             existingCredentials.username = newCredentials.username;

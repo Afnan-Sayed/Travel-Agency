@@ -5,6 +5,7 @@ public class AuthenticationCredentials
     public String password;
     public String email;
     public String phoneNumber;
+    public int userID;
 
     public AuthenticationCredentials(String username, String password, String email)
     {

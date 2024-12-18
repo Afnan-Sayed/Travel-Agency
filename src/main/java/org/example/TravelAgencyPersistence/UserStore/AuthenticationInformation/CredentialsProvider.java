@@ -1,6 +1,7 @@
 package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
 
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
+import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +14,15 @@ import java.util.stream.Collectors;
 public class CredentialsProvider
 {
     private CredentialsRepository credentialsRepo;
+    private UserPersonalInfoRepository personalInfoRepo;
 
     //constructor
-    public CredentialsProvider(CredentialsRepository credentialsRepo)
+    public CredentialsProvider(CredentialsRepository credentialsRepo, UserPersonalInfoRepository personalInfoRepo)
     {
         this.credentialsRepo = credentialsRepo;
+        this.personalInfoRepo = personalInfoRepo;
     }
+
 
     //retrieves each user with their authentication credentials
     public HashMap<Integer, AuthenticationCredentials> getCredentialsOfAllUsers()
