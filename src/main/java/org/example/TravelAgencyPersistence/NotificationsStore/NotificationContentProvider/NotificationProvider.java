@@ -1,6 +1,6 @@
-package src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider;
+package org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider;
 
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationRepo;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationRepo;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
