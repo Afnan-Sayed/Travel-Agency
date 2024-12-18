@@ -60,6 +60,19 @@ public class NotificationInfoProvider {
                 .count();
     }
 
+    // count of read notifications
+    public int getCountOfReadNotifications() {
+        return (int) repo.getAllNotifications().stream()
+                .filter(n -> n.read)
+                .count();
+    }
+
+    // count of unread notifications
+    public int getCountOfUnreadNotifications() {
+        return (int) repo.getAllNotifications().stream()
+                .filter(n -> !n.read)
+                .count();
+    }
 
     // most frequent receiver ID
     public int getMostFrequentReceiverID() {

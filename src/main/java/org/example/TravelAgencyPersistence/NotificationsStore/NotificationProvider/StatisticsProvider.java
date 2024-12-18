@@ -10,7 +10,7 @@ public class StatisticsProvider {
     private NotificationInfoProvider infoProvider;
 
     // Constructor
-    public StatisticsProvider(NotificationInfoProvider infoProvider) {
+    protected StatisticsProvider(NotificationInfoProvider infoProvider) {
         this.infoProvider = infoProvider;
     }
 
@@ -43,7 +43,16 @@ public class StatisticsProvider {
         return infoProvider.getCountOfFailedNotifications();
     }
 
+    public int getNoOfReadNotifications() {
+        return infoProvider.getCountOfReadNotifications();
+    }
+
+    public int getNoOfUnreadNotifications() {
+        return infoProvider.getCountOfUnreadNotifications();
+    }
+
     public Map<String, List<Notification>> groupNotificationsByEmail() {
         return infoProvider.groupNotificationsByEmail();
     }
+
 }

@@ -9,21 +9,21 @@ public class ContentProvider {
     private NotificationProvider notificationProvider;
 
 
-    public ContentProvider(NotificationProvider notificationProvider) {
+    protected ContentProvider(NotificationProvider notificationProvider) {
         this.notificationProvider = notificationProvider;
     }
 
 
     public ArrayList<Notification> getNotificationsByUserID(int userID) {
-        return notificationProvider.getNotifOfUserByID(userID);
+        return notificationProvider.getNotificationOfUserByID(userID);
     }
 
     public ArrayList<Notification> getNotificationsByEmail(String email) {
-        return notificationProvider.getNotifByEmail(email);
+        return notificationProvider.getNotificationByEmail(email);
     }
 
     public ArrayList<Notification> getNotificationsByTemplateID(int templateID) {
-        return notificationProvider.getNotifByTemplateID(templateID);
+        return notificationProvider.getNotificationByTemplateID(templateID);
     }
 
     public ArrayList<Notification> getAllNotifications() {
@@ -38,12 +38,20 @@ public class ContentProvider {
         return notificationProvider.getFailedNotifications();
     }
 
+    public ArrayList<Notification> getAllReadNotifications() {
+        return notificationProvider.getReadNotifications();
+    }
+
+    public ArrayList<Notification> getAllUnreadNotifications() {
+        return notificationProvider.getUnreadNotifications();
+    }
+
     public void addNotification(Notification notification) {
         notificationProvider.addNotification(notification);
     }
 
-    public void deleteNotification(int receiverID, String message) {
-        notificationProvider.deleteNotification(receiverID, message);
+    public boolean deleteNotification(int notificationID) {
+        return notificationProvider.deleteNotification(notificationID);
     }
 
 }

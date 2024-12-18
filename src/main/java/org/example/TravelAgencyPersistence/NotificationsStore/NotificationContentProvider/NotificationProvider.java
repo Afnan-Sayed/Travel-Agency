@@ -17,7 +17,7 @@ public class NotificationProvider {
     }
 
     // notifications of a specific user by ID
-    public ArrayList<Notification> getNotifOfUserByID(int ID) {
+    public ArrayList<Notification> getNotificationOfUserByID(int ID) {
         return (ArrayList<Notification>) repo.getAllNotifications()
                 .stream()
                 .filter(notification -> notification.receiverID == ID)
@@ -25,7 +25,7 @@ public class NotificationProvider {
     }
 
     // notifications by email
-    public ArrayList<Notification> getNotifByEmail(String email) {
+    public ArrayList<Notification> getNotificationByEmail(String email) {
         return (ArrayList<Notification>) repo.getAllNotifications()
                 .stream()
                 .filter(notification -> notification.mail.equalsIgnoreCase(email))
@@ -33,7 +33,7 @@ public class NotificationProvider {
     }
 
     // notifications by template ID
-    public ArrayList<Notification> getNotifByTemplateID(int templateID) {
+    public ArrayList<Notification> getNotificationByTemplateID(int templateID) {
         return (ArrayList<Notification>) repo.getAllNotifications()
                 .stream()
                 .filter(notification -> notification.templateID == templateID)
@@ -55,6 +55,21 @@ public class NotificationProvider {
                 .filter(notification -> notification.status != 0)
                 .collect(Collectors.toList());
     }
+    // notifications read
+    public ArrayList<Notification> getReadNotifications() {
+        return (ArrayList<Notification>) repo.getAllNotifications()
+                .stream()
+                .filter(notification -> notification.read)
+                .collect(Collectors.toList());
+    }
+
+    // notifications unread
+    public ArrayList<Notification> getUnreadNotifications() {
+        return (ArrayList<Notification>) repo.getAllNotifications()
+                .stream()
+                .filter(notification -> !notification.read)
+                .collect(Collectors.toList());
+    }
 
     // add a new notification
     public void addNotification(Notification notification) {
@@ -62,7 +77,7 @@ public class NotificationProvider {
     }
 
     // delete notification by receiver ID and message
-    public boolean deleteNotification(int receiverID, String message) {
-        return repo.deleteNotification(receiverID, message);
+    public boolean deleteNotification(int notificationID) {
+        return repo.deleteNotification(notificationID);
     }
 }
