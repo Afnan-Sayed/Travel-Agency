@@ -27,4 +27,10 @@ public class NotificationContentPortal {
     {
         return statisticsProvider;
     }
+    public static synchronized NotificationContentPortal getInstance() {
+        if (portal == null) {
+            portal = new NotificationContentPortal();
+        }
+        return portal;
+    }
 }
