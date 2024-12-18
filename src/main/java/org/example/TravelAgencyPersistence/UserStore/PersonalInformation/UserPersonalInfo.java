@@ -6,6 +6,7 @@ public class UserPersonalInfo
     public String name;
     public String address;
     public String dateOfBirth;
+    public int LanguageID;
 
     public UserPersonalInfo(int userId, String name, String address, String dateOfBirth)
     {
