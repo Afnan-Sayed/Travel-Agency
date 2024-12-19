@@ -61,6 +61,13 @@ public class NotificationProvider {
                 .collect(Collectors.toList());
     }
 
+    public ArrayList<Notification> getNotificationByNotificationID(String ID) {
+        return (ArrayList<Notification>) repo.getAllNotifications()
+                .stream()
+                .filter(notification -> notification.notificationID.equals(ID))
+                .collect(Collectors.toList());
+    }
+
     // notifications read
     public ArrayList<Notification> getReadNotifications() {
         return (ArrayList<Notification>) repo.getAllNotifications()
@@ -118,9 +125,13 @@ public class NotificationProvider {
     public static Predicate<Notification> unreadFilter() {
         return notification -> !notification.read;
     }
+    //notification by notification ID
+    public static Predicate<Notification> notificationIdFilter(String notificationID) {
+        return notification -> notification.notificationID.equals(notificationID);
+    }
 
     // add a new notification
-    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email) {
+    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID) {
         List<Predicate<Notification>> filters = new ArrayList<>();
         // Add filters based on flags
         if (successfulFlag) filters.add(successfulFilter());
@@ -130,8 +141,9 @@ public class NotificationProvider {
         if (userId != null) filters.add(userByIdFilter(userId));
         if (templateId != null) filters.add(templateByIdFilter(templateId));
         if (email != null && !email.isEmpty()) filters.add(emailFilter(email));
+        if(notificationID != null) filters.add(notificationIdFilter(notificationID));
 
-        return (ArrayList<Notification>) repo.getAllNotifications()
+        return  repo.getAllNotifications()
                 .stream()
                 .filter(filters.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());

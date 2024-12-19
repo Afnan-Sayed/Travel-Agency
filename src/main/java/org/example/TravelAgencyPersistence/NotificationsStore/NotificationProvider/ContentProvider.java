@@ -39,6 +39,7 @@ public class ContentProvider {
         return notificationProvider.getFailedNotifications();
     }
 
+    public ArrayList<Notification> getNotificationByNotificationID(String ID){return notificationProvider.getNotificationByNotificationID(ID);}
     public ArrayList<Notification> getAllReadNotifications() {
         return notificationProvider.getReadNotifications();
     }
@@ -47,9 +48,9 @@ public class ContentProvider {
         return notificationProvider.getUnreadNotifications();
     }
 
-    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email)
+    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID)
     {
-        return notificationProvider.getFilteredNotifications(successfulFlag,failedFlag,readFlag,unreadFlag,userId,templateId,email);
+        return notificationProvider.getFilteredNotifications(successfulFlag,failedFlag,readFlag,unreadFlag,userId,templateId,email, notificationID);
     }
     public void addNotification(Notification notification) {
         notificationProvider.addNotification(notification);
