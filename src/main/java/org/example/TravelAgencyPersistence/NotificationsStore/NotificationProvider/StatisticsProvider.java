@@ -3,8 +3,10 @@ package org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvi
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationStatisticsProvider.NotificationInfoProvider;
 
+
 import java.util.List;
 import java.util.Map;
+
 
 public class StatisticsProvider {
     private NotificationInfoProvider infoProvider;
@@ -55,4 +57,12 @@ public class StatisticsProvider {
         return infoProvider.groupNotificationsByEmail();
     }
 
+
+    //dynamicFiltering
+    public int getNoOfNotificationOnFilter(
+            boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag,
+            Integer userId, Integer templateId, String email)
+    {
+        return infoProvider.getNoOfNotificationOnFilter(successfulFlag, failedFlag, readFlag, unreadFlag, userId, templateId, email);
+    }
 }

@@ -2,7 +2,7 @@ package org.example.TravelAgencyPersistence.NotificationsStore.NotificationConte
 
 
 public class Notification {
-    public int notificationID;
+    public String notificationID;
     public int templateID;
     public int receiverID;
     public String message;
@@ -10,4 +10,5 @@ public class Notification {
     public String phoneNumber;
     public int status;
     public boolean read;
+
 }
