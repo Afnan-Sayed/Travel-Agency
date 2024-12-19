@@ -12,7 +12,7 @@ public class PersonalInfoProvider
     private UserPersonalInfoProvider personalInfoProvider;
 
         //constructor
-        protected PersonalInfoProvider(UserPersonalInfoProvider personalInfoProvider)
+        public PersonalInfoProvider(UserPersonalInfoProvider personalInfoProvider)
         {
             this.personalInfoProvider = personalInfoProvider;
         }
