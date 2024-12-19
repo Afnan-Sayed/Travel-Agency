@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyPersistence.BookingStore.ExternalEventProvider;
+package org.example.TravelAgencyPersistence.BookingStore.ExternalEventProvider;
 
 public class Event {
 }
