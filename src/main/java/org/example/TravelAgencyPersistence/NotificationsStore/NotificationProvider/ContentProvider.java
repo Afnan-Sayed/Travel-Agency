@@ -1,9 +1,10 @@
-package src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider;
+package org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider;
 
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.NotificationProvider;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.NotificationProvider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContentProvider {
     private NotificationProvider notificationProvider;
@@ -38,6 +39,7 @@ public class ContentProvider {
         return notificationProvider.getFailedNotifications();
     }
 
+    public ArrayList<Notification> getNotificationByNotificationID(String ID){return notificationProvider.getNotificationByNotificationID(ID);}
     public ArrayList<Notification> getAllReadNotifications() {
         return notificationProvider.getReadNotifications();
     }
@@ -46,11 +48,15 @@ public class ContentProvider {
         return notificationProvider.getUnreadNotifications();
     }
 
+    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID)
+    {
+        return notificationProvider.getFilteredNotifications(successfulFlag,failedFlag,readFlag,unreadFlag,userId,templateId,email, notificationID);
+    }
     public void addNotification(Notification notification) {
         notificationProvider.addNotification(notification);
     }
 
-    public boolean deleteNotification(int notificationID) {
+    public boolean deleteNotification(String notificationID) {
         return notificationProvider.deleteNotification(notificationID);
     }
 

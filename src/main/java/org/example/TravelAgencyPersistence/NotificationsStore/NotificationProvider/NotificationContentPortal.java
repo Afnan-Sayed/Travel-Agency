@@ -1,8 +1,8 @@
-package src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider;
+package org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider;
 
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.NotificationProvider;
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationRepo;
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationStatisticsProvider.NotificationInfoProvider;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.NotificationProvider;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationRepo;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationStatisticsProvider.NotificationInfoProvider;
 
 
 public class NotificationContentPortal {
