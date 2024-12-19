@@ -4,7 +4,6 @@ import org.example.TravelAgencyPersistence.NotificationsStore.NotificationConten
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.NotificationProvider;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ContentProvider {
     private NotificationProvider notificationProvider;
@@ -48,7 +47,7 @@ public class ContentProvider {
         return notificationProvider.getUnreadNotifications();
     }
 
-    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID)
+    public ArrayList<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID)
     {
         return notificationProvider.getFilteredNotifications(successfulFlag,failedFlag,readFlag,unreadFlag,userId,templateId,email, notificationID);
     }

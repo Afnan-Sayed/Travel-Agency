@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider;
+package org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider;
 
 public class BookedHotelRoomProvider {
 }

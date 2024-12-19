@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyController.NotificationsInterface.NotificationStatus;
+package org.example.TravelAgencyController.NotificationsInterface.NotificationStatus;
 
 public class StatisticsRetriever {
 }

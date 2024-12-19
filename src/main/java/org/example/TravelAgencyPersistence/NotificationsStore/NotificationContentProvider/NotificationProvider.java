@@ -131,8 +131,8 @@ public class NotificationProvider {
     }
 
     // add a new notification
-    public List<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID) {
-        List<Predicate<Notification>> filters = new ArrayList<>();
+    public ArrayList<Notification> getFilteredNotifications(boolean successfulFlag, boolean failedFlag, boolean readFlag, boolean unreadFlag, Integer userId, Integer templateId, String email, String notificationID) {
+        ArrayList<Predicate<Notification>> filters = new ArrayList<>();
         // Add filters based on flags
         if (successfulFlag) filters.add(successfulFilter());
         if (failedFlag) filters.add(failedFilter());
@@ -143,7 +143,7 @@ public class NotificationProvider {
         if (email != null && !email.isEmpty()) filters.add(emailFilter(email));
         if(notificationID != null) filters.add(notificationIdFilter(notificationID));
 
-        return  repo.getAllNotifications()
+        return (ArrayList<Notification>) repo.getAllNotifications()
                 .stream()
                 .filter(filters.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());
