@@ -11,7 +11,7 @@ public class AuthenticationCredentialsProvider
 {
     private CredentialsProvider credentialsProvider;
 
-    public AuthenticationCredentialsProvider(CredentialsProvider credentialsProvider)
+    protected AuthenticationCredentialsProvider(CredentialsProvider credentialsProvider)
     {
         this.credentialsProvider = credentialsProvider;
     }
