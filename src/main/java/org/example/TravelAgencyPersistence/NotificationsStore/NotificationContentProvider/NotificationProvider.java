@@ -93,6 +93,15 @@ public class NotificationProvider {
         return repo.deleteNotification(notificationID);
     }
 
+    //updates read status
+    public void MarkAsRead(String notificationID, boolean readStatus) {
+        for (Notification notification : repo.getAllNotifications()) {
+            if (notification.notificationID.equals(notificationID)) {
+                notification.read = readStatus;
+                break; // Exit the loop once the notification is found and updated
+            }
+        }
+    }
     // notifications of a specific user by ID
     public static Predicate<Notification> userByIdFilter(int id) {
         return notification -> notification.receiverID == id;

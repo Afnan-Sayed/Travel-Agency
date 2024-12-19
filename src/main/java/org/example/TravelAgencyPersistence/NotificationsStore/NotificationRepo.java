@@ -95,6 +95,7 @@ public class NotificationRepo {
     public void addNotification(Notification notification) {
         Notifications.add(notification);
     }
+
     public boolean deleteNotification(String notificationID) {
         return Notifications.removeIf(n -> n.notificationID.equals(notificationID));
     }
