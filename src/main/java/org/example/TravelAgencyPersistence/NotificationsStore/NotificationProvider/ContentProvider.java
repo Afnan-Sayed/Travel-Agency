@@ -58,9 +58,9 @@ public class ContentProvider {
     public boolean deleteNotification(String notificationID) {
         return notificationProvider.deleteNotification(notificationID);
     }
-    public void MarkAsRead(String notificationID, boolean readStatus)
+    public void markAsRead(String notificationID, boolean readStatus)
     {
-        notificationProvider.MarkAsRead(notificationID,readStatus);
+        notificationProvider.markAsRead(notificationID,readStatus);
     }
 
 }

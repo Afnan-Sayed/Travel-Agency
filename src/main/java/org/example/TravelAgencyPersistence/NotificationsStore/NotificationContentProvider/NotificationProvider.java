@@ -3,7 +3,6 @@ package org.example.TravelAgencyPersistence.NotificationsStore.NotificationConte
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationRepo;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -94,7 +93,7 @@ public class NotificationProvider {
     }
 
     //updates read status
-    public void MarkAsRead(String notificationID, boolean readStatus) {
+    public void markAsRead(String notificationID, boolean readStatus) {
         for (Notification notification : repo.getAllNotifications()) {
             if (notification.notificationID.equals(notificationID)) {
                 notification.read = readStatus;
