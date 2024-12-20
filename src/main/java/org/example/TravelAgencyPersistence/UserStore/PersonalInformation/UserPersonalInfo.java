@@ -7,6 +7,7 @@ public class UserPersonalInfo
     private String address;
     private String dateOfBirth;
     private int LanguageID;
+    private int notificationReceiverType;
 
 
     public UserPersonalInfo(int userId, String name, String address, String dateOfBirth)
@@ -27,7 +28,15 @@ public class UserPersonalInfo
     public void setLanguageID(int languageID) {
         LanguageID = languageID;
     }
-
+    public void setNotificationReceiverType(int notificationReceiverType) {
+        this.notificationReceiverType = notificationReceiverType;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     //getters
     public String getDateOfBirth() {
@@ -45,10 +54,8 @@ public class UserPersonalInfo
     public int getLanguageID() {
         return LanguageID;
     }
-    public void setName(String name) {
-        this.name = name;
+    public int getNotificationReceiverType() {
+        return notificationReceiverType;
     }
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+
 }
