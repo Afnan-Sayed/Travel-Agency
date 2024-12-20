@@ -2,11 +2,11 @@ package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
 //
 public class AuthenticationCredentials
 {
-    public String username;
-    public String password;
-    public String email;
-    public String phoneNumber;
-    public int userID;
+    private String username;
+    private String password;
+    private String email;
+    private String phoneNumber;
+    private int userID;
 
     public AuthenticationCredentials(String username, String password, String email)
     {

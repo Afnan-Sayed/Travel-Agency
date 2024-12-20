@@ -37,7 +37,7 @@ public class CredentialsRepository
             throw new IllegalArgumentException("Credentials for this UserID already exist");
 
         //ensure userId in credentials matches "join condition"
-        if (credentials.userID != userId)
+        if (credentials.getUserID() != userId)
             throw new IllegalArgumentException
                     ("mismatch between UserID in AuthenticationCredentials and UserPersonalInfo");
 
@@ -71,29 +71,16 @@ public class CredentialsRepository
         AuthenticationCredentials existingCredentials = credentialsMap.get(userId);
 
         //ensure userId consistency if it's being updated
-        if (newCredentials.userID != 0 && newCredentials.userID != userId)
+        if (newCredentials.getUserID() != 0 && newCredentials.getUserID() != userId)
             throw new IllegalArgumentException("Cannot update userId to a different value");
 
-        if (newCredentials.username != null)
-            existingCredentials.username = newCredentials.username;
+        if (newCredentials.getUsername() != null)
+            existingCredentials.setUsername(newCredentials.getUsername());
 
-        if (newCredentials.password != null)
-            existingCredentials.password = newCredentials.password;
+        if (newCredentials.getPassword() != null)
+            existingCredentials.setPassword(newCredentials.getPassword());
 
-        if (newCredentials.email != null)
-            existingCredentials.email = newCredentials.email;
+        if (newCredentials.getEmail() != null)
+            existingCredentials.setEmail(newCredentials.getEmail());
     }
-
-
-    //assume cannot be deleted
-    //D
-//    public void deleteCredentials(UserPersonalInfo userPersonalInfo)
-//    {
-//        checkNullUser (userPersonalInfo);
-//
-//        int userId = userPersonalInfo.userId;
-//
-//        checkUserExistence (userId);
-//        credentialsMap.remove(userId);
-//    }
 }
