@@ -23,10 +23,10 @@ public class UserPersonalInfoRepository
     //C
     public void addPersonalInfo(UserPersonalInfo userPersonalInfo)
     {
-        if (userMap.containsKey(userPersonalInfo.userId))
+        if (userMap.containsKey(userPersonalInfo.getUserId()))
              throw new IllegalArgumentException("User ID already exists");
 
-         userMap.put(userPersonalInfo.userId, userPersonalInfo);
+         userMap.put(userPersonalInfo.getUserId(), userPersonalInfo);
     }
 
     //R
@@ -48,19 +48,19 @@ public class UserPersonalInfoRepository
     {
         checkNullUser (newuserPersonalInfo);
 
-        int userId = newuserPersonalInfo.userId;
+        int userId = newuserPersonalInfo.getUserId();
 
         checkUserExistence (userId);
 
         UserPersonalInfo existingInfo = userMap.get(userId);
 
-        if (newuserPersonalInfo.name != null)
-            existingInfo.name = newuserPersonalInfo.name;
+        if (newuserPersonalInfo.getName() != null)
+            existingInfo.setName(newuserPersonalInfo.getName());
 
-        if (newuserPersonalInfo.address != null)
-            existingInfo.address = newuserPersonalInfo.address;
+        if (newuserPersonalInfo.getAddress() != null)
+            existingInfo.setAddress(newuserPersonalInfo.getAddress());
 
-        if (newuserPersonalInfo.dateOfBirth != null)
-            existingInfo.dateOfBirth = newuserPersonalInfo.dateOfBirth;
+        if (newuserPersonalInfo.getDateOfBirth() != null)
+            existingInfo.setDateOfBirth(newuserPersonalInfo.getDateOfBirth());
     }
 }

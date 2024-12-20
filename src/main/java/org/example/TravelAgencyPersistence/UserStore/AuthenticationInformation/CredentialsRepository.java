@@ -31,7 +31,7 @@ public class CredentialsRepository
     public void addCredentials(UserPersonalInfo userPersonalInfo, AuthenticationCredentials credentials)
     {
         checkNullUser (userPersonalInfo);
-        int userId = userPersonalInfo.userId;
+        int userId = userPersonalInfo.getUserId();
 
         if (credentialsMap.containsKey(userId))
             throw new IllegalArgumentException("Credentials for this UserID already exist");
@@ -64,7 +64,7 @@ public class CredentialsRepository
     {
         checkNullUser (userPersonalInfo);
 
-        int userId = userPersonalInfo.userId;
+        int userId = userPersonalInfo.getUserId();
 
         checkUserExistence (userId);
 
