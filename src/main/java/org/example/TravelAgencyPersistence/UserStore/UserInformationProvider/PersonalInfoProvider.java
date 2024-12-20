@@ -2,8 +2,8 @@ package org.example.TravelAgencyPersistence.UserStore.UserInformationProvider;
 
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoProvider;
-import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoRepository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -18,13 +18,13 @@ public class PersonalInfoProvider
         }
 
         //retrieves each user with their authentication credentials
-        public HashMap<Integer, UserPersonalInfo> getPersonalInfoOfAllUsers()
+        public HashMap<Integer, ArrayList<UserPersonalInfo>> getPersonalInfoOfAllUsers()
         {
             return personalInfoProvider.getPersonalInfoOfAllUsers();
         }
 
         //gets credentials by user ID
-        public UserPersonalInfo getPersonalInfoByUserID(int userID)
+        public ArrayList<UserPersonalInfo> getPersonalInfoByUserID(int userID)
         {
             return personalInfoProvider.getPersonalInfoByUserID(userID);
         }

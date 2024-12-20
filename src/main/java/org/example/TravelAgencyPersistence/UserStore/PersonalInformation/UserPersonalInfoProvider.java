@@ -1,5 +1,6 @@
 package org.example.TravelAgencyPersistence.UserStore.PersonalInformation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //ASSOCIATION WITH UserPersonalInfoRepository CLASS
@@ -17,13 +18,13 @@ public class UserPersonalInfoProvider
     }
 
     //retrieves each user with their authentication credentials
-    public HashMap<Integer, UserPersonalInfo> getPersonalInfoOfAllUsers()
+    public HashMap<Integer, ArrayList<UserPersonalInfo>> getPersonalInfoOfAllUsers()
     {
         return PersonalInfoRepo.getPersonalInfoOfAllUsers();
     }
 
     //gets credentials by user ID
-    public UserPersonalInfo getPersonalInfoByUserID(int userID)
+    public ArrayList<UserPersonalInfo> getPersonalInfoByUserID(int userID)
     {
         return PersonalInfoRepo.getPersonalInfoByUserID(userID);
     }
