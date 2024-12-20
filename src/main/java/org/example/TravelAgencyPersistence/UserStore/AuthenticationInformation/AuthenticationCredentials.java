@@ -1,5 +1,4 @@
 package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
-//
 public class AuthenticationCredentials
 {
     private String username;
@@ -7,6 +6,7 @@ public class AuthenticationCredentials
     private String email;
     private String phoneNumber;
     private int userID;
+    private int userAccountStatus;
 
     public AuthenticationCredentials(String username, String password, String email)
     {
@@ -34,6 +34,9 @@ public class AuthenticationCredentials
     public void setUserID(int userID) {
         this.userID = userID;
     }
+    public void setUserState(int userAccountStatus) {
+        this.userAccountStatus = userAccountStatus;
+    }
 
 
     //getters
@@ -53,5 +56,8 @@ public class AuthenticationCredentials
     }
     public int getUserID() {
         return userID;
+    }
+    public int getUserState() {
+        return userAccountStatus;
     }
 }
