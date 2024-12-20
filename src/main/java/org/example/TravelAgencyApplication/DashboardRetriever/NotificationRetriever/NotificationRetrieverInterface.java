@@ -14,6 +14,7 @@ public class NotificationRetrieverInterface {
         modifier = new NotificationModifier(userID);
     }
 
+    //retrieve
     public ArrayList<Notification> retrieve() {
         return retriever.retrieveNotifications();
     }
@@ -22,6 +23,16 @@ public class NotificationRetrieverInterface {
         return retriever.retrieve(read, !read, email);
     }
 
+    public ArrayList<Notification> filter(String email) {
+        return retriever.retrieve(true, true, email);
+    }
+
+    public ArrayList<Notification> filter(boolean read) {
+        return retriever.retrieve(read, !read, null);
+    }
+
+
+    //modify
     public void delete(String notificationID) {
         modifier.deleteNotification(notificationID);
     }
