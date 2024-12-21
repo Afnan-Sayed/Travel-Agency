@@ -6,4 +6,5 @@ public class HotelRoom {
     public int roomNumber;
     public int price;
     public boolean isBooked;
+    public Hotel hotel;
 }

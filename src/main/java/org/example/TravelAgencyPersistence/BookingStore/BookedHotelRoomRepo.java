@@ -1,6 +1,5 @@
 package org.example.TravelAgencyPersistence.BookingStore;
 
-import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.HotelRoom;
 import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.BookedHotelRoom;
 
 import java.util.ArrayList;

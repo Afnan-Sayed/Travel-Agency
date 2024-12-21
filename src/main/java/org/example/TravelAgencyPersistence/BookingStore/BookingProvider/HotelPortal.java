@@ -15,8 +15,8 @@ public class HotelPortal {
         hotelRoomProvider = new HotelRoomProvider();
         bookedHotelRoomProvider = new BookedHotelRoomProvider();
     }
-    public HotelRoom getHotelRoomByID(int id) {
-        return hotelRoomProvider.getHotelRoomByID(id);
+    public ArrayList<HotelRoom> getHotelRoomsByHotelID(int hotelID) {
+        return hotelRoomProvider.getHotelRoomsByHotelID(hotelID);
     }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return hotelRoomProvider.getAllHotelRooms();

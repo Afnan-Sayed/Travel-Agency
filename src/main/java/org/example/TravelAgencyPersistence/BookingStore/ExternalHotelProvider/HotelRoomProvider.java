@@ -8,8 +8,8 @@ public class HotelRoomProvider {
     public HotelRoomProvider() {
         repo = new ExternalHotelProviderRepoAPI();
     }
-    public HotelRoom getHotelRoomByID(int roomID) {
-        return repo.getHotelRoomByID(roomID);
+    public ArrayList<HotelRoom> getHotelRoomsByHotelID(int roomID) {
+        return repo.getHotelRoomsByHotelID(roomID);
     }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return repo.getAllHotelRooms();

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BookedHotelRoomProvider {
     private BookedHotelRoomRepo repo;
-public BookedHotelRoomProvider() {
+    public BookedHotelRoomProvider() {
         repo = new BookedHotelRoomRepo();
     }
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
