@@ -8,8 +8,14 @@ import java.util.Date;
 
 public class ExternalEventProviderAPI {
     private ArrayList<Event> events;
+    private static ExternalEventProviderAPI instance;
 
-    public ExternalEventProviderAPI() {
+    public static ExternalEventProviderAPI getInstance() {
+        if (instance == null) instance = new ExternalEventProviderAPI();
+        return instance;
+    }
+
+    private ExternalEventProviderAPI() {
         events = new ArrayList<>();
         Event e1 = new Event();
         e1.eventID = 1; e1.name = "Pyramids Music Festival"; e1.date = new Date(2024, Calendar.DECEMBER, 22); e1.description = "Join the unforgettable music festival by the pyramids of Giza, featuring electronic beats and stunning views!";
@@ -39,10 +45,5 @@ public class ExternalEventProviderAPI {
 
     public ArrayList<Event> getAllEvents() {
         return events;
-    }
-
-    public Event getEventByID(int id) {
-        for (Event event : events) if (event.eventID == id) return event;
-        return null;
     }
 }
