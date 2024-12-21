@@ -17,9 +17,12 @@ public abstract class Template {
     //index 1:Arabic
     //index 2:French
     //index 3:German
-    //dear X, sdsafsd
     public int getID() {
         return ID;
     }
-    public abstract String getSpecialCharacter();
+
+    public String getSpecialCharacter()
+    {
+        return specialCharacter;
+    }
 }
