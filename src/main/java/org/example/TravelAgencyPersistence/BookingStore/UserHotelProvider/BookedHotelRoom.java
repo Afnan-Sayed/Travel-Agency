@@ -1,11 +1,14 @@
 package org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider;
 
-import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.Hotel;
+import java.util.Date;
 
-import java.util.ArrayList;
+public class BookedHotelRoom {
+    public int hotelID;
+    public int bookingID;
+    public int bookedRoomID;
+    public int roomNum;
+    public int userID;
+    public Date startDate;
+    public int nights;
 
-    public class BookedHotelRoom {
-        public int roomID;
-        public int userID;
-        public Hotel hotel;
 }
