@@ -1,4 +1,4 @@
-package org.example.TravelAgencyApplication.UserManagement.Registration.Registration;
+package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
 

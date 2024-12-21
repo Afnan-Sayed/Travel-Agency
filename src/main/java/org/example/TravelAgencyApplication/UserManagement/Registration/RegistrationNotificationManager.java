@@ -1,6 +1,6 @@
-package org.example.TravelAgencyApplication.UserManagement.Registration.Registration;
+package org.example.TravelAgencyApplication.UserManagement.Registration;
 
-import org.example.TravelAgencyApplication.UserManagement.Registration.NotificationManagement;
+import org.example.TravelAgencyApplication.UserManagement.NotificationManagement;
 
 import java.util.ArrayList;
 

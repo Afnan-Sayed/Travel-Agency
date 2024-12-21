@@ -1,6 +1,6 @@
-package org.example.TravelAgencyApplication.UserManagement.Registration.Registration;
+package org.example.TravelAgencyApplication.UserManagement.Registration;
 
-import org.example.TravelAgencyApplication.UserManagement.Registration.Authentication.Authenticator;
+import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
 import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.AuthenticationCredentials;
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;

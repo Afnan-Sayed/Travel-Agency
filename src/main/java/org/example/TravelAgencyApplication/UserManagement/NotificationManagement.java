@@ -1,7 +1,7 @@
-package org.example.TravelAgencyApplication.UserManagement.Registration;
+package org.example.TravelAgencyApplication.UserManagement;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Builder;
-import org.example.TravelAgencyApplication.UserManagement.Registration.Registration.RegistrationTemplate;
+import org.example.TravelAgencyApplication.UserManagement.Registration.RegistrationTemplate;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 
 import java.util.ArrayList;

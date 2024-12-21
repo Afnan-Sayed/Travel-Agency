@@ -7,6 +7,12 @@ public class AuthenticationCredentials
     private String phoneNumber;
     private int userID;
     private int userAccountStatus;
+    //not verified to register 0
+    //verified to registered 1
+    //logged in 2
+    //logged out 3
+
+
     private boolean isAdmin;
 
     public AuthenticationCredentials(String username, String password, String email, String phoneNumber,

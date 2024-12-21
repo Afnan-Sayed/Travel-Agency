@@ -1,4 +1,4 @@
-package org.example.TravelAgencyApplication.UserManagement.Registration.Authentication;
+package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 
