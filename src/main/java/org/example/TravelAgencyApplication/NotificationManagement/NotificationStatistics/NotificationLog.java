@@ -1,20 +1,18 @@
 package org.example.TravelAgencyApplication.NotificationManagement.NotificationStatistics;
 
-import org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue.MessageSender;
-import org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue.QueueFailureHandler;
-import org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue.QueueManager;
 
-import java.util.LinkedList;
+import org.springframework.stereotype.Component;
 
 public class NotificationLog {
-    private DataRetriever retriever;
+    private StatisticsDataRetriever statisticsRetriever;
     private QueueChecker checker;
+    private ConcreteDataRetriever concreteRetriever;
     private static NotificationLog  log;
     private NotificationLog()
     {
-        retriever =  new DataRetriever();
+        statisticsRetriever =  new StatisticsDataRetriever();
         checker = new QueueChecker();
-
+        concreteRetriever = new  ConcreteDataRetriever();
     }
     public static synchronized NotificationLog getInstance() {
         if (log == null) {
@@ -22,12 +20,13 @@ public class NotificationLog {
         }
         return log;
     }
-    public DataRetriever getDataRetriever()
+    public StatisticsDataRetriever getStatisticsDataRepresentative()
     {
-        return retriever;
+        return statisticsRetriever;
     }
     public QueueChecker getQueueChecker()
     {
         return checker;
     }
+    public ConcreteDataRetriever getConcreteDataRepresentative(){ return concreteRetriever;}
 }

@@ -2,6 +2,8 @@ package org.example.TravelAgencyApplication.NotificationManagement.NotificationS
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue.QueueManager;
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
+import org.springframework.stereotype.Component;
+
 
 public class QueueChecker {
     QueueManager queueManager;
