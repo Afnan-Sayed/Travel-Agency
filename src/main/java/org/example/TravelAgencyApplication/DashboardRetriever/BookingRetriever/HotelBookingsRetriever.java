@@ -47,7 +47,7 @@ public class HotelBookingsRetriever {
             for (int j=i+1; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
                 if (hotelRooms.get(j).bookingID == hotelRooms.get(i).bookingID){
                     BookedHotelRoom room = hotelRooms.remove(j--);
-                    rooms.add(new HotelRoomInfo(room.bookedRoomID, room.roomNum, room.startDate, room.nights));
+                    rooms.add(new HotelRoomInfo(room.roomID, room.roomNum, room.startDate, room.nights));
                 }
             }
             bookings.add(new HotelBooking(hotel,rooms));
