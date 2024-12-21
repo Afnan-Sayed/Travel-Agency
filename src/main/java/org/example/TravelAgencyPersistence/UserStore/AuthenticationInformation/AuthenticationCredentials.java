@@ -7,8 +7,10 @@ public class AuthenticationCredentials
     private String phoneNumber;
     private int userID;
     private int userAccountStatus;
+    private boolean isAdmin;
 
-    public AuthenticationCredentials(String username, String password, String email, String phoneNumber, int userID, int userAccountStatus)
+    public AuthenticationCredentials(String username, String password, String email, String phoneNumber,
+                            int userID, int userAccountStatus, boolean isAdmin)
     {
         this.username=username;
         this.password=password;
@@ -16,6 +18,7 @@ public class AuthenticationCredentials
         this.phoneNumber=phoneNumber;
         this.userID=userID;
         this.userAccountStatus=userAccountStatus;
+        this.isAdmin=isAdmin;
     }
     public AuthenticationCredentials(){};
     //setters
@@ -40,7 +43,9 @@ public class AuthenticationCredentials
     public void setAccountStatus(int userAccountStatus) {
         this.userAccountStatus = userAccountStatus;
     }
-
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     //getters
     public String getUsername() {
@@ -62,5 +67,8 @@ public class AuthenticationCredentials
     }
     public int getAccountStatus() {
         return userAccountStatus;
+    }
+    public boolean getIsAdmin() {
+        return isAdmin;
     }
 }
