@@ -61,4 +61,11 @@ public class EventBooker {
     boolean cancelEventTicket(int userID, int eventID) {
         return cancelEventTicket(userID, eventRetriever.getEventByID(eventID));
     }
+
+    void cancelAllEventTickets(int bookingID) {
+        ArrayList<EventTicket> eventTickets = eventRetriever.getEventTicketsByBookingID(bookingID);
+        for (EventTicket eventTicket : eventTickets) {
+            cancelEventTicket(eventTicket.userID, eventTicket.event);
+        }
+    }
 }
