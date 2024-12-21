@@ -14,7 +14,7 @@ public class QueueManager {
     private static QueueManager manager;
     private QueueManager()
     {
-        sender =  new MessageSender(new QueueFailureHandler());
+        sender =  new MessageSender();
         Notifications = new LinkedList<>();
 
     }
@@ -52,9 +52,12 @@ public class QueueManager {
         while (!Notifications.isEmpty()) {
             Notification notification = Notifications.poll();
             Notification resultNotification = sender.sendMessage(notification);
-            if(!(resultNotification == null)) {
-                notification.notificationID = generateID();
-                Notifications.add(notification);
+            if (!(resultNotification == null)) {
+                if(resultNotification.notificationID == null) {
+                    notification.notificationID = generateID();
+                    Notifications.add(notification);
+                }
+                else handleError(resultNotification);
             }
         }
     }
@@ -78,5 +81,13 @@ public class QueueManager {
             if(n.phoneNumber != null)
                 SMS++;
         return SMS;
+    }
+    public void handleError(Notification notification)
+    {
+        if(notification.status < 10)
+        {
+            notification.status++;
+            manager.sendNotification(notification);
+        }
     }
 }

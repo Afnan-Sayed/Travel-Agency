@@ -6,12 +6,10 @@ import org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvid
 public class MessageSender {
     EmailAPI emailAPI;
     SmsAPI smsAPI;
-    QueueFailureHandler failureHandler;
     NotificationContentPortal portal;
 
-    protected MessageSender(QueueFailureHandler queueFailureHandler)
+    protected MessageSender()
     {
-        failureHandler = queueFailureHandler;
         emailAPI = new EmailAPI();
         smsAPI = new SmsAPI();
         portal = NotificationContentPortal.getInstance();
@@ -20,8 +18,10 @@ public class MessageSender {
     {
         int status = 0;
         //makes sure id is unique
-        if(!IsUniqueID(notification.notificationID))
+        if(!IsUniqueID(notification.notificationID)) {
+            notification.notificationID = null;
             return notification;
+        }
         //sends message to mail
         if(notification.mail != null)
         {
@@ -45,9 +45,8 @@ public class MessageSender {
         else
         {
             //tries to process each notification 10 times before discarding it
-            failureHandler.handle(notification);
+            return notification;
         }
-        return null;
     }
 
     private boolean IsUniqueID(String ID)
