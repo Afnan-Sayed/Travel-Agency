@@ -1,12 +1,20 @@
 package org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationQueue.QueueManager;
+import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
+import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoProvider;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 
 import java.util.ArrayList;
 
 public class Builder {
 
     private QueueManager queueManager;
+    UserProvider provider;
+    public Builder()
+    {
+        provider = UserProvider.getInstance();
+    }
     public void makeNotification(Template template, ArrayList<String> input, int language, int userID, String receiver, int notificationReceiverType) {
 
         // Supported language indices:
@@ -14,7 +22,8 @@ public class Builder {
         // 1: Arabic
         // 2: French
         // 3: German
-
+        if(provider.getPersonalInfoProvider().getPersonalInfoByUserID(userID).isEmpty())
+            throw new IllegalArgumentException("This user's ID is invalid");
         //validation
         if (language < 0 || language > 3) {throw new IllegalArgumentException("Invalid language index. Supported indices: 0 (Eng), 1 (Arabic), 2 (French), 3 (German).");}
         String messageTemplate = template.messages.get(language);
