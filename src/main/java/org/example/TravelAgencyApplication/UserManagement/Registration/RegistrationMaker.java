@@ -5,6 +5,7 @@ import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.A
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 
+
 //1. generate unique id and save user temporarily
 //2. authenticate user
 //3. change acc state
@@ -15,18 +16,20 @@ public class RegistrationMaker
     private Authenticator authenticator;
     private UserProvider userProvider;
     private RegistrationNotificationManager notificationManager;
+    private IDGenerator idGenerator;
 
-    //generate random int not this
+    //generate random id
     private int generateID()
     {
-        return java.util.UUID.randomUUID().hashCode();
-        //handle if it already exists
+        int ID= idGenerator.generateID();
+        return ID;
     }
 
     public RegistrationMaker()
     {
         notificationManager = new RegistrationNotificationManager();
         authenticator=new Authenticator();
+        idGenerator=new IDGenerator();
         this.userProvider= userProvider.getInstance();
     }
 
