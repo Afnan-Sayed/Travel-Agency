@@ -1,4 +1,4 @@
-package src.main.java.org.example.TravelAgencyController.UserManagementInterface.LoginInterface;
+package org.example.TravelAgencyController.UserManagementInterface.LoginInterface;
 
 public class UserInfoInterface {
 }
