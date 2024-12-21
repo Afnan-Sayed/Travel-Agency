@@ -13,22 +13,31 @@ public class EventBookingsRetriever {
 
     public EventBookingsRetriever(int userID) {
         this.userID = userID;
-        portal = new EventPortal();
+        portal = EventPortal.getInstance();
     }
+
+
+
 
 
     //retriever Logic
-    public ArrayList<EventTicket> retrieveEventTickets() {
-        return portal.getEventTicketsByUserID(userID);
+    public ArrayList<EventTicket> retrieveAllEventTickets() {
+        return portal.getFilteredEventTickets(userID,
+
+                null,null, null,null,
+                null, null,null,
+                null, null,
+                null);
     }
 
-    public ArrayList<EventTicket> retrieveEventTickets(boolean archived) {
-        ArrayList<EventTicket> eventBookings = retrieveEventTickets();
+    //filtered
+    public ArrayList<EventTicket> retrieveArchivedOrUpcomingTickets(boolean archived) {
+        ArrayList<EventTicket> eventBookings = retrieveAllEventTickets();
 
         Date now = new Date();
 
         for (int i=0; i<eventBookings.size(); i++) {
-            Event event = portal.getEventByID(eventBookings.get(i).eventID);
+            Event event = eventBookings.get(i).event;
             if (event.date.before(now) && !archived){
                 eventBookings.remove(i--);
             }
@@ -40,11 +49,11 @@ public class EventBookingsRetriever {
     }//archived: true means past events, false means upcoming events
 
 
-
+    //booking retriever
     public ArrayList<EventBooking> retrieveEventBookings(ArrayList<EventTicket> eventTickets){
         ArrayList<EventBooking> bookings = new ArrayList<>();
         for (int i=0; i<eventTickets.size(); i++) {
-            Event event = portal.getEventByID(eventTickets.get(i).eventID);
+            Event event = eventTickets.get(i).event;
             ArrayList<EventTicketInfo> tickets = new ArrayList<>();
             for (int j=i+1; j<eventTickets.size(); j++) { //remove and put bookings with same ID in one booking
                 if (eventTickets.get(j).bookingID == eventTickets.get(i).bookingID){

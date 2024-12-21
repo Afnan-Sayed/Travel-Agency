@@ -17,24 +17,24 @@ public class BookingRetrieverInterface {
 
     //Events
     public ArrayList<EventBooking> retrieveAllEventBookings(){
-        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveEventTickets());
+        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveAllEventTickets());
     }
     public ArrayList<EventBooking> retrieveUpcomingEventBookings(){
-        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveEventTickets(false));
+        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveArchivedOrUpcomingTickets(false));
     }
     public ArrayList<EventBooking> retrieveArchivedEventBookings() {
-        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveEventTickets(true));
+        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveArchivedOrUpcomingTickets(true));
     }
 
     //Hotels
     public ArrayList<HotelBooking> retrieveAllHotelBookings(){
-        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveHotelRooms());
+        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveAllHotelRooms());
     }
     public ArrayList<HotelBooking> retrieveUpcomingHotelBookings(){
-        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveHotelRooms(false));
+        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveArchivedOrUpcomingHotelRooms(false));
     }
     public ArrayList<HotelBooking> retrieveArchivedHotelBookings() {
-        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveHotelRooms(true));
+        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveArchivedOrUpcomingHotelRooms(true));
     }
 
 

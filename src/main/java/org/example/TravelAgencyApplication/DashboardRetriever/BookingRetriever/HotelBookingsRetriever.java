@@ -17,12 +17,12 @@ public class HotelBookingsRetriever {
     }
 
     //retriever Logic
-    public ArrayList<BookedHotelRoom> retrieveHotelRooms() {
+    public ArrayList<BookedHotelRoom> retrieveAllHotelRooms() {
         return portal.getHotelRoomsByUserID(userID);
     }
 
-    public ArrayList<BookedHotelRoom> retrieveHotelRooms(boolean archived) {
-        ArrayList<BookedHotelRoom> hotelBookings = retrieveHotelRooms();
+    public ArrayList<BookedHotelRoom> retrieveArchivedOrUpcomingHotelRooms(boolean archived) {
+        ArrayList<BookedHotelRoom> hotelBookings = retrieveAllHotelRooms();
 
         Date now = new Date();
 
