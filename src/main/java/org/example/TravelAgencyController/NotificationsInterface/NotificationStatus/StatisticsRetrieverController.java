@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/notifications/statistics")
 public class StatisticsRetrieverController {
-
     private final NotificationLog notificationLog;
 
     public StatisticsRetrieverController() {

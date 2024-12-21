@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
 import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider.NotificationContentPortal;
@@ -24,3 +25,4 @@ public class NotificationModifier {
 
 
 }
+*/
