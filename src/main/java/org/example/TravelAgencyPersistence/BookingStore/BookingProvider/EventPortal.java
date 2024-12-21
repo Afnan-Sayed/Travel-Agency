@@ -7,42 +7,45 @@ import org.example.TravelAgencyPersistence.BookingStore.UserEventProvider.EventT
 import org.example.TravelAgencyPersistence.BookingStore.UserEventProvider.EventTicketProvider;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventPortal {
 
-    EventProvider eventProvider;
-    EventTicketProvider eventTicketProvider;
+    private EventProvider eventProvider;
+    private EventTicketProvider eventTicketProvider;
 
-    public EventPortal() {
-        eventProvider = new EventProvider();
-        eventTicketProvider = new EventTicketProvider();
+    private static EventPortal instance;
+
+    public static EventPortal getInstance() {
+        if (instance == null) instance = new EventPortal();
+        return instance;
     }
 
-    public Event getEventByID(int eventID) {
-        return eventProvider.getEventByID(eventID);
-    }
-
-    public ArrayList<Event> getAllEvents() {
-        return eventProvider.getAllEvents();
-    }
-
-    public ArrayList<EventTicket> getAllEventTickets() {
-        return eventTicketProvider.getAllEventTickets();
-    }
-
-    public ArrayList<EventTicket> getEventTicketsByUserID(int userID) {
-        return eventTicketProvider.getEventTicketsByUserID(userID);
-    }
-
-    public ArrayList<EventTicket> getEventTicketsByEventID(int eventID) {
-        return eventTicketProvider.getEventTicketsByEventID(eventID);
+    private EventPortal() {
+        eventProvider = EventProvider.getInstance();
+        eventTicketProvider = EventTicketProvider.getInstance();
     }
 
     public boolean addEventTicket(EventTicket eventTicket) {
         return eventTicketProvider.addEventTicket(eventTicket);
     }
 
-    public boolean removeEventTicket(EventTicket eventTicket) {
+    public boolean cancelEventTicket(EventTicket eventTicket) {
         return eventTicketProvider.removeEventTicket(eventTicket);
+    }
+
+    public ArrayList<Event> getFilteredEvents(
+            Integer eventID, Date dateAfterOrEqual, Date dateBeforeOrEqual, String nameSearch,
+            String descriptionSearch, Integer priceMoreThanOrEqual, Integer priceLessThanOrEqual) {
+        return eventProvider.getEvents(eventID, dateAfterOrEqual, dateBeforeOrEqual, nameSearch,
+                descriptionSearch, priceMoreThanOrEqual, priceLessThanOrEqual);
+    }
+
+    public ArrayList<EventTicket> getFilteredEventTickets(
+            Integer userID, Integer bookingID, Integer eventTicketID, Integer ticketNum,
+            Integer eventID, Date dateAfterOrEqual, Date dateBeforeOrEqual, String nameSearch,
+            String descriptionSearch, Integer priceMoreThanOrEqual, Integer priceLessThanOrEqual) {
+        return eventTicketProvider.getEventTickets(userID, bookingID, eventTicketID, ticketNum, eventID,
+                dateAfterOrEqual, dateBeforeOrEqual, nameSearch, descriptionSearch, priceMoreThanOrEqual, priceLessThanOrEqual);
     }
 }

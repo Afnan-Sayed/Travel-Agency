@@ -8,15 +8,24 @@ import java.util.ArrayList;
 
 public class EventBooker {
     EventPortal eventPortal;
-    public EventBooker() {
-        eventPortal = new EventPortal();
+    EventRetriever eventRetriever;
+
+    private static EventBooker instance;
+    public static EventBooker getInstance() {
+        if (instance == null) instance = new EventBooker();
+        return instance;
+    }
+
+    private EventBooker() {
+        eventPortal = EventPortal.getInstance();
+        eventRetriever = EventRetriever.getInstance();
     }
 
     boolean bookEvent(int userID, Event event) {
         EventTicket eventTicket = new EventTicket();
-        eventTicket.eventID = event.eventID;
+        eventTicket.event = event;
         eventTicket.userID = userID;
-        ArrayList<EventTicket> allUserEvents = eventPortal.getEventTicketsByUserID(userID);
+        ArrayList<EventTicket> allUserEvents = eventRetriever.getEventTicketsByUserID(userID);
         if (allUserEvents.contains(eventTicket)) {
             //send notification saying that event is already booked
             return false;
@@ -32,14 +41,14 @@ public class EventBooker {
     }
 
     boolean bookEvent(int userID, int eventID) {
-        return bookEvent(userID, eventPortal.getEventByID(eventID));
+        return bookEvent(userID, eventRetriever.getEventByID(eventID));
     }
 
-    boolean cancelEvent(int userID, Event event) {
+    boolean cancelEventTicket(int userID, Event event) {
         EventTicket eventTicket = new EventTicket();
-        eventTicket.eventID = event.eventID;
+        eventTicket.event = event;
         eventTicket.userID = userID;
-        if (eventPortal.removeEventTicket(eventTicket)) {
+        if (eventPortal.cancelEventTicket(eventTicket)) {
             //send success notification
             return true;
         }
@@ -49,7 +58,14 @@ public class EventBooker {
         }
     }
 
-    boolean cancelEvent(int userID, int eventID) {
-        return cancelEvent(userID, eventPortal.getEventByID(eventID));
+    boolean cancelEventTicket(int userID, int eventID) {
+        return cancelEventTicket(userID, eventRetriever.getEventByID(eventID));
+    }
+
+    void cancelAllEventTickets(int bookingID) {
+        ArrayList<EventTicket> eventTickets = eventRetriever.getEventTicketsByBookingID(bookingID);
+        for (EventTicket eventTicket : eventTickets) {
+            cancelEventTicket(eventTicket.userID, eventTicket.event);
+        }
     }
 }
