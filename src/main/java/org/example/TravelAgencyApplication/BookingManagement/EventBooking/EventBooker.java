@@ -26,18 +26,17 @@ public class EventBooker {
         eventTicket.event = event;
         eventTicket.userID = userID;
         ArrayList<EventTicket> allUserEvents = eventRetriever.getEventTicketsByUserID(userID);
-        if (allUserEvents.contains(eventTicket)) {
-            //send notification saying that event is already booked
-            return false;
-        }
-        if (eventPortal.addEventTicket(eventTicket)) {
+        boolean successful;
+        if (allUserEvents.contains(eventTicket)) successful = false;
+        else if (eventPortal.addEventTicket(eventTicket)) successful = true;
+        else successful = false;
+        if (successful) {
             //send success notification
-            return true;
         }
         else {
             //send failure notification
-            return false;
         }
+        return successful;
     }
 
     boolean bookEvent(int userID, int eventID) {
@@ -49,13 +48,10 @@ public class EventBooker {
         eventTicket.event = event;
         eventTicket.userID = userID;
         if (eventPortal.cancelEventTicket(eventTicket)) {
-            //send success notification
+            //send cancellation notification
             return true;
         }
-        else {
-            //send failure notification
-            return false;
-        }
+        return false;
     }
 
     boolean cancelEventTicket(int userID, int eventID) {
