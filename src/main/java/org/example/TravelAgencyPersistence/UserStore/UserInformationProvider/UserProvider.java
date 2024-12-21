@@ -31,6 +31,7 @@ public class UserProvider
     {
         return perProvider;
     }
+
     public static synchronized UserProvider getInstance()
     {
         if (provider == null)
@@ -38,5 +39,3 @@ public class UserProvider
         return provider;
     }
 }
-
-

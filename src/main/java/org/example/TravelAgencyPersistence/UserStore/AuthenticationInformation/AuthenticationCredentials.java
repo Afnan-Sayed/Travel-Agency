@@ -8,13 +8,16 @@ public class AuthenticationCredentials
     private int userID;
     private int userAccountStatus;
 
-    public AuthenticationCredentials(String username, String password, String email)
+    public AuthenticationCredentials(String username, String password, String email, String phoneNumber, int userID, int userAccountStatus)
     {
-        this.username = username;
-        this.password = password;
-        this.email = email;
+        this.username=username;
+        this.password=password;
+        this.email=email;
+        this.phoneNumber=phoneNumber;
+        this.userID=userID;
+        this.userAccountStatus=userAccountStatus;
     }
-
+    public AuthenticationCredentials(){};
     //setters
     public void setUsername(String username) {
         this.username = username;
@@ -34,7 +37,7 @@ public class AuthenticationCredentials
     public void setUserID(int userID) {
         this.userID = userID;
     }
-    public void setUserState(int userAccountStatus) {
+    public void setAccountStatus(int userAccountStatus) {
         this.userAccountStatus = userAccountStatus;
     }
 
@@ -57,7 +60,7 @@ public class AuthenticationCredentials
     public int getUserID() {
         return userID;
     }
-    public int getUserState() {
+    public int getAccountStatus() {
         return userAccountStatus;
     }
 }

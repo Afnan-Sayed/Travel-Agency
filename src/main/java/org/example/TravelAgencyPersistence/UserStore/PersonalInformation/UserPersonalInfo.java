@@ -10,13 +10,16 @@ public class UserPersonalInfo
     private int notificationReceiverType;
 
 
-    public UserPersonalInfo(int userId, String name, String address, String dateOfBirth)
+    public UserPersonalInfo(int userId, String name, String address, String dateOfBirth, int LanguageID, int notificationReceiverType)
     {
         this.userId = userId;
         this.name = name;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
+        this.LanguageID=LanguageID;
+        this.notificationReceiverType=notificationReceiverType;
     }
+    public UserPersonalInfo(){};
 
     //setters
     public void setUserId(int userId) {
@@ -57,5 +60,4 @@ public class UserPersonalInfo
     public int getNotificationReceiverType() {
         return notificationReceiverType;
     }
-
 }
