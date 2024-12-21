@@ -6,6 +6,13 @@ public class Template {
     private int ID; //set in constructor
     private String specialCharacter; // set in constructor
     public ArrayList<String> messages;
+
+    public Template(int id, String specialCharacter)
+    {
+        this.specialCharacter=specialCharacter;
+        this.ID=id;
+    }
+
     //index 0:English
     //index 1:Arabic
     //index 2:French

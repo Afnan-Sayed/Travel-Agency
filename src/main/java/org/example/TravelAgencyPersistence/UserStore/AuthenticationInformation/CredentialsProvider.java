@@ -42,7 +42,7 @@ public class CredentialsProvider
         return getCredentialsOfAllUsers()
                 .values()
                 .stream()
-                .filter(credentials -> credentials.username.equalsIgnoreCase(username))
+                .filter(credentials -> credentials.getUsername().equalsIgnoreCase(username))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -53,7 +53,7 @@ public class CredentialsProvider
         return getCredentialsOfAllUsers()
                 .values()
                 .stream()
-                .filter(credentials -> credentials.email.equalsIgnoreCase(email))
+                .filter(credentials -> credentials.getEmail().equalsIgnoreCase(email))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -63,7 +63,7 @@ public class CredentialsProvider
         return getCredentialsOfAllUsers()
                 .values()
                 .stream()
-                .filter(credentials -> credentials.phoneNumber.equalsIgnoreCase(phoneNumber))
+                .filter(credentials -> credentials.getPhoneNumber().equalsIgnoreCase(phoneNumber))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
