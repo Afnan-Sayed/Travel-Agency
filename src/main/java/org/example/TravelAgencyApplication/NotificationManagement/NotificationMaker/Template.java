@@ -3,8 +3,8 @@ package org.example.TravelAgencyApplication.NotificationManagement.NotificationM
 import java.util.ArrayList;
 
 public abstract class Template {
-    private int ID; //set in constructor
-    private String specialCharacter; // set in constructor
+    protected int ID; //set in constructor
+    protected String specialCharacter; // set in constructor
     public ArrayList<String> messages;
 
     public Template(int id, String specialCharacter)
