@@ -2,7 +2,7 @@ package org.example.TravelAgencyApplication.NotificationManagement.NotificationM
 
 import java.util.ArrayList;
 
-public class Template {
+public abstract class Template {
     private int ID; //set in constructor
     private String specialCharacter; // set in constructor
     public ArrayList<String> messages;
@@ -21,7 +21,8 @@ public class Template {
         return ID;
     }
 
-    public String getSpecialCharacter() {
+    public String getSpecialCharacter()
+    {
         return specialCharacter;
     }
 }
