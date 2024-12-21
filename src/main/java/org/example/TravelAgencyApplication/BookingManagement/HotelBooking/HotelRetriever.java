@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.BookingManagement.HotelBooking;
 
 import org.example.TravelAgencyPersistence.BookingStore.BookingProvider.HotelPortal;
@@ -18,3 +19,4 @@ public class HotelRetriever {
         return hotelPortal.getHotelRoomByID(roomID);
     }
 }
+*/
