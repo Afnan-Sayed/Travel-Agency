@@ -11,7 +11,7 @@ public class Builder {
 
     private QueueManager queueManager;
     UserProvider provider;
-    Builder()
+    public Builder()
     {
         provider = UserProvider.getInstance();
     }
