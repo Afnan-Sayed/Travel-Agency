@@ -1,8 +1,5 @@
 package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
-
-import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
-
 import java.util.ArrayList;
 
 public class NotificationRetrieverInterface {
@@ -15,19 +12,19 @@ public class NotificationRetrieverInterface {
     }
 
     //retrieve
-    public ArrayList<Notification> retrieve() {
+    public ArrayList<NotificationInfo> retrieve() {
         return retriever.retrieveNotifications();
     }
 
-    public ArrayList<Notification> filter(boolean read,String email) {
+    public ArrayList<NotificationInfo> filter(boolean read,String email) {
         return retriever.retrieve(read, !read, email);
     }
 
-    public ArrayList<Notification> filter(String email) {
+    public ArrayList<NotificationInfo> filter(String email) {
         return retriever.retrieve(true, true, email);
     }
 
-    public ArrayList<Notification> filter(boolean read) {
+    public ArrayList<NotificationInfo> filter(boolean read) {
         return retriever.retrieve(read, !read, null);
     }
 

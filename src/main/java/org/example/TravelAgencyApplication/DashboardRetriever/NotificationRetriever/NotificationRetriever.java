@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 
 public class NotificationRetriever { //This class is concerned with retrieving a single user's notifications
-    private ArrayList<Notification> notifications;
     private int userId;
     private NotificationContentPortal portal = NotificationContentPortal.getInstance();
 
@@ -15,8 +14,8 @@ public class NotificationRetriever { //This class is concerned with retrieving a
         userId = ID;
     } //id is given since creation
 
-    public ArrayList<Notification> retrieve(boolean read, boolean unread, String email) {
-        return notifications = portal.getContentProviderClass().getFilteredNotifications(
+    public ArrayList<NotificationInfo> retrieve(boolean read, boolean unread, String email) {
+        ArrayList<Notification> data = portal.getContentProviderClass().getFilteredNotifications(
                 true,
                 false,
                 read,
@@ -26,11 +25,22 @@ public class NotificationRetriever { //This class is concerned with retrieving a
                 email,
                 null
         );
+        ArrayList<NotificationInfo> protectedData = new ArrayList<>();
+
+        for (Notification notification : data) {
+            protectedData.add(new NotificationInfo(
+                    notification.notificationID,
+                    notification.message,
+                    notification.mail,
+                    notification.read
+                    )
+            );
+        }
+        return protectedData;
+
     } //the filters needed by this component
 
-    public ArrayList<Notification> retrieveNotifications() {
-        //notifications = portal.getContentProviderClass().getNotificationsByUserID(ID); //old and lame\
-        //new and advanced:
+    public ArrayList<NotificationInfo> retrieveNotifications() {
         return retrieve(true, true,null);
     }//default filters
 
