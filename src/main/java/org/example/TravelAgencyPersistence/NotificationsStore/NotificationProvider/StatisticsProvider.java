@@ -17,10 +17,6 @@ public class StatisticsProvider {
     }
 
     // Delegate methods to NotificationInfoProvider
-    public int getTotalNotifications() {
-        return infoProvider.getTotalNotifications();
-    }
-
     public String getMostUsedEmail() {
         return infoProvider.getMostUsedEmail();
     }
@@ -29,34 +25,9 @@ public class StatisticsProvider {
         return infoProvider.getMostUsedTemplateID();
     }
 
-    public int getCountOfEmail(String email) {
-        return infoProvider.getCountOfEmail(email);
-    }
-
     public int getMostFrequentReceiverID() {
         return infoProvider.getMostFrequentReceiverID();
     }
-
-    public int getNoOfSuccessfulNotifications() {
-        return infoProvider.getCountOfSuccessfulNotifications();
-    }
-
-    public int getNoOfFailedNotifications() {
-        return infoProvider.getCountOfFailedNotifications();
-    }
-
-    public int getNoOfReadNotifications() {
-        return infoProvider.getCountOfReadNotifications();
-    }
-
-    public int getNoOfUnreadNotifications() {
-        return infoProvider.getCountOfUnreadNotifications();
-    }
-
-    public Map<String, List<Notification>> groupNotificationsByEmail() {
-        return infoProvider.groupNotificationsByEmail();
-    }
-
 
     //dynamicFiltering
     public int getNoOfNotificationOnFilter(

@@ -51,7 +51,7 @@ public class MessageSender {
 
     private boolean IsUniqueID(String ID)
     {
-        if(portal.getContentProviderClass().getNotificationByNotificationID(ID).isEmpty())
+        if(portal.getContentProviderClass().getFilteredNotifications(false,false,false,false,null,null,null,ID).isEmpty())
             return false;
         else
             return true;
