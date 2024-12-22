@@ -12,4 +12,5 @@ public class BookedHotelRoom {
         public Hotel hotel;
         public Date date;
         public int nights;
+        public int roomNum;
 }
