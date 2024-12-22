@@ -1,5 +1,6 @@
 package org.example.TravelAgencyApplication.BookingManagement.EventBooking;
 
+import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Builder;
 import org.example.TravelAgencyPersistence.BookingStore.BookingProvider.EventPortal;
 import org.example.TravelAgencyPersistence.BookingStore.ExternalEventProvider.Event;
 import org.example.TravelAgencyPersistence.BookingStore.UserEventProvider.EventTicket;
@@ -7,8 +8,9 @@ import org.example.TravelAgencyPersistence.BookingStore.UserEventProvider.EventT
 import java.util.ArrayList;
 
 public class EventBooker {
-    EventPortal eventPortal;
-    EventRetriever eventRetriever;
+    private EventPortal eventPortal;
+    private EventRetriever eventRetriever;
+    private Builder notificationBuilder;
 
     private static EventBooker instance;
     public static EventBooker getInstance() {
@@ -19,6 +21,7 @@ public class EventBooker {
     private EventBooker() {
         eventPortal = EventPortal.getInstance();
         eventRetriever = EventRetriever.getInstance();
+        notificationBuilder = new Builder();
     }
 
     boolean bookEvent(int userID, Event event) {
@@ -26,17 +29,19 @@ public class EventBooker {
         eventTicket.event = event;
         eventTicket.userID = userID;
         ArrayList<EventTicket> allUserEvents = eventRetriever.getEventTicketsByUserID(userID);
-        boolean successful;
-        if (allUserEvents.contains(eventTicket)) successful = false;
-        else if (eventPortal.addEventTicket(eventTicket)) successful = true;
-        else successful = false;
-        if (successful) {
-            //send success notification
+        boolean bookingSuccess;
+        if (allUserEvents.contains(eventTicket)) bookingSuccess = false;
+        else if (eventPortal.addEventTicket(eventTicket)) bookingSuccess = true;
+        else bookingSuccess = false;
+        ArrayList<String> notificationInput = new ArrayList<>();
+        notificationInput.add(event.name);
+        if (bookingSuccess) {
+            notificationBuilder.makeNotification(new EventBookingSuccessTemplate(), notificationInput, userID, 3);
         }
         else {
-            //send failure notification
+            notificationBuilder.makeNotification(new EventBookingFailureTemplate(), notificationInput, userID, 3);
         }
-        return successful;
+        return bookingSuccess;
     }
 
     boolean bookEvent(int userID, int eventID) {
@@ -48,7 +53,9 @@ public class EventBooker {
         eventTicket.event = event;
         eventTicket.userID = userID;
         if (eventPortal.cancelEventTicket(eventTicket)) {
-            //send cancellation notification
+            ArrayList<String> notificationInput = new ArrayList<>();
+            notificationInput.add(event.name);
+            notificationBuilder.makeNotification(new EventCancellationTemplate(), notificationInput, userID, 3);
             return true;
         }
         return false;
