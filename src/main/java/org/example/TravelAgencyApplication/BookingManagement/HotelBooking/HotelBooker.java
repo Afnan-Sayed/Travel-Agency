@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.BookingManagement.HotelBooking;
 
 import org.example.TravelAgencyPersistence.BookingStore.BookingProvider.HotelPortal;
@@ -49,3 +50,4 @@ public class HotelBooker {
         return cancelHotelRoom(userID,hotelPortal.getHotelRoomByID(roomID));
     }
 }
+*/

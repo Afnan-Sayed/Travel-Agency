@@ -100,4 +100,26 @@ public class ExternalHotelProviderRepoAPI {
         }
         return null;
     }
+    public boolean addHotel(Hotel hotel) {
+        return hotels.add(hotel);
+    }
+    public boolean addHotelRoom(HotelRoom room) {
+        for (Hotel hotel : hotels) {
+            if (hotel.hotelID == room.hotel.hotelID) {
+                return hotel.rooms.add(room);
+            }
+        }
+        return false;
+    }
+    public boolean removeHotel(Hotel hotel) {
+        return hotels.remove(hotel);
+    }
+    public boolean removeHotelRoom(HotelRoom room) {
+        for (Hotel hotel : hotels) {
+            if (hotel.hotelID == room.hotel.hotelID) {
+                return hotel.rooms.remove(room);
+            }
+        }
+        return false;
+    }
 }
