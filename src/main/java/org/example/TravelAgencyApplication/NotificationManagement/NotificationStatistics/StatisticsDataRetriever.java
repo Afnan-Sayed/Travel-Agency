@@ -11,22 +11,22 @@ public class StatisticsDataRetriever {
     }
     //general Info
     public int NoOfAllNotifications() {
-        return portal.getStatisticsProvider().getTotalNotifications();
+        return portal.getStatisticsProvider().getNoOfNotificationOnFilter(false,false,false,false,null,null,null);
     }
     public int NoOfSuccessfulNotifications() {
-        return portal.getStatisticsProvider().getNoOfSuccessfulNotifications();
+        return portal.getStatisticsProvider().getNoOfNotificationOnFilter(true,false,false,false,null,null,null);
     }
     public int NoOfFailedNotifications()
     {
-        return portal.getStatisticsProvider().getNoOfFailedNotifications();
+        return portal.getStatisticsProvider().getNoOfNotificationOnFilter(false,true,false,false,null,null,null);
     }
     public int NoOfReadNotifications()
     {
-        return portal.getStatisticsProvider().getNoOfReadNotifications();
+        return portal.getStatisticsProvider().getNoOfNotificationOnFilter(false,false,true,false,null,null,null);
     }
     public int NoOfUnreadNotifications()
     {
-        return portal.getStatisticsProvider().getNoOfUnreadNotifications();
+        return portal.getStatisticsProvider().getNoOfNotificationOnFilter(false,false,false,true,null,null,null);
     }
     public int mostUsedTemplateID()
     {
