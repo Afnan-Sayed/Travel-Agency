@@ -15,7 +15,7 @@ public class Builder {
     {
         provider = UserProvider.getInstance();
     }
-    public void makeNotification(Template template, ArrayList<String> input, int language, int userID, int notificationReceiverType) {
+    public void makeNotification(Template template, ArrayList<String> input, int userID, int notificationReceiverType) {
 
         // Supported language indices:
         // 0: English
@@ -24,6 +24,7 @@ public class Builder {
         // 3: German
         if(provider.getPersonalInfoProvider().getPersonalInfoByUserID(userID).isEmpty())
             throw new IllegalArgumentException("This user's ID is invalid");
+        int language = provider.getPersonalInfoProvider().getPersonalInfoByUserID(userID).getFirst().getLanguageID();
         //validation
         if (language < 0 || language > 3) {throw new IllegalArgumentException("Invalid language index. Supported indices: 0 (Eng), 1 (Arabic), 2 (French), 3 (German).");}
         String messageTemplate = template.messages.get(language);
