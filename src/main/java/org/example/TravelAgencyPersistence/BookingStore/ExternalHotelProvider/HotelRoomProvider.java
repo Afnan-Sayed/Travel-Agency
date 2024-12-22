@@ -1,5 +1,7 @@
 package org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider;
+import org.example.TravelAgencyPersistence.BookingStore.BookedHotelRoomRepo;
 import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProviderRepoAPI;
+import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.BookedHotelRoom;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -7,9 +9,17 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class HotelRoomProvider {
+    private static HotelRoomProvider hotelRoomProvider;
     private ExternalHotelProviderRepoAPI repo;
-    public HotelRoomProvider() {
-        repo = new ExternalHotelProviderRepoAPI();
+    private BookedHotelRoomRepo bookedHotelRoomRepo;
+    private HotelRoomProvider() {
+        repo = ExternalHotelProviderRepoAPI.getInstance();
+    }
+    public static HotelRoomProvider getInstance() {
+        if (hotelRoomProvider == null) {
+            hotelRoomProvider = new HotelRoomProvider();
+        }
+        return hotelRoomProvider;
     }
     public ArrayList<HotelRoom> getHotelRoomsByHotelID(int roomID) {
         return repo.getHotelRoomsByHotelID(roomID);
@@ -60,10 +70,13 @@ public class HotelRoomProvider {
                 .filter(filters.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());
     }
-    public boolean addHotelRoom(HotelRoom room) {
-        return repo.addHotelRoom(room);
+    public boolean bookHotelRoom(BookedHotelRoom bookedHotelRoom) {
+        return bookedHotelRoomRepo.addBookedHotelRoom(bookedHotelRoom);
     }
-    public boolean removeHotelRoom(HotelRoom room) {
-        return repo.removeHotelRoom(room);
+    public boolean cancelBooking(BookedHotelRoom room) {
+        return bookedHotelRoomRepo.removeBookedHotelRoom(room);
+    }
+    public ArrayList<Hotel> getAllHotels(){
+        return repo.getAllHotels();
     }
 }

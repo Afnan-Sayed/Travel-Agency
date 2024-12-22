@@ -6,8 +6,9 @@ import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.Ho
 import java.util.ArrayList;
 
 public class ExternalHotelProviderRepoAPI {
+    private static ExternalHotelProviderRepoAPI externalHotelProviderRepoAPI;
     private ArrayList<Hotel> hotels;
-    public ExternalHotelProviderRepoAPI() {
+    private ExternalHotelProviderRepoAPI() {
         hotels = new ArrayList<>();
         Hotel hotel1 = new Hotel();
         hotel1.hotelID = 1;
@@ -85,6 +86,15 @@ public class ExternalHotelProviderRepoAPI {
 
         hotels.add(hotel2);
     }
+    public static ExternalHotelProviderRepoAPI getInstance() {
+        if (externalHotelProviderRepoAPI == null) {
+            externalHotelProviderRepoAPI = new ExternalHotelProviderRepoAPI();
+        }
+        return externalHotelProviderRepoAPI;
+    }
+    public ArrayList<Hotel> getAllHotels(){
+        return hotels;
+    }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         ArrayList<HotelRoom> result = new ArrayList<>();
         for (Hotel hotel : hotels) {
@@ -99,27 +109,5 @@ public class ExternalHotelProviderRepoAPI {
             }
         }
         return null;
-    }
-    public boolean addHotel(Hotel hotel) {
-        return hotels.add(hotel);
-    }
-    public boolean addHotelRoom(HotelRoom room) {
-        for (Hotel hotel : hotels) {
-            if (hotel.hotelID == room.hotel.hotelID) {
-                return hotel.rooms.add(room);
-            }
-        }
-        return false;
-    }
-    public boolean removeHotel(Hotel hotel) {
-        return hotels.remove(hotel);
-    }
-    public boolean removeHotelRoom(HotelRoom room) {
-        for (Hotel hotel : hotels) {
-            if (hotel.hotelID == room.hotel.hotelID) {
-                return hotel.rooms.remove(room);
-            }
-        }
-        return false;
     }
 }

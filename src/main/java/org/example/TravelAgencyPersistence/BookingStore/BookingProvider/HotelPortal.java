@@ -16,8 +16,8 @@ public class HotelPortal {
     private HotelRoomProvider hotelRoomProvider;
     private BookedHotelRoomProvider bookedHotelRoomProvider;
     private HotelPortal() {
-        hotelRoomProvider = new HotelRoomProvider();
-        bookedHotelRoomProvider = new BookedHotelRoomProvider();
+        hotelRoomProvider = HotelRoomProvider.getInstance();
+        bookedHotelRoomProvider = BookedHotelRoomProvider.getInstance();
     }
     public static HotelPortal getInstance() {
         if(hotelPortal == null) {
@@ -31,8 +31,8 @@ public class HotelPortal {
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
         return bookedHotelRoomProvider.getAllBookedHotelRooms();
     }
-    public boolean addHotelRoom(HotelRoom room) {
-        return hotelRoomProvider.addHotelRoom(room);
+    public boolean bookHotelRoom(BookedHotelRoom bookedHotelRoom) {
+        return hotelRoomProvider.bookHotelRoom(bookedHotelRoom);
     }
     public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Hotel hotel) {
         return hotelRoomProvider.getFilteredHotelRooms(roomID, roomType, roomNumber, price, isBooked, hotel);
@@ -40,13 +40,10 @@ public class HotelPortal {
     public ArrayList<BookedHotelRoom> getFilteredBookedHotelRooms(Integer roomID, Integer userID, Integer bookingID, HotelRoom hotelRoom, Date date, Integer nights) {
         return bookedHotelRoomProvider.getFilteredBookedHotelRooms(roomID, userID, bookingID, hotelRoom, date, nights);
     }
-    public boolean removeHotelRoom(HotelRoom room) {
-        return hotelRoomProvider.removeHotelRoom(room);
+    public boolean cancelBooking(BookedHotelRoom room) {
+        return hotelRoomProvider.cancelBooking(room);
     }
     public boolean addBookedHotelRoom(BookedHotelRoom room) {
         return bookedHotelRoomProvider.addBookedHotelRoom(room);
-    }
-    public boolean removeBookedHotelRoom(BookedHotelRoom room) {
-        return bookedHotelRoomProvider.removeBookedHotelRoom(room);
     }
 }

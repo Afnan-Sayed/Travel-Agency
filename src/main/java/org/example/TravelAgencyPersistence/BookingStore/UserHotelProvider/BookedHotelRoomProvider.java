@@ -8,9 +8,16 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BookedHotelRoomProvider {
+    private static BookedHotelRoomProvider bookedHotelRoomProvider;
     private BookedHotelRoomRepo repo;
-    public BookedHotelRoomProvider() {
-        repo = new BookedHotelRoomRepo();
+    private BookedHotelRoomProvider() {
+        repo = BookedHotelRoomRepo.getInstance();
+    }
+    public static BookedHotelRoomProvider getInstance() {
+        if (bookedHotelRoomProvider == null) {
+            bookedHotelRoomProvider = new BookedHotelRoomProvider();
+        }
+        return bookedHotelRoomProvider;
     }
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
         return repo.getAllBookedHotelRooms();
