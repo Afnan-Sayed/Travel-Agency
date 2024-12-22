@@ -15,7 +15,7 @@ public class Builder {
     {
         provider = UserProvider.getInstance();
     }
-    public void makeNotification(Template template, ArrayList<String> input, int language, int userID, String receiver, int notificationReceiverType) {
+    public void makeNotification(Template template, ArrayList<String> input, int language, int userID, int notificationReceiverType) {
 
         // Supported language indices:
         // 0: English
@@ -30,8 +30,15 @@ public class Builder {
         if (messageTemplate == null || messageTemplate.isEmpty()) {throw new IllegalArgumentException("Template message for the selected language is missing.");}
 
         //filling
+        if(notificationReceiverType < 1 || notificationReceiverType >3)
+            throw new IllegalArgumentException("the type must be 1, 2, or 3");
+
         String specialCharacter = template.getSpecialCharacter();
         String finalMessage = replaceSpecialCharacters(messageTemplate, input, specialCharacter, language);
+
+        ArrayList<String> receiver = new ArrayList<String>();
+        receiver.add( (notificationReceiverType == 1 || notificationReceiverType == 3)?provider.getCredentialsProvider().getCredentialsByUserID(userID).getEmail():null);
+        receiver.add((notificationReceiverType == 2 || notificationReceiverType == 3)?provider.getCredentialsProvider().getCredentialsByUserID(userID).getPhoneNumber():null);
 
         queueManager.sendNotification(finalMessage, userID, receiver, notificationReceiverType, template.getID());
 
