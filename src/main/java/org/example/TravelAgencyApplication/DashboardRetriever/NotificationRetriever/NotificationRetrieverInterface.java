@@ -6,26 +6,26 @@ public class NotificationRetrieverInterface {
     private final NotificationRetriever retriever;
     private final NotificationModifier modifier;
 
-    public NotificationRetrieverInterface(int userID) {
-        retriever = new NotificationRetriever(userID);
-        modifier = new NotificationModifier(userID);
+    public NotificationRetrieverInterface() {
+        retriever = new NotificationRetriever();
+        modifier = new NotificationModifier();
     }
 
     //retrieve
-    public ArrayList<NotificationInfo> retrieve() {
-        return retriever.retrieveNotifications();
+    public ArrayList<NotificationInfo> retrieve(int userID) {
+        return retriever.retrieveNotifications(userID);
     }
 
-    public ArrayList<NotificationInfo> filter(boolean read,String email) {
-        return retriever.retrieve(read, !read, email);
+    public ArrayList<NotificationInfo> filter(int userID,boolean read,String email) {
+        return retriever.retrieve(userID,read, !read, email);
     }
 
-    public ArrayList<NotificationInfo> filter(String email) {
-        return retriever.retrieve(true, true, email);
+    public ArrayList<NotificationInfo> filter(int userID,String email) {
+        return retriever.retrieve(userID,true, true, email);
     }
 
-    public ArrayList<NotificationInfo> filter(boolean read) {
-        return retriever.retrieve(read, !read, null);
+    public ArrayList<NotificationInfo> filter(int userID,boolean read) {
+        return retriever.retrieve(userID,read, !read, null);
     }
 
 

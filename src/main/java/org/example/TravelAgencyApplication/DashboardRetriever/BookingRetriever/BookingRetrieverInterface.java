@@ -10,31 +10,31 @@ public class BookingRetrieverInterface {
     private EventBookingsRetriever eventRetriever;
     private HotelBookingsRetriever hotelRetriever;
 
-    public BookingRetrieverInterface(int userID) {
-        eventRetriever = new EventBookingsRetriever(userID);
-        hotelRetriever = new HotelBookingsRetriever(userID);
+    public BookingRetrieverInterface() {
+        eventRetriever = new EventBookingsRetriever();
+        hotelRetriever = new HotelBookingsRetriever();
     }
 
     //Events
-    public ArrayList<EventBooking> retrieveAllEventBookings(){
-        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveAllEventTickets());
+    public ArrayList<EventBooking> retrieveAllEventBookings(int userID){
+        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveAllEventTickets(userID));
     }
-    public ArrayList<EventBooking> retrieveUpcomingEventBookings(){
-        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveArchivedOrUpcomingTickets(false));
+    public ArrayList<EventBooking> retrieveUpcomingEventBookings(int userID){
+        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveArchivedOrUpcomingTickets(userID,false));
     }
-    public ArrayList<EventBooking> retrieveArchivedEventBookings() {
-        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveArchivedOrUpcomingTickets(true));
+    public ArrayList<EventBooking> retrieveArchivedEventBookings(int userID) {
+        return eventRetriever.retrieveEventBookings(eventRetriever.retrieveArchivedOrUpcomingTickets(userID,true));
     }
 
     //Hotels
-    public ArrayList<HotelBooking> retrieveAllHotelBookings(){
-        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveAllHotelRooms());
+    public ArrayList<HotelBooking> retrieveAllHotelBookings(int userID){
+        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveAllHotelRooms(userID));
     }
-    public ArrayList<HotelBooking> retrieveUpcomingHotelBookings(){
-        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveArchivedOrUpcomingHotelRooms(false));
+    public ArrayList<HotelBooking> retrieveUpcomingHotelBookings(int userID){
+        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveArchivedOrUpcomingHotelRooms(userID,false));
     }
-    public ArrayList<HotelBooking> retrieveArchivedHotelBookings() {
-        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveArchivedOrUpcomingHotelRooms(true));
+    public ArrayList<HotelBooking> retrieveArchivedHotelBookings(int userID) {
+        return hotelRetriever.retrieveHotelBookings(hotelRetriever.retrieveArchivedOrUpcomingHotelRooms(userID,true));
     }
 
 

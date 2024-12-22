@@ -8,20 +8,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class EventBookingsRetriever {
-    private int userID;
     private EventPortal portal;
 
-    public EventBookingsRetriever(int userID) {
-        this.userID = userID;
+    public EventBookingsRetriever() {
         portal = EventPortal.getInstance();
     }
 
 
-
-
-
     //retriever Logic
-    public ArrayList<EventTicket> retrieveAllEventTickets() {
+    public ArrayList<EventTicket> retrieveAllEventTickets(int userID) {
         return portal.getFilteredEventTickets(userID,
 
                 null,null, null,null,
@@ -31,8 +26,8 @@ public class EventBookingsRetriever {
     }
 
     //filtered
-    public ArrayList<EventTicket> retrieveArchivedOrUpcomingTickets(boolean archived) {
-        ArrayList<EventTicket> eventBookings = retrieveAllEventTickets();
+    public ArrayList<EventTicket> retrieveArchivedOrUpcomingTickets(int userID,boolean archived) {
+        ArrayList<EventTicket> eventBookings = retrieveAllEventTickets(userID);
 
         Date now = new Date();
 

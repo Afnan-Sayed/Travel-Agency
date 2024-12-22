@@ -5,12 +5,9 @@ import org.example.TravelAgencyPersistence.NotificationsStore.NotificationConten
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider.NotificationContentPortal;
 
 public class NotificationModifier {
-    private int userID;
-    private NotificationContentPortal portal = NotificationContentPortal.getInstance();
+    private NotificationContentPortal portal;
 
-    public NotificationModifier(int ID) {
-        userID = ID;
-    }
+    public NotificationModifier() {portal = NotificationContentPortal.getInstance();}
 
     public void deleteNotification(String notificationId) {
         portal.getContentProviderClass().deleteNotification(notificationId);

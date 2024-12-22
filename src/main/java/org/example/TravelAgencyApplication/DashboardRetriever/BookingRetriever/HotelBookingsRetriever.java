@@ -8,21 +8,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class HotelBookingsRetriever {
-    private int userID;
     private HotelPortal portal;
 
-    public HotelBookingsRetriever(int userID) {
-        this.userID = userID;
+    public HotelBookingsRetriever() {
         portal = new HotelPortal();
     }
 
     //retriever Logic
-    public ArrayList<BookedHotelRoom> retrieveAllHotelRooms() {
+    public ArrayList<BookedHotelRoom> retrieveAllHotelRooms(int userID) {
         return portal.getFilteredBookedHotelRooms(null, userID, null,null,null,null);
     }
 
-    public ArrayList<BookedHotelRoom> retrieveArchivedOrUpcomingHotelRooms(boolean archived) {
-        ArrayList<BookedHotelRoom> hotelBookings = retrieveAllHotelRooms();
+    public ArrayList<BookedHotelRoom> retrieveArchivedOrUpcomingHotelRooms(int userID,boolean archived) {
+        ArrayList<BookedHotelRoom> hotelBookings = retrieveAllHotelRooms(userID);
 
         Date now = new Date();
 
