@@ -16,7 +16,7 @@ public class MessageSender {
     }
     public Notification sendMessage(Notification notification)
     {
-        int status = 0;
+        int mailStatus = 0, SMSStatus = 0;
         //makes sure id is unique
         if(!IsUniqueID(notification.notificationID)) {
             notification.notificationID = null;
@@ -25,21 +25,33 @@ public class MessageSender {
         //sends message to mail
         if(notification.mail != null)
         {
-            status =emailAPI.sendNotification(notification.message, notification.mail);
+            mailStatus =emailAPI.sendNotification(notification.message, notification.mail);
         }
         //sends message to sms
-        else if(notification.phoneNumber != null)
+        if(notification.phoneNumber != null)
         {
-            status = smsAPI.sendNotification(notification.message, notification.phoneNumber);
+            SMSStatus = smsAPI.sendNotification(notification.message, notification.phoneNumber);
         }
         //successfully sent
-        if(status == 0) {
+        if(mailStatus == 0 && SMSStatus == 0) {
             //making sure status is 0 (successful)
             notification.status = 0;
             //logic for saving notification
             portal.getContentProviderClass().addNotification(notification);
             //making sure that the notification is not modified
             return null;
+        }
+        //failed mail
+        else if(mailStatus == 0)
+        {
+            notification.mail = null;
+            return notification;
+        }
+        //failed phone Number
+        else if(SMSStatus == 0)
+        {
+            notification.phoneNumber = null;
+            return notification;
         }
         //failed
         else

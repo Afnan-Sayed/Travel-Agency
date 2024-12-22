@@ -2,6 +2,8 @@ package org.example.TravelAgencyApplication.NotificationManagement.NotificationQ
 
 
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
+
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -24,15 +26,14 @@ public class QueueManager {
         }
         return manager;
     }
-    public void sendNotification(String Message, int userID, String receiver, int notificationReceiverType, int templateID)
+    public void sendNotification(String Message, int userID, ArrayList<String> receiver, int notificationReceiverType, int templateID)
     {
-        // receiver type 1 = email only, 2 = phone only
-        boolean email = (notificationReceiverType == 1), phone = (notificationReceiverType == 2) ;
+        // receiver type 1 = email only, 2 = phone only, 3 = both
         Notification notification = new Notification();
         notification.notificationID = generateID();
         notification.templateID = templateID;
-        notification.mail = email?receiver:null;
-        notification.phoneNumber = phone?receiver:null;
+        notification.mail = receiver.get(0);
+        notification.phoneNumber = receiver.get(1);
         notification.read = false;
         notification.message = Message;
         notification.receiverID = userID;
