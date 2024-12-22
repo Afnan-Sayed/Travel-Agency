@@ -44,9 +44,17 @@ public class ConcreteDataRetrieverController {
     public ArrayList<Notification> getNotificationsForUser(@PathVariable Integer userID) {
         return notificationLog.getConcreteDataRepresentative().NotificationsForAUser(userID);
     }
+    @GetMapping("/user/successful/{userID}")
+    public ArrayList<Notification> getSuccessfulNotificationsForUser(@PathVariable Integer userID) {
+        return notificationLog.getConcreteDataRepresentative().SuccessfulNotificationsForAUser(userID);
+    }
+    @GetMapping("/user/failed/{userID}")
+    public ArrayList<Notification> getFailedNotificationsForUser(@PathVariable Integer userID) {
+        return notificationLog.getConcreteDataRepresentative().FailedNotificationsForAUser(userID);
+    }
 
-    @GetMapping("/email")
-    public ArrayList<Notification> getNotificationsForEmail(@RequestParam String email) {
+    @GetMapping("/email/{email}")
+    public ArrayList<Notification> getNotificationsForEmail(@PathVariable String email) {
         return notificationLog.getConcreteDataRepresentative().NotificationsForAnEmail(email);
     }
 
@@ -60,13 +68,13 @@ public class ConcreteDataRetrieverController {
         return notificationLog.getConcreteDataRepresentative().NoOfFailedNotificationsForATemplate(templateID);
     }
 
-    @GetMapping("/email/successful")
-    public ArrayList<Notification> getSuccessfulNotificationsForEmail(@RequestParam String email) {
+    @GetMapping("/email/successful/{email}")
+    public ArrayList<Notification> getSuccessfulNotificationsForEmail(@PathVariable String email) {
         return notificationLog.getConcreteDataRepresentative().SuccessfulNotificationsForAnEmail(email);
     }
 
-    @GetMapping("/email/failed")
-    public ArrayList<Notification> getFailedNotificationsForEmail(@RequestParam String email) {
+    @GetMapping("/email/failed/{email}")
+    public ArrayList<Notification> getFailedNotificationsForEmail(@PathVariable String email) {
         return notificationLog.getConcreteDataRepresentative().FailedNotificationsForAnEmail(email);
     }
 }
