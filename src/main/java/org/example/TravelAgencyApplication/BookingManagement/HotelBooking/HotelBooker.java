@@ -1,4 +1,3 @@
-/*
 package org.example.TravelAgencyApplication.BookingManagement.HotelBooking;
 
 import org.example.TravelAgencyPersistence.BookingStore.BookingProvider.HotelPortal;
@@ -8,15 +7,24 @@ import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.Booked
 import java.util.ArrayList;
 
 public class HotelBooker {
+    private static HotelBooker hotelBooker;
     private HotelPortal hotelPortal;
-    public HotelBooker(){
-        hotelPortal = new HotelPortal();
+    private HotelRetriever hotelRetriever;
+    private HotelBooker(){
+        hotelPortal = HotelPortal.getInstance();
+        hotelRetriever = HotelRetriever.getInstance();
+    }
+    public static HotelBooker getInstance(){
+        if(hotelBooker == null){
+            hotelBooker = new HotelBooker();
+        }
+        return hotelBooker;
     }
     public boolean bookHotelRoom(int userID, HotelRoom room){
         BookedHotelRoom bookedHotelRoom = new BookedHotelRoom();
         bookedHotelRoom.userID = userID;
         bookedHotelRoom.roomID = room.roomID;
-        ArrayList<BookedHotelRoom> allUserBookedHotelRooms = hotelPortal.getBookedHotelRoomsByUserID(userID);
+        ArrayList<BookedHotelRoom> allUserBookedHotelRooms = hotelPortal.getFilteredBookedHotelRooms(null,userID,null,null,null,null);
         if(allUserBookedHotelRooms.contains(bookedHotelRoom)){
             //send notification saying that room is already booked
             return false;
@@ -31,7 +39,7 @@ public class HotelBooker {
         }
     }
     public boolean bookHotelRoom(int userID,int roomID){
-        return bookHotelRoom(userID,hotelPortal.getHotelRoomByID(roomID));
+        return bookHotelRoom(userID,hotelPortal.getFilteredHotelRooms(roomID,null,null,null,null,null).get(0));
     }
     public boolean cancelHotelRoom(int userID,HotelRoom room){
         BookedHotelRoom bookedHotelRoom = new BookedHotelRoom();
@@ -47,7 +55,12 @@ public class HotelBooker {
         }
     }
     public boolean cancelHotelRoom(int userID,int roomID){
-        return cancelHotelRoom(userID,hotelPortal.getHotelRoomByID(roomID));
+        return cancelHotelRoom(userID,hotelPortal.getFilteredHotelRooms(roomID,null,null,null,null,null).get(0));
+    }
+    public void cancelAllBookedHotelRooms(int bookingID){
+        ArrayList<BookedHotelRoom> allBookedHotelRooms = hotelPortal.getFilteredBookedHotelRooms(null,null,bookingID,null,null,null);
+        for(BookedHotelRoom bookedHotelRoom : allBookedHotelRooms){
+            hotelPortal.removeBookedHotelRoom(bookedHotelRoom);
+        }
     }
 }
-*/

@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
@@ -49,4 +50,4 @@ public class RegistrationAuthenticator
         }
         return false;
     }
-}
+}*/

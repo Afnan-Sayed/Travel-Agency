@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
@@ -51,3 +52,4 @@ public class RegistrationProcessMaker
 
 
 }
+*/

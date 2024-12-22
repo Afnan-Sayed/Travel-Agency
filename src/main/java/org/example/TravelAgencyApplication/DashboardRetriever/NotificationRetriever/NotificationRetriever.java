@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
 import java.util.ArrayList;
@@ -30,3 +31,4 @@ public class NotificationRetriever { //This class is concerned with retrieving a
         retrieveNotifications();
     }
 }
+*/

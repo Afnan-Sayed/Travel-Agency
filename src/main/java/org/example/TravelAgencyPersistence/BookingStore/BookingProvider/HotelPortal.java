@@ -12,8 +12,19 @@ import java.util.Date;
 import java.util.function.Predicate;
 
 public class HotelPortal {
+    private static HotelPortal hotelPortal;
     private HotelRoomProvider hotelRoomProvider;
     private BookedHotelRoomProvider bookedHotelRoomProvider;
+    private HotelPortal() {
+        hotelRoomProvider = new HotelRoomProvider();
+        bookedHotelRoomProvider = new BookedHotelRoomProvider();
+    }
+    public static HotelPortal getInstance() {
+        if(hotelPortal == null) {
+            hotelPortal = new HotelPortal();
+        }
+        return hotelPortal;
+    }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return hotelRoomProvider.getAllHotelRooms();
     }
