@@ -34,8 +34,8 @@ public class NotificationRetrieverInterface {
         modifier.deleteNotification(notificationID);
     }
 
-    public void readNotification(String notificationID) {
-        modifier.changeReadStatus(notificationID);
+    public void readNotification(String notificationID, NotificationInfo notificationInfo) {
+        modifier.changeReadStatus(notificationID, notificationInfo);
     }
 
 }
