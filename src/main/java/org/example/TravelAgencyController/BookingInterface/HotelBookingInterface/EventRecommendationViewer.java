@@ -18,6 +18,6 @@ public class EventRecommendationViewer {
         return eventRecommendationViewer;
     }
     public ArrayList<Event> getEventRecommendations(Hotel hotel) {
-        return eventRetriever.getEventsWithinRadius(hotel.latitude, hotel.longitude, 10.0);
+        return eventRetriever.getEventsWithinRadius(hotel.latitude, hotel.longitude, 15.0);
     }
 }

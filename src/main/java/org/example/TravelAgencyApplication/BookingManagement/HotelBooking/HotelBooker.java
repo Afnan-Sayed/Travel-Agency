@@ -1,18 +1,22 @@
 package org.example.TravelAgencyApplication.BookingManagement.HotelBooking;
 
+import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Builder;
 import org.example.TravelAgencyPersistence.BookingStore.BookingProvider.HotelPortal;
 import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.HotelRoom;
 import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.BookedHotelRoom;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HotelBooker {
     private static HotelBooker hotelBooker;
     private HotelPortal hotelPortal;
     private HotelRetriever hotelRetriever;
+    private Builder notificationBuilder;
     private HotelBooker(){
         hotelPortal = HotelPortal.getInstance();
         hotelRetriever = HotelRetriever.getInstance();
+        notificationBuilder = new Builder();
     }
     public static HotelBooker getInstance(){
         if(hotelBooker == null){
@@ -20,18 +24,18 @@ public class HotelBooker {
         }
         return hotelBooker;
     }
-    public boolean bookHotelRoom(int userID, HotelRoom room){
+    public boolean bookHotelRoom(int userID, HotelRoom room, int bookingID, int nights, Date date){
         BookedHotelRoom bookedHotelRoom = new BookedHotelRoom();
         bookedHotelRoom.userID = userID;
         bookedHotelRoom.roomID = room.roomID;
-        ArrayList<BookedHotelRoom> allUserBookedHotelRooms = hotelPortal.getFilteredBookedHotelRooms(null,userID,null,null,null,null);
-        if(allUserBookedHotelRooms.contains(bookedHotelRoom)){
-            //send notification saying that room is already booked
-            return false;
-        }
-        if(hotelPortal.addBookedHotelRoom(bookedHotelRoom)){
-            //send success notification
-            return true;
+        bookedHotelRoom.bookingID = bookingID;
+        bookedHotelRoom.date = date;
+        bookedHotelRoom.nights = nights;
+        bookedHotelRoom.hotel = room.hotel;
+        ArrayList<String> notificationInput= new ArrayList<>();
+        notificationInput.add(room.hotel.hotelName);
+        if(hotelPortal.bookHotelRoom(bookedHotelRoom)){
+            notificationBuilder.makeNotification(new HotelBookingSuccessTemplate(),notificationInput,userID);
         }
         else {
             //send failure notification
@@ -45,7 +49,7 @@ public class HotelBooker {
         BookedHotelRoom bookedHotelRoom = new BookedHotelRoom();
         bookedHotelRoom.userID = userID;
         bookedHotelRoom.roomID = room.roomID;
-        if(hotelPortal.removeBookedHotelRoom(bookedHotelRoom)){
+        if(hotelPortal.cancelBooking(bookedHotelRoom)){
             //send success notification
             return true;
         }
@@ -60,7 +64,7 @@ public class HotelBooker {
     public void cancelAllBookedHotelRooms(int bookingID){
         ArrayList<BookedHotelRoom> allBookedHotelRooms = hotelPortal.getFilteredBookedHotelRooms(null,null,bookingID,null,null,null);
         for(BookedHotelRoom bookedHotelRoom : allBookedHotelRooms){
-            hotelPortal.removeBookedHotelRoom(bookedHotelRoom);
+            hotelPortal.cancelBooking(bookedHotelRoom);
         }
     }
 }

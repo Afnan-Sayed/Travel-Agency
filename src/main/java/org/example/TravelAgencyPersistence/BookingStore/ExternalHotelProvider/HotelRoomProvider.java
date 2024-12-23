@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class HotelRoomProvider {
     private static HotelRoomProvider hotelRoomProvider;
     private ExternalHotelProviderRepoAPI repo;
-    private BookedHotelRoomRepo bookedHotelRoomRepo;
     private HotelRoomProvider() {
         repo = ExternalHotelProviderRepoAPI.getInstance();
     }
@@ -21,11 +20,14 @@ public class HotelRoomProvider {
         }
         return hotelRoomProvider;
     }
-    public ArrayList<HotelRoom> getHotelRoomsByHotelID(int roomID) {
-        return repo.getHotelRoomsByHotelID(roomID);
-    }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return repo.getAllHotelRooms();
+    }
+    public boolean bookHotelRoom(BookedHotelRoom hotelRoom) {
+        return repo.bookHotelRoom(hotelRoom);
+    }
+    public boolean cancelBooking(BookedHotelRoom hotelRoom) {
+        return repo.cancelBooking(hotelRoom);
     }
     public Predicate<HotelRoom> getHotelRoomByRoomID(int roomID) {
         return hotelRoom -> hotelRoom.roomID == roomID;
@@ -69,14 +71,5 @@ public class HotelRoomProvider {
                 .stream()
                 .filter(filters.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());
-    }
-    public boolean bookHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        return bookedHotelRoomRepo.addBookedHotelRoom(bookedHotelRoom);
-    }
-    public boolean cancelBooking(BookedHotelRoom room) {
-        return bookedHotelRoomRepo.removeBookedHotelRoom(room);
-    }
-    public ArrayList<Hotel> getAllHotels(){
-        return repo.getAllHotels();
     }
 }

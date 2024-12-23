@@ -30,4 +30,14 @@ public class HotelBooker {
         room.nights = nights;
         return hotelRoomProvider.bookHotelRoom(room);
     }
+    public boolean cancelBooking(int roomID, int userID, int bookingID, Hotel hotel, Date date, int nights) {
+        BookedHotelRoom room = new BookedHotelRoom();
+        room.roomID = roomID;
+        room.userID = userID;
+        room.bookingID = bookingID;
+        room.hotel = hotel;
+        room.date = date;
+        room.nights = nights;
+        return hotelRoomProvider.cancelBooking(room);
+    }
 }

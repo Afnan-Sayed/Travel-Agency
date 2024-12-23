@@ -31,4 +31,5 @@ public class HotelRetriever {
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return hotelPortal.getAllHotelRooms();
     }
+
 }

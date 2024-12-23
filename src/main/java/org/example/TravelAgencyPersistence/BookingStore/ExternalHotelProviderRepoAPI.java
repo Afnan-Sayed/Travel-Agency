@@ -2,6 +2,7 @@ package org.example.TravelAgencyPersistence.BookingStore;
 
 import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.Hotel;
 import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.HotelRoom;
+import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.BookedHotelRoom;
 
 import java.util.ArrayList;
 
@@ -102,12 +103,26 @@ public class ExternalHotelProviderRepoAPI {
         }
         return result;
     }
-    public ArrayList<HotelRoom> getHotelRoomsByHotelID(int hotelID) {
+    public boolean bookHotelRoom(BookedHotelRoom hotelRoom) {
         for (Hotel hotel : hotels) {
-            if (hotel.hotelID == hotelID) {
-                return hotel.rooms;
+            for (HotelRoom room : hotel.rooms) {
+                if (room.roomID == hotelRoom.roomID && !room.isBooked) {
+                    room.isBooked = true;
+                    return true;
+                }
             }
         }
-        return null;
+        return false;
+    }
+    public boolean cancelBooking(BookedHotelRoom hotelRoom) {
+        for (Hotel hotel : hotels) {
+            for (HotelRoom room : hotel.rooms) {
+                if (room.roomID == hotelRoom.roomID && room.isBooked) {
+                    room.isBooked = false;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

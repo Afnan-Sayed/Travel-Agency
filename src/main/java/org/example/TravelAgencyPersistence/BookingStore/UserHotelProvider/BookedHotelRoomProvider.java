@@ -19,6 +19,12 @@ public class BookedHotelRoomProvider {
         }
         return bookedHotelRoomProvider;
     }
+    public boolean addBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
+        return repo.addBookedHotelRoom(bookedHotelRoom);
+    }
+    public boolean removeBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
+        return repo.removeBookedHotelRoom(bookedHotelRoom);
+    }
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
         return repo.getAllBookedHotelRooms();
     }
@@ -64,11 +70,5 @@ public class BookedHotelRoomProvider {
                 .stream()
                 .filter(filters.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());
-    }
-    public boolean addBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        return repo.addBookedHotelRoom(bookedHotelRoom);
-    }
-    public boolean removeBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        return repo.removeBookedHotelRoom(bookedHotelRoom);
     }
 }
