@@ -29,10 +29,10 @@ public class EventBooker {
         ArrayList<String> notificationInput = new ArrayList<>();
         notificationInput.add(event.name);
         if (eventTicket != null) {
-            notificationBuilder.makeNotification(new EventBookingSuccessTemplate(), notificationInput, userID, 3);
+            notificationBuilder.makeNotification(new EventBookingSuccessTemplate(), notificationInput, userID);
         }
         else {
-            notificationBuilder.makeNotification(new EventBookingFailureTemplate(), notificationInput, userID, 3);
+            notificationBuilder.makeNotification(new EventBookingFailureTemplate(), notificationInput, userID);
         }
         return eventTicket;
     }
@@ -48,7 +48,7 @@ public class EventBooker {
         if (eventPortal.cancelEventTicket(eventTicket)) {
             ArrayList<String> notificationInput = new ArrayList<>();
             notificationInput.add(event.name);
-            notificationBuilder.makeNotification(new EventCancellationTemplate(), notificationInput, userID, 3);
+            notificationBuilder.makeNotification(new EventCancellationTemplate(), notificationInput, userID);
             return true;
         }
         return false;
