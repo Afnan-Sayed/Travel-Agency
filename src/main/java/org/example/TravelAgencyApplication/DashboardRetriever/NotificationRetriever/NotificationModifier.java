@@ -1,27 +1,25 @@
 /*
 package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider.NotificationContentPortal;
-import src.main.java.org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
 
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
+import org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvider.NotificationContentPortal;
 
 public class NotificationModifier {
-    private NotificationContentPortal notificationContent = NotificationContentPortal.getInstance();
+    private NotificationContentPortal portal;
 
-    public NotificationModifier() {
+    public NotificationModifier() {portal = NotificationContentPortal.getInstance();}
 
+    public void deleteNotification(String notificationId) {
+        portal.getContentProviderClass().deleteNotification(notificationId);
     }
 
-    public void delNotification(int notificationId) {
-        // todo notificationContent.deleteNotification(???, ???); //ask Ahmed what to add here
+    public void changeReadStatus(String notificationId) {
+        Notification N = portal.getContentProviderClass().getNotificationByNotificationID(notificationId).getFirst();
+        portal.getContentProviderClass().markAsRead(notificationId, !N.read);
     }
 
-    //TODO if seen and unseen will be added add their function here (read, or unread)
-//    public void readNotification(int notificationId) {
-//        //get notification's index using its ID
-//        //change the read to true
-//        //save it
-//    }
+
 
 
 }
