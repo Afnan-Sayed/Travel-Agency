@@ -49,9 +49,10 @@ public class EventBookingsRetriever {
         ArrayList<EventBooking> bookings = new ArrayList<>();
         for (int i=0; i<eventTickets.size(); i++) {
             Event event = eventTickets.get(i).event;
+            int bookingID = eventTickets.get(i).bookingID;
             ArrayList<EventTicketInfo> tickets = new ArrayList<>();
-            for (int j=i+1; j<eventTickets.size(); j++) { //remove and put bookings with same ID in one booking
-                if (eventTickets.get(j).bookingID == eventTickets.get(i).bookingID){
+            for (int j=i; j<eventTickets.size(); j++) { //remove and put bookings with same ID in one booking
+                if (eventTickets.get(j).bookingID == bookingID){
                     EventTicket ticket = eventTickets.remove(j--);
                     tickets.add(new EventTicketInfo(ticket.eventTicketID, ticket.ticketNum));
                 }
