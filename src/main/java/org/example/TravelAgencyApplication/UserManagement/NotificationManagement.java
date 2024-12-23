@@ -22,40 +22,7 @@ public abstract class NotificationManagement
 
     public final void sendNotification(int userID)
     {
-        int language;
-        int notificationReceiverType;
-        String receiver;
-
-        language = userProvider.getPersonalInfoProvider()
-                .getPersonalInfoByUserID(userID)
-                .getLast()
-                .getLanguageID();
-
-        notificationReceiverType = userProvider.getPersonalInfoProvider()
-                .getPersonalInfoByUserID(userID)
-                .getLast()
-                .getNotificationReceiverType();
-
-
-        if (notificationReceiverType == 1)
-        {
-            receiver = userProvider.getCredentialsProvider()
-                    .getCredentialsByUserID(userID)
-                    .getEmail();
-        }
-        else if (notificationReceiverType == 2)
-        {
-            receiver = userProvider.getCredentialsProvider()
-                    .getCredentialsByUserID(userID)
-                    .getPhoneNumber();
-        }
-        else
-        {
-            throw new IllegalArgumentException("Receiver type is not supported");
-        }
-
         RegistrationTemplate template = new RegistrationTemplate();
-        builder.makeNotification(template, handleSpecialCharReplacement(userID), language,
-                userID, receiver, notificationReceiverType);
+        builder.makeNotification(template, handleSpecialCharReplacement(userID), userID);
     }
 }
