@@ -21,7 +21,7 @@ public class NotificationRetrieverInterface {
     }
 
     public ArrayList<NotificationInfo> filter(int userID,String email) {
-        return retriever.retrieve(userID,true, true, email);
+        return retriever.retrieve(userID,false, false, email);
     }
 
     public ArrayList<NotificationInfo> filter(int userID,boolean read) {

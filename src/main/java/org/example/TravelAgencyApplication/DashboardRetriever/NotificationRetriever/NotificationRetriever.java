@@ -38,7 +38,7 @@ public class NotificationRetriever { //This class is concerned with retrieving a
     } //the filters needed by this component
 
     public ArrayList<NotificationInfo> retrieveNotifications(int userId) {
-        return retrieve(userId,true, true,null);
+        return retrieve(userId,false, false,null);
     }//default filters
 
 

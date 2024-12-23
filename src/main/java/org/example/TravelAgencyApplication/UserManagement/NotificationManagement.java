@@ -54,8 +54,8 @@ public abstract class NotificationManagement
             throw new IllegalArgumentException("Receiver type is not supported");
         }
 
-        RegistrationTemplate template = new RegistrationTemplate();
-        builder.makeNotification(template, handleSpecialCharReplacement(userID), language,
-                userID, receiver, notificationReceiverType);
+//        RegistrationTemplate template = new RegistrationTemplate();
+//        builder.makeNotification(template, handleSpecialCharReplacement(userID), language,
+//                userID, receiver, notificationReceiverType);
     }
 }

@@ -15,6 +15,7 @@ public class NotificationModifier {
 
     public void changeReadStatus(String notificationId, NotificationInfo N) {
         portal.getContentProviderClass().markAsRead(notificationId, !N.read);
+        N.read = !N.read;
     }
 
 
