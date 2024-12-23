@@ -6,9 +6,16 @@ public class NotificationRetrieverInterface {
     private final NotificationRetriever retriever;
     private final NotificationModifier modifier;
 
-    public NotificationRetrieverInterface() {
+    private NotificationRetrieverInterface() {
         retriever = new NotificationRetriever();
         modifier = new NotificationModifier();
+    }
+
+    //singleton
+    private static NotificationRetrieverInterface instance;
+    public static NotificationRetrieverInterface getInstance() {
+        if (instance == null) {instance = new NotificationRetrieverInterface();}
+        return instance;
     }
 
     //retrieve

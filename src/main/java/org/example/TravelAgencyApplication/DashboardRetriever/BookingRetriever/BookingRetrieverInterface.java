@@ -10,9 +10,16 @@ public class BookingRetrieverInterface {
     private EventBookingsRetriever eventRetriever;
     private HotelBookingsRetriever hotelRetriever;
 
-    public BookingRetrieverInterface() {
+    private BookingRetrieverInterface() {
         eventRetriever = new EventBookingsRetriever();
         hotelRetriever = new HotelBookingsRetriever();
+    }
+
+    //singleton
+    private static BookingRetrieverInterface instance;
+    public static BookingRetrieverInterface getInstance() {
+        if (instance == null) {instance = new BookingRetrieverInterface();}
+        return instance;
     }
 
     //Events

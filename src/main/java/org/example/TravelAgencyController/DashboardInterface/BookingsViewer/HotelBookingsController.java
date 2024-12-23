@@ -12,7 +12,7 @@ public class HotelBookingsController {
 
     public BookingRetrieverInterface retriever; //todo singleton
     public HotelBookingsController() {
-        retriever = new BookingRetrieverInterface();
+        retriever = BookingRetrieverInterface.getInstance();
     }
 
     @GetMapping("/all")

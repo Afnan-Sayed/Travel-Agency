@@ -12,7 +12,7 @@ public class NotificationController {
 
     public NotificationRetrieverInterface retriever; //todo make singleton
     public NotificationController() {
-        retriever = new NotificationRetrieverInterface();
+        retriever = NotificationRetrieverInterface.getInstance();
     }
 
 
