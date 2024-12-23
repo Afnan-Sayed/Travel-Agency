@@ -4,6 +4,7 @@ import org.example.TravelAgencyApplication.NotificationManagement.NotificationMa
 
 import java.util.ArrayList;
 
+//INHERITANCE WITH TEMPLATE FROM NOTIFICATIONS MODULE
 public class AuthenticationTemplate extends Template
 {
     public AuthenticationTemplate()
