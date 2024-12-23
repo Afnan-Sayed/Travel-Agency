@@ -35,31 +35,29 @@ public class HotelBooker {
         ArrayList<String> notificationInput= new ArrayList<>();
         notificationInput.add(room.hotel.hotelName);
         if(hotelPortal.bookHotelRoom(bookedHotelRoom)){
+            notificationInput.add(String.valueOf(bookingID));
             notificationBuilder.makeNotification(new HotelBookingSuccessTemplate(),notificationInput,userID);
-        }
-        else {
-            //send failure notification
-            return false;
-        }
-    }
-    public boolean bookHotelRoom(int userID,int roomID){
-        return bookHotelRoom(userID,hotelPortal.getFilteredHotelRooms(roomID,null,null,null,null,null).get(0));
-    }
-    public boolean cancelHotelRoom(int userID,HotelRoom room){
-        BookedHotelRoom bookedHotelRoom = new BookedHotelRoom();
-        bookedHotelRoom.userID = userID;
-        bookedHotelRoom.roomID = room.roomID;
-        if(hotelPortal.cancelBooking(bookedHotelRoom)){
-            //send success notification
             return true;
         }
         else {
-            //send failure notification
+            notificationBuilder.makeNotification(new HotelBookingFailureTemplate(),notificationInput,userID);
             return false;
         }
     }
-    public boolean cancelHotelRoom(int userID,int roomID){
-        return cancelHotelRoom(userID,hotelPortal.getFilteredHotelRooms(roomID,null,null,null,null,null).get(0));
+    public boolean bookHotelRoom(int userID,int roomID,Date date,int nights){
+        return bookHotelRoom(userID,hotelRetriever.getFilteredHotelRooms(roomID,null,null,null,null,null).get(0),0,nights,date);
+    }
+    public boolean cancelHotelRoom(int userID,BookedHotelRoom room, int bookingID){
+        if(hotelPortal.cancelBooking(room)){
+            ArrayList<String> notificationInput= new ArrayList<>();
+            notificationInput.add(room.hotel.hotelName);
+            notificationBuilder.makeNotification(new HotelBookingCancellationTemplate(),notificationInput,userID);
+            return true;
+        }
+        return false;
+    }
+    public boolean cancelHotelRoom(int userID,int roomID,int bookingID){
+        return cancelHotelRoom(userID,hotelRetriever.getFilteredBookedHotelRooms(roomID,userID,bookingID,null,null,null).get(0),bookingID);
     }
     public void cancelAllBookedHotelRooms(int bookingID){
         ArrayList<BookedHotelRoom> allBookedHotelRooms = hotelPortal.getFilteredBookedHotelRooms(null,null,bookingID,null,null,null);
