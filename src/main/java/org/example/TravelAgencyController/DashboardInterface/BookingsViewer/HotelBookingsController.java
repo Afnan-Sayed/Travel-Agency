@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @RequestMapping("/{id}/dashboard/booking/hotels")
 public class HotelBookingsController {
 
-    public BookingRetrieverInterface retriever; //todo singleton
+    public BookingRetrieverInterface retriever;
     public HotelBookingsController() {
         retriever = BookingRetrieverInterface.getInstance();
     }

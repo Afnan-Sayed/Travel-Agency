@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @RequestMapping("/{id}/dashboard/notifications")
 public class NotificationController {
 
-    public NotificationRetrieverInterface retriever; //todo make singleton
+    public NotificationRetrieverInterface retriever;
     public NotificationController() {
         retriever = NotificationRetrieverInterface.getInstance();
     }
