@@ -1,4 +1,3 @@
-/*
 package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
 import org.example.TravelAgencyPersistence.NotificationsStore.NotificationContentProvider.Notification;
@@ -44,4 +43,3 @@ public class NotificationRetriever { //This class is concerned with retrieving a
 
 
 }
-*/
