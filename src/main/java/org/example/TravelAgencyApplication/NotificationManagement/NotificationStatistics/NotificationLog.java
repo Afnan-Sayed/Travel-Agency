@@ -1,8 +1,6 @@
 package org.example.TravelAgencyApplication.NotificationManagement.NotificationStatistics;
 
 
-import org.springframework.stereotype.Component;
-
 public class NotificationLog {
     private StatisticsDataRetriever statisticsRetriever;
     private QueueChecker checker;
