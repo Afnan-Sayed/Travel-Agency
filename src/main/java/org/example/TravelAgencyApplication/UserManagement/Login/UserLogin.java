@@ -1,53 +1,90 @@
 package org.example.TravelAgencyApplication.UserManagement.Login;
+
+import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 
 import java.util.Objects;
 
-public class LoginMaker
-{
-    private UserProvider userProvider;
+//DEPENDENCY WITH:
+//UserProvider, Authenticator
 
-    public LoginMaker()
+public abstract class UserLogin
+{
+    protected UserProvider userProvider;
+    protected Authenticator authenticator;
+
+    public UserLogin() {}
+
+    // Factory method for UserProvider
+    protected UserProvider createUserProvider()
     {
-        this.userProvider= userProvider.getInstance();
+        return UserProvider.getInstance();
     }
 
-    public void login(String enteredUsername, String enteredPassword)
+    // Factory method for Authenticator
+    protected Authenticator createAuthenticator()
     {
-        //Supported account status indices:
-        //not verified to register 0
-        //verified to register 1
-        //logged in 2
-        //logged out 3
+        return new Authenticator();
+    }
 
-        boolean isNotFound=userProvider.getCredentialsProvider()
+    protected UserProvider getUserProvider()
+    {
+        if (userProvider == null)
+            userProvider = createUserProvider();
+        return userProvider;
+    }
+
+    protected Authenticator getAuthenticator()
+    {
+        if (authenticator == null)
+            authenticator = createAuthenticator();
+        return authenticator;
+    }
+
+    public abstract void checkIfNotVerified(String username, boolean isNotFound, int isVerified);
+
+    /*
+    Supported account status indices:
+    not verified 0
+    verified 1
+    logged in 2
+    logged out 3
+    */
+    public final void verifyToLogin(String enteredUsername, String enteredPassword)
+    {
+        //acc with this username?
+        boolean isNotFound=
+                 getUserProvider().getCredentialsProvider()
                 .getCredentialsByUsername(enteredUsername)
                 .isEmpty();
 
-        int isVerified=userProvider.getCredentialsProvider()
-                .getCredentialsByUsername(enteredUsername)
-                .getLast().getAccountStatus();
-
-        String correctPassword=userProvider.getCredentialsProvider()
+        //get correct password
+        String correctPassword=
+                 getUserProvider().getCredentialsProvider()
                 .getCredentialsByUsername(enteredUsername)
                 .getLast().getPassword();
 
+        //passwords match?
         boolean passwordMatch=false;
         if(Objects.equals(enteredPassword, correctPassword))
             passwordMatch=true;
 
 
+        //authenticated to be logged in?
+        int isVerified=
+                 getUserProvider().getCredentialsProvider()
+                .getCredentialsByUsername(enteredUsername)
+                .getLast().getAccountStatus();
+
 
         //found user and is verified
         if(!isNotFound && (isVerified!=0) && passwordMatch)
         {
-            userProvider.getCredentialsProvider()
+                    getUserProvider().getCredentialsProvider()
                     .getCredentialsByUsername(enteredUsername)
-                    .getLast().setAccountStatus(2);
+                    .getLast().setAccountStatus(2); //logged in
         }
-        else if(!isNotFound && (isVerified==0))
-            System.out.println("your acc hasn't been verified yet");
         else
-            System.out.println("either username or password is wrong");
+            checkIfNotVerified(enteredUsername, isNotFound, isVerified);
     }
 }
