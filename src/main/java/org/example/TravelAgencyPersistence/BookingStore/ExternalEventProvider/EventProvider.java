@@ -20,6 +20,14 @@ public class EventProvider {
         repo = ExternalEventProviderAPI.getInstance();
     }
 
+    public int bookEvent(Event event) {
+        return repo.bookEvent(event);
+    }
+
+    public void cancelEventBooking(Event event, int ticketNum) {
+        repo.cancelEventBooking(event, ticketNum);
+    }
+
     public static Predicate<Event> eventIDFilter(int eventID) {
         return event -> event.eventID == eventID;
     }
@@ -33,11 +41,11 @@ public class EventProvider {
     }
 
     public static Predicate<Event> nameContainsFilter(String search) {
-        return event -> event.name.contains(search);
+        return event -> event.name.toLowerCase().contains(search.toLowerCase());
     }
 
     public static Predicate<Event> descriptionContainsFilter(String search) {
-        return event -> event.description.contains(search);
+        return event -> event.description.toLowerCase().contains(search.toLowerCase());
     }
 
     public static Predicate<Event> priceMoreThanOrEqualFilter(int price) {
