@@ -4,13 +4,12 @@ import org.example.TravelAgencyApplication.UserManagement.NotificationManagement
 
 import java.util.ArrayList;
 
+//INHERITANCE WITH NotificationManagement
+//ASSOCIATION WITH Authenticator
 public class AuthenticationNotificationManager extends NotificationManagement
 {
     private Authenticator authenticator;
-    public AuthenticationNotificationManager()
-    {
-        this.authenticator=new Authenticator();
-    }
+    public AuthenticationNotificationManager() {}
     @Override
     protected ArrayList<String> handleSpecialCharReplacement(int userID)
     {
