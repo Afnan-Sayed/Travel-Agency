@@ -15,7 +15,7 @@ public class Builder {
     {
         provider = UserProvider.getInstance();
     }
-    public void makeNotification(Template template, ArrayList<String> input, int userID, int notificationReceiverType) {
+    public void makeNotification(Template template, ArrayList<String> input, int userID) {
 
         // Supported language indices:
         // 0: English
@@ -29,7 +29,7 @@ public class Builder {
         if (language < 0 || language > 3) {throw new IllegalArgumentException("Invalid language index. Supported indices: 0 (Eng), 1 (Arabic), 2 (French), 3 (German).");}
         String messageTemplate = template.messages.get(language);
         if (messageTemplate == null || messageTemplate.isEmpty()) {throw new IllegalArgumentException("Template message for the selected language is missing.");}
-
+        int notificationReceiverType = provider.getPersonalInfoProvider().getPersonalInfoByUserID(userID).getFirst().getNotificationReceiverType();
         //filling
         if(notificationReceiverType < 1 || notificationReceiverType >3)
             throw new IllegalArgumentException("the type must be 1, 2, or 3");
