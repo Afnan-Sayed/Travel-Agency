@@ -1,0 +1,38 @@
+package org.example.TravelAgencyPersistence.UserStore.UserInformationProvider;
+
+public interface IUserProvider
+{
+    AuthenticationCredentialsProvider getCredentialsProvider();
+    PersonalInfoProvider getPersonalInfoProvider();
+
+    // Update account status by username
+    void updateAccountStatusByUsername(String username, int status);
+
+    // Update account status by id
+    void updateAccountStatusByID(int id, int status);
+
+
+    // Get account status by username
+    int getAccountStatusByUsername(String username);
+
+    // Get userID by username
+    int getUserIDByUsername(String username);
+
+    // Check if user exists by username
+    boolean doesUserExist(String username);
+
+    // Get email by userID
+    String getEmailByUserID(int userID);
+
+    // Get phone number by userID
+    String getPhoneNumberByUserID(int userID);
+
+    // Get language ID by userID
+    int getLanguageIDByUserID(int userID);
+
+    // Get password by username
+    String getPasswordByUsername(String username);
+
+    // Get notification receiver type by userID
+    int getNotificationReceiverTypeByUserID(int userID);
+}

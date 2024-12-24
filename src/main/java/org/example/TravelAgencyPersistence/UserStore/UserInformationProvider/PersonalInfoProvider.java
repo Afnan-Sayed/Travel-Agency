@@ -35,8 +35,8 @@ public class PersonalInfoProvider
         }
 
         //update existing Personal Info
-        public void updatePersonalInfo(UserPersonalInfo newPersonalInfo)
+        public void updatePersonalInfo(int userID, UserPersonalInfo newPersonalInfo)
         {
-            personalInfoProvider.updatePersonalInfo(newPersonalInfo);
+            personalInfoProvider.updatePersonalInfo(userID, newPersonalInfo);
         }
     }
