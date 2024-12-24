@@ -28,7 +28,7 @@ public class HotelBookingsRetriever {
             if (hotelBookings.get(i).date.before(now) && !archived){
                 hotelBookings.remove(i--);
             }
-            else if (archived){
+            else if ((hotelBookings.get(i).date.equals(now) || hotelBookings.get(i).date.after(now)) && archived){
                 hotelBookings.remove(i--);
             }
         }
@@ -39,7 +39,7 @@ public class HotelBookingsRetriever {
 
     public ArrayList<HotelBooking> retrieveHotelBookings(ArrayList<BookedHotelRoom> hotelRooms){
         ArrayList<HotelBooking> bookings = new ArrayList<>();
-        for (int i=0; i<=hotelRooms.size(); i++) {
+        while (!hotelRooms.isEmpty()) {
             Hotel hotel = hotelRooms.getFirst().hotel;
             int bookingID = hotelRooms.getFirst().bookingID;
             ArrayList<HotelRoomInfo> rooms = new ArrayList<>();
