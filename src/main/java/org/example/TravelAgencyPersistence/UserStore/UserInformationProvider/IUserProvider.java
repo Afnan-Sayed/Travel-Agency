@@ -35,4 +35,9 @@ public interface IUserProvider
 
     // Get notification receiver type by userID
     int getNotificationReceiverTypeByUserID(int userID);
+    void addAuthenticationCredentials(String username, String password, String email,String phoneNumber,
+                                             int userID, int userAccountStatus, boolean isAdmin);
+    void addPersonalInfo(int userId, String name, String address,
+                                String dateOfBirth, int LanguageID,
+                                int notificationReceiverType);
 }

@@ -120,6 +120,27 @@ public class UserProvider implements IUserProvider
         return credentials.getFirst().getNotificationReceiverType();
     }
 
+    @Override
+    public void addAuthenticationCredentials(String username, String password, String email,String phoneNumber,
+                                             int userID, int userAccountStatus, boolean isAdmin)
+    {
+        AuthenticationCredentials authCred = new AuthenticationCredentials(
+                username, password, email, phoneNumber, userID, userAccountStatus, isAdmin
+        );
+        authProvider.addCredentials(authCred);
+    }
+
+    @Override
+    public void addPersonalInfo(int userId, String name, String address,
+                                String dateOfBirth, int LanguageID,
+                                int notificationReceiverType)
+    {
+        UserPersonalInfo personalInfo = new UserPersonalInfo(
+                userId, name, address, dateOfBirth, LanguageID, notificationReceiverType
+        );
+
+        perProvider.addPersonalInfo(personalInfo);
+    }
 
     public static synchronized UserProvider getInstance()
     {
