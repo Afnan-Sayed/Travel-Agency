@@ -1,5 +1,6 @@
 package org.example.TravelAgencyPersistence.BookingStore.ExternalEventProvider;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Event {

@@ -78,11 +78,4 @@ public class CredentialsProvider
     {
         credentialsRepo.updateCredentials(userPersonalInfo, newCredentials);
     }
-
-    //assume cannot be deleted
-    //delete credentials by user
-//    public void deleteCredentials(UserPersonalInfo userPersonalInfo)
-//    {
-//        credentialsRepo.deleteCredentials(userPersonalInfo);
-//    }
 }

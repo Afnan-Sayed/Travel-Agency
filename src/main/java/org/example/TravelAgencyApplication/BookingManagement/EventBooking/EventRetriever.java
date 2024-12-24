@@ -82,6 +82,11 @@ public class EventRetriever {
                 null, null, null, null, null, null);
     }
 
+    public ArrayList<EventTicket> getEventTicketsByEventID(Integer eventID) {
+        return getFilteredEventTickets(null, null, null, null, eventID,
+                null, null, null, null, null, null);
+    }
+
     public EventTicket getEventTicketByEventTicketID(Integer eventTicketID) {
         ArrayList<EventTicket> eventTickets = getFilteredEventTickets(null, null, eventTicketID, null, null,
                 null, null, null, null, null, null);

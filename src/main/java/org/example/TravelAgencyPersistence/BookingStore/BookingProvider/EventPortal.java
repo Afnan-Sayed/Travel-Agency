@@ -26,7 +26,14 @@ public class EventPortal {
         eventTicketProvider = EventTicketProvider.getInstance();
     }
 
-    public boolean addEventTicket(EventTicket eventTicket) {
+    public EventTicket bookEvent(Event event, int userID, int bookingID) {
+        int ticketNum = eventProvider.bookEvent(event);
+        if (ticketNum == 0) return null;
+        EventTicket eventTicket = new EventTicket();
+        eventTicket.event = event;
+        eventTicket.bookingID = bookingID;
+        eventTicket.userID = userID;
+        eventTicket.ticketNum = ticketNum;
         return eventTicketProvider.addEventTicket(eventTicket);
     }
 
