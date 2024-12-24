@@ -1,11 +1,11 @@
 package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
 public class AuthenticationCredentials
 {
-    private String username;
+    private String username;  //unique
     private String password;
-    private String email;
-    private String phoneNumber;
-    private int userID;
+    private String email;  //unique
+    private String phoneNumber; //unique
+    private int userID; //pk
     private int userAccountStatus;
     //not verified to register 0
     //verified to registered 1
