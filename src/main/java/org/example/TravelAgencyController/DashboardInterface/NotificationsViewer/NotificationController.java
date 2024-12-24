@@ -36,7 +36,7 @@ public class NotificationController {
         }
     }
 
-    @PutMapping("/read{notificationId}")
+    @PutMapping("/read/{notificationId}")
     public String markAsRead(
             @PathVariable int id,
             @PathVariable String notificationId,
@@ -46,7 +46,7 @@ public class NotificationController {
         return "User " + id + " set notification " + notificationId + " read status to " + notification.read;
     }
 
-    @DeleteMapping("/delete{notificationId}")
+    @DeleteMapping("/delete/{notificationId}")
     public String deleteNotification(
             @PathVariable int id,
             @PathVariable String notificationId
