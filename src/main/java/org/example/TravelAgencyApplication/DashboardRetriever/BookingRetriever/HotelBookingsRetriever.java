@@ -50,6 +50,7 @@ public class HotelBookingsRetriever {
                 }
             }
             bookings.add(new HotelBooking(hotel,rooms));
+            bookings.getLast().bookingID = bookingID;
         }
         return bookings;
     }

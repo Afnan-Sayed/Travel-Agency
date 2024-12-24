@@ -58,7 +58,7 @@ public class EventBookingsRetriever {
                 }
             }
             bookings.add(new EventBooking(event,tickets));
-
+            bookings.getLast().bookingID=bookingID;
         }
         return bookings;
     }
