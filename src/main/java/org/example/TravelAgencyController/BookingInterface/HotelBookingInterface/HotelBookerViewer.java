@@ -11,6 +11,7 @@ public class HotelBookerViewer {
     private static HotelBookerViewer hotelBookerViewer;
     HotelBooker hotelBooker;
     private HotelBookerViewer() {
+        hotelBooker = HotelBooker.getInstance();
     }
     public static HotelBookerViewer getInstance() {
         if (hotelBookerViewer == null) {

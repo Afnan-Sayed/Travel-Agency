@@ -38,7 +38,7 @@ public class BookedHotelRoomProvider {
         return bookedHotelRoom -> bookedHotelRoom.bookingID == bookingID;
     }
     public Predicate<BookedHotelRoom> getBookedHotelRoomByHotelRoom(HotelRoom hotelRoom) {
-        return bookedHotelRoom -> bookedHotelRoom.hotel.equals(hotelRoom);
+        return bookedHotelRoom -> bookedHotelRoom.roomID == hotelRoom.roomID;
     }
     public Predicate<BookedHotelRoom> getBookedHotelRoomByDate(Date date) {
         return bookedHotelRoom -> bookedHotelRoom.date.equals(date);

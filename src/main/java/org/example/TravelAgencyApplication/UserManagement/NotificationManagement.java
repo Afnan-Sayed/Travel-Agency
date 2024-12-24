@@ -55,7 +55,7 @@ public abstract class NotificationManagement
         }
 
         RegistrationTemplate template = new RegistrationTemplate();
-        builder.makeNotification(template, handleSpecialCharReplacement(userID), language,
-                userID, receiver, notificationReceiverType);
+        //builder.makeNotification(template, handleSpecialCharReplacement(userID), language,
+               // userID, receiver, notificationReceiverType);
     }
 }

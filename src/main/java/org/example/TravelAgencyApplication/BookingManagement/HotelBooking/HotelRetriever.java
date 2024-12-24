@@ -31,8 +31,8 @@ public class HotelRetriever {
         }
         return null;
     }
-    public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Hotel hotel){
-        return hotelPortal.getFilteredHotelRooms(roomID,roomType,roomNumber,price,isBooked,hotel);
+    public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Integer hotelID){
+        return hotelPortal.getFilteredHotelRooms(roomID,roomType,roomNumber,price,isBooked,hotelID);
     }
     public ArrayList<BookedHotelRoom> getFilteredBookedHotelRooms(Integer roomID, Integer userID, Integer bookingID, HotelRoom hotelRoom, Date date, Integer nights){
         return hotelPortal.getFilteredBookedHotelRooms(roomID,userID,bookingID,hotelRoom,date,nights);

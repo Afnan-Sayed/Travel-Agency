@@ -31,27 +31,27 @@ public class HotelBooker {
         bookedHotelRoom.bookingID = bookingID;
         bookedHotelRoom.date = date;
         bookedHotelRoom.nights = nights;
-        bookedHotelRoom.hotel = room.hotel;
+        bookedHotelRoom.hotelID = room.hotelID;
         ArrayList<String> notificationInput= new ArrayList<>();
-        notificationInput.add(room.hotel.hotelName);
+        notificationInput.add(hotelRetriever.getHotelByID(room.hotelID).hotelName);
         if(hotelPortal.bookHotelRoom(bookedHotelRoom)&&hotelPortal.addBookedHotelRoom(bookedHotelRoom)){
             notificationInput.add(String.valueOf(bookingID));
-            notificationBuilder.makeNotification(new HotelBookingSuccessTemplate(),notificationInput,userID);
+            //notificationBuilder.makeNotification(new HotelBookingSuccessTemplate(),notificationInput,userID);
             return true;
         }
         else {
-            notificationBuilder.makeNotification(new HotelBookingFailureTemplate(),notificationInput,userID);
+            //notificationBuilder.makeNotification(new HotelBookingFailureTemplate(),notificationInput,userID);
             return false;
         }
     }
     public boolean bookHotelRoom(int hotelID,int roomNumber, int userID, int bookingID,Date date,int nights){
-        return bookHotelRoom(userID,hotelRetriever.getFilteredHotelRooms(null,null,roomNumber,null,null,hotelRetriever.getHotelByID(hotelID)).get(0),bookingID,nights,date);
+        return bookHotelRoom(userID,hotelRetriever.getFilteredHotelRooms(null,null,roomNumber,null,null,hotelID).get(0),bookingID,nights,date);
     }
     public boolean cancelHotelRoom(int userID,BookedHotelRoom room){
         if(hotelPortal.cancelBooking(room)&&hotelPortal.removeBookedHotelRoom(room)){
             ArrayList<String> notificationInput= new ArrayList<>();
-            notificationInput.add(room.hotel.hotelName);
-            notificationBuilder.makeNotification(new HotelBookingCancellationTemplate(),notificationInput,userID);
+            notificationInput.add(hotelRetriever.getHotelByID(room.hotelID).hotelName);
+            //notificationBuilder.makeNotification(new HotelBookingCancellationTemplate(),notificationInput,userID);
             return true;
         }
         return false;

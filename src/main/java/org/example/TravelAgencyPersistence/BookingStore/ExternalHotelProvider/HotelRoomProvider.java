@@ -47,10 +47,10 @@ public class HotelRoomProvider {
     public Predicate<HotelRoom> getHotelRoomByIsBooked(boolean isBooked) {
         return hotelRoom -> hotelRoom.isBooked == isBooked;
     }
-    public Predicate<HotelRoom> getHotelRoomByHotel(Hotel hotel) {
-        return hotelRoom -> hotelRoom.hotel == hotel;
+    public Predicate<HotelRoom> getHotelRoomByHotelID(int hotelID) {
+        return hotelRoom -> hotelRoom.hotelID == hotelID;
     }
-    public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Hotel hotel) {
+    public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Integer hotelID) {
         ArrayList<Predicate<HotelRoom>> filters = new ArrayList<>();
         if (roomID != null) {
             filters.add(getHotelRoomByRoomID(roomID));
@@ -67,8 +67,8 @@ public class HotelRoomProvider {
         if (isBooked != null) {
             filters.add(getHotelRoomByIsBooked(isBooked));
         }
-        if (hotel != null) {
-            filters.add(getHotelRoomByHotel(hotel));
+        if (hotelID != null) {
+            filters.add(getHotelRoomByHotelID(hotelID));
         }
         return (ArrayList<HotelRoom>) repo.getAllHotelRooms()
                 .stream()

@@ -26,7 +26,7 @@ public class ExternalHotelProviderRepoAPI {
         room1.roomNumber = 1;
         room1.price = 100;
         room1.isBooked = false;
-        room1.hotel = hotel1;
+        room1.hotelID = hotel1.hotelID;
         hotel1.rooms.add(room1);
 
         HotelRoom room2 = new HotelRoom();
@@ -35,7 +35,7 @@ public class ExternalHotelProviderRepoAPI {
         room2.roomNumber = 2;
         room2.price = 200;
         room2.isBooked = false;
-        room2.hotel = hotel1;
+        room2.hotelID = hotel1.hotelID;
         hotel1.rooms.add(room2);
 
         HotelRoom room3 = new HotelRoom();
@@ -44,7 +44,7 @@ public class ExternalHotelProviderRepoAPI {
         room3.roomNumber = 3;
         room3.price = 100;
         room3.isBooked = false;
-        room3.hotel = hotel1;
+        room3.hotelID = hotel1.hotelID;
         hotel1.rooms.add(room3);
 
         hotels.add(hotel1);
@@ -64,7 +64,7 @@ public class ExternalHotelProviderRepoAPI {
         room1.roomNumber = 1;
         room1.price = 100;
         room1.isBooked = false;
-        room1.hotel = hotel2;
+        room1.hotelID = hotel2.hotelID;
         hotel2.rooms.add(room1);
 
         room2 = new HotelRoom();
@@ -73,7 +73,7 @@ public class ExternalHotelProviderRepoAPI {
         room2.roomNumber = 2;
         room2.price = 200;
         room2.isBooked = false;
-        room2.hotel = hotel2;
+        room2.hotelID = hotel2.hotelID;
         hotel2.rooms.add(room2);
 
         room3 = new HotelRoom();
@@ -82,7 +82,7 @@ public class ExternalHotelProviderRepoAPI {
         room3.roomNumber = 3;
         room3.price = 100;
         room3.isBooked = false;
-        room3.hotel = hotel2;
+        room3.hotelID = hotel2.hotelID;
         hotel2.rooms.add(room3);
 
         hotels.add(hotel2);
