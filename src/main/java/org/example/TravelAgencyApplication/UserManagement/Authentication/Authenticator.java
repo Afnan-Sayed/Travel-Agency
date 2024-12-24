@@ -61,10 +61,7 @@ public class Authenticator
                 verificationCode.remove(userID);
 
                 //change acc status
-                userProvider.getCredentialsProvider()
-                            .getCredentialsByUserID(userID)
-                            .setAccountStatus(1);
-
+                userProvider.updateAccountStatusByID(userID,1);
                 return true;
             }
         }
