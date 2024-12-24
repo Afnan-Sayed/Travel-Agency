@@ -23,6 +23,9 @@ public class HotelRoomProvider {
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return repo.getAllHotelRooms();
     }
+    public ArrayList<Hotel> getAllHotels() {
+        return repo.getAllHotels();
+    }
     public boolean bookHotelRoom(BookedHotelRoom hotelRoom) {
         return repo.bookHotelRoom(hotelRoom);
     }

@@ -22,6 +22,15 @@ public class HotelRetriever {
         }
         return hotelRetriever;
     }
+    public Hotel getHotelByID(Integer hotelID){
+        ArrayList<Hotel> hotels = hotelPortal.getAllHotels();
+        for(Hotel hotel : hotels){
+            if(hotel.hotelID==hotelID){
+                return hotel;
+            }
+        }
+        return null;
+    }
     public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Hotel hotel){
         return hotelPortal.getFilteredHotelRooms(roomID,roomType,roomNumber,price,isBooked,hotel);
     }
@@ -30,5 +39,11 @@ public class HotelRetriever {
     }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         return hotelPortal.getAllHotelRooms();
+    }
+    public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
+        return hotelPortal.getAllBookedHotelRooms();
+    }
+    public ArrayList<Hotel> getAllHotels() {
+        return hotelPortal.getAllHotels();
     }
 }

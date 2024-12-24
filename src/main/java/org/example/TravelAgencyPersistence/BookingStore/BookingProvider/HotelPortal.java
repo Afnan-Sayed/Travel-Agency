@@ -31,6 +31,9 @@ public class HotelPortal {
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
         return bookedHotelRoomProvider.getAllBookedHotelRooms();
     }
+    public ArrayList<Hotel> getAllHotels() {
+        return hotelRoomProvider.getAllHotels();
+    }
     public boolean bookHotelRoom(BookedHotelRoom bookedHotelRoom) {
         return hotelRoomProvider.bookHotelRoom(bookedHotelRoom);
     }
@@ -45,5 +48,8 @@ public class HotelPortal {
     }
     public boolean addBookedHotelRoom(BookedHotelRoom room) {
         return bookedHotelRoomProvider.addBookedHotelRoom(room);
+    }
+    public boolean removeBookedHotelRoom(BookedHotelRoom room) {
+        return bookedHotelRoomProvider.removeBookedHotelRoom(room);
     }
 }
