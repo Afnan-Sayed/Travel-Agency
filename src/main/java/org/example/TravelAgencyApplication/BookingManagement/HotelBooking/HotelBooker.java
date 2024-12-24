@@ -36,11 +36,11 @@ public class HotelBooker {
         notificationInput.add(hotelRetriever.getHotelByID(room.hotelID).hotelName);
         if(hotelPortal.bookHotelRoom(bookedHotelRoom)&&hotelPortal.addBookedHotelRoom(bookedHotelRoom)){
             notificationInput.add(String.valueOf(bookingID));
-            //notificationBuilder.makeNotification(new HotelBookingSuccessTemplate(),notificationInput,userID);
+            notificationBuilder.makeNotification(new HotelBookingSuccessTemplate(),notificationInput,userID);
             return true;
         }
         else {
-            //notificationBuilder.makeNotification(new HotelBookingFailureTemplate(),notificationInput,userID);
+            notificationBuilder.makeNotification(new HotelBookingFailureTemplate(),notificationInput,userID);
             return false;
         }
     }
