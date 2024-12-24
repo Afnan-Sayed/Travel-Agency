@@ -2,6 +2,8 @@ package org.example.TravelAgencyApplication.BookingManagement.HotelBooking;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
 
+import java.util.ArrayList;
+
 public class HotelBookingFailureTemplate extends Template {
 public HotelBookingFailureTemplate() {
         super(1,"###");
