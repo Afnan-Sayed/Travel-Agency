@@ -1,10 +1,13 @@
 package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Random;
 
+
+@Service
 //AGGREGATION WITH:
 //IUserProvider, AuthenticationNotificationManager
 public class Authenticator

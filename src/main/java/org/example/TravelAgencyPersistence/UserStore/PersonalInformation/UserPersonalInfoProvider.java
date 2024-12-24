@@ -1,5 +1,7 @@
 package org.example.TravelAgencyPersistence.UserStore.PersonalInformation;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -7,7 +9,7 @@ import java.util.stream.Collectors;
 //AGGREGATION WITH UserPersonalInfoRepository
 //DEPENDENCY WITH UserPersonalInfo
 
-
+@Repository
 public class UserPersonalInfoProvider
 {
     private UserPersonalInfoRepository personalInfoRepo;

@@ -1,9 +1,12 @@
 package org.example.TravelAgencyApplication.UserManagement.Registration;
 
+import org.springframework.stereotype.Service;
+
 import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class IDGenerator
 {
     private static final SecureRandom secureRandom = new SecureRandom();

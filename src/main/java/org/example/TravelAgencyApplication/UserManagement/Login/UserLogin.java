@@ -3,12 +3,14 @@ package org.example.TravelAgencyApplication.UserManagement.Login;
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 //DEPENDENCY WITH:
 //IUserProvider, Authenticator
 
+@Service
 public abstract class UserLogin
 {
     protected IUserProvider userProvider;
@@ -52,6 +54,7 @@ public abstract class UserLogin
         {
             //update status to be logged-in
             userProvider.updateAccountStatusByUsername(enteredUsername, 2);
+            System.out.println("logged-in");
         }
         else
             checkIfNotVerified(enteredUsername, isNotFound, isVerified);

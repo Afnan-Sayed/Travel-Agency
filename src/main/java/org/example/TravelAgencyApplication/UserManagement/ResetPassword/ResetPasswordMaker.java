@@ -2,10 +2,12 @@ package org.example.TravelAgencyApplication.UserManagement.ResetPassword;
 
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
+import org.springframework.stereotype.Service;
 
 //1. authenticate user
 //2. reset password
 
+@Service
 public class ResetPasswordMaker
 {
     private Authenticator authenticator;

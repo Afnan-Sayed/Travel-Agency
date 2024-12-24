@@ -1,8 +1,11 @@
 package org.example.TravelAgencyPersistence.UserStore.PersonalInformation;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Repository
 public class UserPersonalInfoRepository
 {
 

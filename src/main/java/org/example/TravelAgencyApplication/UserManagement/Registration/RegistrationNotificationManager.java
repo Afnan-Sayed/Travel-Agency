@@ -1,9 +1,11 @@
 package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyApplication.UserManagement.NotificationManagement;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class RegistrationNotificationManager extends NotificationManagement
 {
     @Override

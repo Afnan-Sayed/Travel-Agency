@@ -6,10 +6,11 @@ import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.C
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoProvider;
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-
+@Repository
 public class UserProvider implements IUserProvider
 {
     private static UserProvider provider;

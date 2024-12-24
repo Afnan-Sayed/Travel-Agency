@@ -2,11 +2,12 @@ package org.example.TravelAgencyPersistence.UserStore.UserInformationProvider;
 
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
 import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfoProvider;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+@Repository
 public class PersonalInfoProvider
 {
     private UserPersonalInfoProvider personalInfoProvider;

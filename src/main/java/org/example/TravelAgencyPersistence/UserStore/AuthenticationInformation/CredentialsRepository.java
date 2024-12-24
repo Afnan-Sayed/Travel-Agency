@@ -1,7 +1,11 @@
 package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 
+
+@Repository
 public class CredentialsRepository
 {
     private HashMap<Integer, AuthenticationCredentials> credentialsMap;

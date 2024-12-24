@@ -1,9 +1,11 @@
 package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
 import org.example.TravelAgencyApplication.UserManagement.NotificationManagement;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 //INHERITANCE WITH NotificationManagement
 //ASSOCIATION WITH Authenticator
 public class AuthenticationNotificationManager extends NotificationManagement

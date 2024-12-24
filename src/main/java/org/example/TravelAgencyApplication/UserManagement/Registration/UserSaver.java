@@ -2,7 +2,9 @@ package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserSaver
 {
     private final IUserProvider userProvider;

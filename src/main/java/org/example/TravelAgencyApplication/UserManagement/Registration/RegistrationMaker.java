@@ -3,8 +3,9 @@ package org.example.TravelAgencyApplication.UserManagement.Registration;
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.springframework.stereotype.Service;
 
-
+@Service
 //1. generate unique id and save user temporarily
 //2. authenticate user
 //3. notify him that he has successfully been registered

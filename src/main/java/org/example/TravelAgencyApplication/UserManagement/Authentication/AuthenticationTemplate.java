@@ -1,9 +1,11 @@
 package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 //INHERITANCE WITH TEMPLATE FROM NOTIFICATIONS MODULE
 public class AuthenticationTemplate extends Template
 {

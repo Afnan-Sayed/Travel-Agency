@@ -2,10 +2,12 @@ package org.example.TravelAgencyPersistence.UserStore.UserInformationProvider;
 
 import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.AuthenticationCredentials;
 import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.CredentialsProvider;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Repository
 public class AuthenticationCredentialsProvider
 {
     private CredentialsProvider credentialsProvider;
