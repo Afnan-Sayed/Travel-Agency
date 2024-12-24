@@ -35,7 +35,15 @@ public class HotelBookingsRetriever {
         return hotelBookings;
     }//archived: true means past room bookings, false means upcoming room bookings
 
-
+    public Hotel getHotelByID(int hotelID) {
+        ArrayList<Hotel> hotels = portal.getAllHotels();
+        for (Hotel hotel : hotels) {
+            if (hotel.hotelID == hotelID) {
+                return hotel;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<HotelBooking> retrieveHotelBookings(ArrayList<BookedHotelRoom> hotelRooms){
         ArrayList<HotelBooking> bookings = new ArrayList<>();

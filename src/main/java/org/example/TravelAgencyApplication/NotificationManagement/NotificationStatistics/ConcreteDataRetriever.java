@@ -49,12 +49,12 @@ public class ConcreteDataRetriever {
         return portal.getContentProviderClass().getFilteredNotifications(false,true,false,false,userID,null,null,null);
     }
     public ArrayList<Notification> NotificationsForAnEmail(String email) {
-        return portal.getContentProviderClass().getFilteredNotifications(false,false,false,false,null,null,null,email);
+        return portal.getContentProviderClass().getFilteredNotifications(false,false,false,false,null,null,email,null);
     }
     public ArrayList<Notification> SuccessfulNotificationsForAnEmail(String email) {
-        return portal.getContentProviderClass().getFilteredNotifications(true,false,false,false,null,null,null,email);
+        return portal.getContentProviderClass().getFilteredNotifications(true,false,false,false,null,null,email,null);
     }
     public ArrayList<Notification> FailedNotificationsForAnEmail(String email) {
-        return portal.getContentProviderClass().getFilteredNotifications(false,true,false,false,null,null,null,email);
+        return portal.getContentProviderClass().getFilteredNotifications(false,true,false,false,null,null,email,null);
     }
 }

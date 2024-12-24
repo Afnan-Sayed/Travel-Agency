@@ -8,9 +8,22 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BookedHotelRoomProvider {
+    private static BookedHotelRoomProvider bookedHotelRoomProvider;
     private BookedHotelRoomRepo repo;
-    public BookedHotelRoomProvider() {
-        repo = new BookedHotelRoomRepo();
+    private BookedHotelRoomProvider() {
+        repo = BookedHotelRoomRepo.getInstance();
+    }
+    public static BookedHotelRoomProvider getInstance() {
+        if (bookedHotelRoomProvider == null) {
+            bookedHotelRoomProvider = new BookedHotelRoomProvider();
+        }
+        return bookedHotelRoomProvider;
+    }
+    public boolean addBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
+        return repo.addBookedHotelRoom(bookedHotelRoom);
+    }
+    public boolean removeBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
+        return repo.removeBookedHotelRoom(bookedHotelRoom);
     }
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
         return repo.getAllBookedHotelRooms();
@@ -25,7 +38,7 @@ public class BookedHotelRoomProvider {
         return bookedHotelRoom -> bookedHotelRoom.bookingID == bookingID;
     }
     public Predicate<BookedHotelRoom> getBookedHotelRoomByHotelRoom(HotelRoom hotelRoom) {
-        return bookedHotelRoom -> bookedHotelRoom.hotel.equals(hotelRoom);
+        return bookedHotelRoom -> bookedHotelRoom.roomID == hotelRoom.roomID;
     }
     public Predicate<BookedHotelRoom> getBookedHotelRoomByDate(Date date) {
         return bookedHotelRoom -> bookedHotelRoom.date.equals(date);
@@ -57,11 +70,5 @@ public class BookedHotelRoomProvider {
                 .stream()
                 .filter(filters.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());
-    }
-    public boolean addBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        return repo.addBookedHotelRoom(bookedHotelRoom);
-    }
-    public boolean removeBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        return repo.removeBookedHotelRoom(bookedHotelRoom);
     }
 }

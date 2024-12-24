@@ -1,3 +1,4 @@
+/*
 package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
@@ -68,3 +69,4 @@ public class RegistrationMaker
             throw new IllegalArgumentException("Invalid registration data");
     }
 }
+*/
