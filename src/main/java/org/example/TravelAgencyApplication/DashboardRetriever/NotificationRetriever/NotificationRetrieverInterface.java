@@ -6,9 +6,16 @@ public class NotificationRetrieverInterface {
     private final NotificationRetriever retriever;
     private final NotificationModifier modifier;
 
-    public NotificationRetrieverInterface() {
+    private NotificationRetrieverInterface() {
         retriever = new NotificationRetriever();
         modifier = new NotificationModifier();
+    }
+
+    //singleton
+    private static NotificationRetrieverInterface instance;
+    public static NotificationRetrieverInterface getInstance() {
+        if (instance == null) {instance = new NotificationRetrieverInterface();}
+        return instance;
     }
 
     //retrieve
@@ -21,7 +28,7 @@ public class NotificationRetrieverInterface {
     }
 
     public ArrayList<NotificationInfo> filter(int userID,String email) {
-        return retriever.retrieve(userID,true, true, email);
+        return retriever.retrieve(userID,false, false, email);
     }
 
     public ArrayList<NotificationInfo> filter(int userID,boolean read) {
@@ -34,8 +41,8 @@ public class NotificationRetrieverInterface {
         modifier.deleteNotification(notificationID);
     }
 
-    public void readNotification(String notificationID) {
-        modifier.changeReadStatus(notificationID);
+    public void readNotification(String notificationID, NotificationInfo notificationInfo) {
+        modifier.changeReadStatus(notificationID, notificationInfo);
     }
 
 }
