@@ -49,6 +49,13 @@ public class HotelBookingsRetriever {
         ArrayList<HotelBooking> bookings = new ArrayList<>();
         while (!hotelRooms.isEmpty()) {
             Hotel hotel = getHotelByID(hotelRooms.getFirst().hotelID);
+            HotelInfo hotelInfo = new HotelInfo(
+                    hotel.hotelID,
+                    hotel.hotelName,
+                    hotel.latitude,
+                    hotel.longitude
+                    );
+
             int bookingID = hotelRooms.getFirst().bookingID;
             ArrayList<HotelRoomInfo> rooms = new ArrayList<>();
             for (int j=0; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
@@ -57,9 +64,7 @@ public class HotelBookingsRetriever {
                     rooms.add(new HotelRoomInfo(room.roomID, room.roomNum, room.date, room.nights));
                 }
             }
-            bookings.add(new HotelBooking(hotel,rooms));
-            bookings.getLast().bookingID = bookingID;
-            bookings.getLast().hotel = hotel;
+            bookings.add(new HotelBooking(bookingID, hotelInfo,rooms));
         }
         return bookings;
     }
