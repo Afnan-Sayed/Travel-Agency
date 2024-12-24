@@ -36,17 +36,17 @@ public class NotificationController {
         }
     }
 
-    @PutMapping("/read/{notificationId}")
+    @PutMapping("/{notificationId}")
     public String markAsRead(
             @PathVariable int id,
             @PathVariable String notificationId,
-            @RequestBody NotificationInfo notification
+            @RequestParam boolean read
     ) {
-        retriever.readNotification(notificationId,notification);
-        return "User " + id + " set notification " + notificationId + " read status to " + notification.read;
+        retriever.readNotification(notificationId,read);
+        return "User " + id + " set notification " + notificationId + " read status to " + read;
     }
 
-    @DeleteMapping("/delete/{notificationId}")
+    @DeleteMapping("/{notificationId}/delete")
     public String deleteNotification(
             @PathVariable int id,
             @PathVariable String notificationId

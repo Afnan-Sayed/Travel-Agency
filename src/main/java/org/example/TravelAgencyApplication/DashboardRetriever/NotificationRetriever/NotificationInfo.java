@@ -13,18 +13,4 @@ public class NotificationInfo { //dashboard user notification concerned data
         this.read = read;
     }
 
-//    public String getNotificationId() {
-//        return notificationId;
-//    }
-//
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//    public boolean isRead() {
-//        return read;
-//    }
 }
