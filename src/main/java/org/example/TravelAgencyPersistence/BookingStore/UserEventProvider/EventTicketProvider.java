@@ -21,7 +21,7 @@ public class EventTicketProvider {
         repo = EventTicketRepo.getInstance();
     }
 
-    public boolean addEventTicket(EventTicket eventTicket) {
+    public EventTicket addEventTicket(EventTicket eventTicket) {
         return repo.addEventTicket(eventTicket);
     }
 
@@ -58,11 +58,11 @@ public class EventTicketProvider {
     }
 
     public static Predicate<EventTicket> nameContainsFilter(String search) {
-        return eventTicket -> eventTicket.event.name.contains(search);
+        return eventTicket -> eventTicket.event.name.toLowerCase().contains(search.toLowerCase());
     }
 
     public static Predicate<EventTicket> descriptionContainsFilter(String search) {
-        return eventTicket -> eventTicket.event.description.contains(search);
+        return eventTicket -> eventTicket.event.description.toLowerCase().contains(search.toLowerCase());
     }
 
     public static Predicate<EventTicket> priceMoreThanOrEqualFilter(int price) {
