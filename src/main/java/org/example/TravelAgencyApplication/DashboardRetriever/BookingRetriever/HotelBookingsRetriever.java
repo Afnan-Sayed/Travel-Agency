@@ -39,11 +39,11 @@ public class HotelBookingsRetriever {
 
     public ArrayList<HotelBooking> retrieveHotelBookings(ArrayList<BookedHotelRoom> hotelRooms){
         ArrayList<HotelBooking> bookings = new ArrayList<>();
-        for (int i=0; i<hotelRooms.size(); i++) {
-            Hotel hotel = hotelRooms.get(i).hotel;
-            int bookingID = hotelRooms.get(i).bookingID;
+        for (int i=0; i<=hotelRooms.size(); i++) {
+            Hotel hotel = hotelRooms.getFirst().hotel;
+            int bookingID = hotelRooms.getFirst().bookingID;
             ArrayList<HotelRoomInfo> rooms = new ArrayList<>();
-            for (int j=i; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
+            for (int j=0; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
                 if (hotelRooms.get(j).bookingID == bookingID){
                     BookedHotelRoom room = hotelRooms.remove(j--);
                     rooms.add(new HotelRoomInfo(room.roomID, room.roomNum, room.date, room.nights));

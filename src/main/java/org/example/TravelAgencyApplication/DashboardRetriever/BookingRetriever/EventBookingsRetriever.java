@@ -47,11 +47,11 @@ public class EventBookingsRetriever {
     //booking retriever
     public ArrayList<EventBooking> retrieveEventBookings(ArrayList<EventTicket> eventTickets){
         ArrayList<EventBooking> bookings = new ArrayList<>();
-        for (int i=0; i<eventTickets.size(); i++) {
-            Event event = eventTickets.get(i).event;
-            int bookingID = eventTickets.get(i).bookingID;
+        for (int i=0; i<=eventTickets.size(); i++) {
+            Event event = eventTickets.getFirst().event;
+            int bookingID = eventTickets.getFirst().bookingID;
             ArrayList<EventTicketInfo> tickets = new ArrayList<>();
-            for (int j=i; j<eventTickets.size(); j++) { //remove and put bookings with same ID in one booking
+            for (int j=0; j<eventTickets.size(); j++) { //remove and put bookings with same ID in one booking
                 if (eventTickets.get(j).bookingID == bookingID){
                     EventTicket ticket = eventTickets.remove(j--);
                     tickets.add(new EventTicketInfo(ticket.eventTicketID, ticket.ticketNum));
