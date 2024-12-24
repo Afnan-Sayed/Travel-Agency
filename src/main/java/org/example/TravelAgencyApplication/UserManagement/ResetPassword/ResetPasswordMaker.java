@@ -1,7 +1,7 @@
 package org.example.TravelAgencyApplication.UserManagement.ResetPassword;
 
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
-import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 
 //1. authenticate user
 //2. reset password
@@ -9,12 +9,12 @@ import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.Use
 public class ResetPasswordMaker
 {
     private Authenticator authenticator;
-    private UserProvider userProvider;
+    private IUserProvider userProvider;
 
-    public ResetPasswordMaker()
+    public ResetPasswordMaker(Authenticator authenticator, IUserProvider userProvider)
     {
-        authenticator=new Authenticator();
-        this.userProvider= userProvider.getInstance();
+        this.authenticator=authenticator;
+        this.userProvider= userProvider;
     }
 
     public void resetPassword(int userID, String newPass)
@@ -23,14 +23,10 @@ public class ResetPasswordMaker
         if (authenticator.verifyUser(userID))
         {
             //2. reset password
-            userProvider.getCredentialsProvider()
-                        .getCredentialsByUserID(userID)
-                        .setPassword(newPass);
+            userProvider.updatePassByID(userID, newPass);
 
             //3. set status to be logged out
-            userProvider.getCredentialsProvider()
-                    .getCredentialsByUserID(userID)
-                    .setAccountStatus(3);
+            userProvider.updateAccountStatusByID(userID, 3);
         }
 
         else

@@ -11,6 +11,8 @@ public interface IUserProvider
     // Update account status by id
     void updateAccountStatusByID(int id, int status);
 
+    //update password by id
+    void updatePassByID(int id, String newPass);
 
     // Get account status by username
     int getAccountStatusByUsername(String username);

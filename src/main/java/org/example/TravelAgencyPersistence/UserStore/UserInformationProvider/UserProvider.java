@@ -142,6 +142,13 @@ public class UserProvider implements IUserProvider
         perProvider.addPersonalInfo(personalInfo);
     }
 
+    @Override
+    public void updatePassByID(int id, String newPass)
+    {
+        AuthenticationCredentials credentials = authProvider.getCredentialsByUserID(id);
+        credentials.setPassword(newPass);
+        authProvider.updateCredentials(credentials.getUserID(), credentials);
+    }
     public static synchronized UserProvider getInstance()
     {
         if (provider == null)
