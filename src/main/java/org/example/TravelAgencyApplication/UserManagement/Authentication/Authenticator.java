@@ -1,18 +1,27 @@
 package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
-import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 
 import java.util.HashMap;
 import java.util.Random;
 
-//DEPENDENCY WITH:
-//UserProvider, AuthenticationNotificationManager,
+//AGGREGATION WITH:
+//IUserProvider, AuthenticationNotificationManager
 public class Authenticator
 {
-    private UserProvider userProvider;
-    private AuthenticationNotificationManager authNotifier;
+    private final IUserProvider userProvider;
+    private final AuthenticationNotificationManager authNotifier;
     private final HashMap<Integer, String>verificationCode;
     private String userInput;
+
+    //constructor
+    public Authenticator(IUserProvider userProvider, AuthenticationNotificationManager authNotifier)
+    {
+        this.userProvider = userProvider;
+        this.authNotifier = authNotifier;
+        this.verificationCode = new HashMap<>();
+    }
+
 
     public String generateVerificationCode()
     {
@@ -21,35 +30,13 @@ public class Authenticator
         return String.valueOf(code);
     }
 
-    //constructor
-    public Authenticator()
-    {
-        this.verificationCode = new HashMap<>();
-    }
-
-    //using lazy instantiation to avoid being tightly coupled
-    private UserProvider getUserProvider()
-    {
-        if (userProvider == null)
-            userProvider = UserProvider.getInstance();
-        return userProvider;
-    }
-
-    //using lazy instantiation to avoid being tightly coupled
-    private AuthenticationNotificationManager getAuthNotifier()
-    {
-        if (authNotifier == null)
-            authNotifier = new AuthenticationNotificationManager();
-        return authNotifier;
-    }
-
 
     private void sendVerificationCode(int userID)
     {
         String code = generateVerificationCode();
         verificationCode.put(userID, code);
         AuthenticationTemplate template = new AuthenticationTemplate();
-        getAuthNotifier().sendNotification(template, userID);
+        authNotifier.sendNotification(template, userID);
     }
     private String getUserInput()
     {
@@ -72,17 +59,14 @@ public class Authenticator
             if (correctCode.equals(input))
             {
                 verificationCode.remove(userID);
-                System.out.println("Your account has been verified");
 
                 //change acc status
-                getUserProvider().getCredentialsProvider()
+                userProvider.getCredentialsProvider()
                             .getCredentialsByUserID(userID)
                             .setAccountStatus(1);
 
                 return true;
             }
-            else
-                System.out.println("sorry, your account is still not verified");
         }
         return false;
     }

@@ -1,4 +1,4 @@
-package org.example.TravelAgencyApplication.UserManagement.Registration;
+package org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation;
 
 import java.security.SecureRandom;
 import java.util.HashSet;

@@ -1,45 +1,25 @@
 package org.example.TravelAgencyApplication.UserManagement.Login;
 
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 
 import java.util.Objects;
 
 //DEPENDENCY WITH:
-//UserProvider, Authenticator
+//IUserProvider, Authenticator
 
 public abstract class UserLogin
 {
-    protected UserProvider userProvider;
+    protected IUserProvider userProvider;
     protected Authenticator authenticator;
 
-    public UserLogin() {}
-
-    // Factory method for UserProvider
-    protected UserProvider createUserProvider()
+    public UserLogin(IUserProvider userProvider, Authenticator authenticator)
     {
-        return UserProvider.getInstance();
+        this.userProvider = userProvider;
+        this.authenticator = authenticator;
     }
 
-    // Factory method for Authenticator
-    protected Authenticator createAuthenticator()
-    {
-        return new Authenticator();
-    }
-
-    protected UserProvider getUserProvider()
-    {
-        if (userProvider == null)
-            userProvider = createUserProvider();
-        return userProvider;
-    }
-
-    protected Authenticator getAuthenticator()
-    {
-        if (authenticator == null)
-            authenticator = createAuthenticator();
-        return authenticator;
-    }
 
     public abstract void checkIfNotVerified(String username, boolean isNotFound, int isVerified);
 
@@ -53,36 +33,25 @@ public abstract class UserLogin
     public final void verifyToLogin(String enteredUsername, String enteredPassword)
     {
         //acc with this username?
-        boolean isNotFound=
-                 getUserProvider().getCredentialsProvider()
-                .getCredentialsByUsername(enteredUsername)
-                .isEmpty();
+        boolean isNotFound = userProvider.doesUserExist(enteredUsername);
 
         //get correct password
-        String correctPassword=
-                 getUserProvider().getCredentialsProvider()
-                .getCredentialsByUsername(enteredUsername)
-                .getLast().getPassword();
+        String correctPassword= userProvider.getPasswordByUsername(enteredUsername);
 
         //passwords match?
         boolean passwordMatch=false;
         if(Objects.equals(enteredPassword, correctPassword))
             passwordMatch=true;
 
-
         //authenticated to be logged in?
-        int isVerified=
-                 getUserProvider().getCredentialsProvider()
-                .getCredentialsByUsername(enteredUsername)
-                .getLast().getAccountStatus();
+        int isVerified= userProvider.getAccountStatusByUsername(enteredUsername);
 
 
         //found user and is verified
         if(!isNotFound && (isVerified!=0) && passwordMatch)
         {
-                    getUserProvider().getCredentialsProvider()
-                    .getCredentialsByUsername(enteredUsername)
-                    .getLast().setAccountStatus(2); //logged in
+            //update status to be logged-in
+            userProvider.updateAccountStatusByUsername(enteredUsername, 2);
         }
         else
             checkIfNotVerified(enteredUsername, isNotFound, isVerified);

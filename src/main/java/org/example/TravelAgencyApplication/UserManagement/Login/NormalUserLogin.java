@@ -1,10 +1,15 @@
 package org.example.TravelAgencyApplication.UserManagement.Login;
 
-import java.util.Objects;
+import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
+
 
 public class NormalUserLogin extends UserLogin
 {
-    public NormalUserLogin() {}
+    public NormalUserLogin(IUserProvider userProvider, Authenticator authenticator) {
+        super(userProvider, authenticator);
+    }
+
     public void checkIfNotVerified(String username, boolean isNotFound, int isVerified)
     {
         if (!isNotFound && (isVerified == 0))
@@ -14,12 +19,9 @@ public class NormalUserLogin extends UserLogin
                     " please enter it: ");
 
             //get userID
-            int userID =
-                    getUserProvider().getCredentialsProvider()
-                    .getCredentialsByUsername(username)
-                    .getLast().getUserID();
+            int userID = userProvider.getUserIDByUsername(username);
 
-            getAuthenticator().verifyUser(userID);
+            authenticator.verifyUser(userID);
         }
         else
             System.out.println("either username or password is wrong");
