@@ -11,7 +11,7 @@ public class HotelBookingsRetriever {
     private HotelPortal portal;
 
     public HotelBookingsRetriever() {
-        portal = new HotelPortal();
+        portal = HotelPortal.getInstance();
     }
 
     //retriever Logic
@@ -48,7 +48,7 @@ public class HotelBookingsRetriever {
     public ArrayList<HotelBooking> retrieveHotelBookings(ArrayList<BookedHotelRoom> hotelRooms){
         ArrayList<HotelBooking> bookings = new ArrayList<>();
         while (!hotelRooms.isEmpty()) {
-            Hotel hotel = hotelRooms.getFirst().hotel;
+            Hotel hotel = getHotelByID(hotelRooms.getFirst().hotelID);
             int bookingID = hotelRooms.getFirst().bookingID;
             ArrayList<HotelRoomInfo> rooms = new ArrayList<>();
             for (int j=0; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
@@ -62,6 +62,4 @@ public class HotelBookingsRetriever {
         }
         return bookings;
     }
-
-
 }
