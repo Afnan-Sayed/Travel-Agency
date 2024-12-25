@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 @Service
-public class VerificationCodeSender
+public class VerificationCodeSender implements IVerificationCodeProvider
 {
     private final HashMap<Integer, String> verificationCode;
     private final AuthenticationNotificationManager authNotifier;
