@@ -11,20 +11,20 @@ public class NormalUserLogin extends UserLogin
         super(userProvider, authenticator);
     }
 
-    public void checkIfNotVerified(String username, boolean isNotFound, int isVerified)
+    @Override
+    public String checkIfNotVerified(String username, boolean isNotFound, int isVerified)
     {
         if (!isNotFound && (isVerified == 0))
         {
-            System.out.println("your acc hasn't been verified yet," +
-                    "we have sent you a verification code to complete your registration," +
-                    " please enter it: ");
-
             //get userID
             int userID = userProvider.getUserIDByUsername(username);
 
+            //trigger verification
             authenticator.verifyUser(userID);
+            return "Your account hasn't been verified yet. " +
+                    "A verification code has been sent to your registered contact.";
+
         }
-        else
-            System.out.println("either username or password is wrong");
+        return "Either username or password is incorrect.";
     }
 }

@@ -19,20 +19,24 @@ public class ResetPasswordMaker
         this.userProvider= userProvider;
     }
 
-    public void resetPassword(String username, String newPass)
+    public String resetPassword(String username, String newPass)
     {
-        int userID= userProvider.getUserIDByUsername(username);
-            //1. authenticate user
-        if (authenticator.verifyUser(userID))
+        int status=userProvider.getAccountStatusByUsername(username);
+        if(status==1)
         {
-            //2. reset password
-            userProvider.updatePassByID(userID, newPass);
+            int userID = userProvider.getUserIDByUsername(username);
+            //1. authenticate user
+            if (authenticator.verifyUser(userID))
+            {
+                //2. reset password
+                userProvider.updatePassByID(userID, newPass);
 
-            //3. set status to be logged out
-            userProvider.updateAccountStatusByID(userID, 3);
+                //3. set status to be logged out
+                userProvider.updateAccountStatusByID(userID, 3);
+                return "success";
+            }
+            else return "failed";
         }
-
-        else
-            throw new IllegalArgumentException("Invalid resetting password process");
+        return "not registered";
     }
 }

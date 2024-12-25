@@ -23,7 +23,7 @@ public abstract class UserLogin
     }
 
 
-    public abstract void checkIfNotVerified(String username, boolean isNotFound, int isVerified);
+    public abstract String checkIfNotVerified(String username, boolean isNotFound, int isVerified);
 
     /*
     Supported account status indices:
@@ -32,9 +32,9 @@ public abstract class UserLogin
     logged in 2
     logged out 3
     */
-    public final void verifyToLogin(String enteredUsername, String enteredPassword)
+    public final boolean verifyToLogin(String enteredUsername, String enteredPassword)
     {
-        //acc with this username?
+        //acc exist with this username?
         boolean isNotFound = userProvider.doesUserExist(enteredUsername);
 
         //get correct password
@@ -54,9 +54,8 @@ public abstract class UserLogin
         {
             //update status to be logged-in
             userProvider.updateAccountStatusByUsername(enteredUsername, 2);
-            System.out.println("logged-in");
+            return true; //logged-in
         }
-        else
-            checkIfNotVerified(enteredUsername, isNotFound, isVerified);
+        return false; //failed
     }
 }

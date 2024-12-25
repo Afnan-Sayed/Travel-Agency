@@ -27,7 +27,7 @@ public class RegistrationMaker
         this.notificationManager=notificationManager;
     }
 
-    public void registerUser
+    public boolean registerUser
             (
                     String username, String password,
                     String email, String phoneNumber,String name,
@@ -45,9 +45,8 @@ public class RegistrationMaker
             //3. notify him that he has successfully been registered
             RegistrationTemplate template = new RegistrationTemplate();
             notificationManager.sendNotification(template, userID);
+            return true;
         }
-
-        else
-            throw new IllegalArgumentException("Invalid registration data");
+        return false;
     }
 }
