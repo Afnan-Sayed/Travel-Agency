@@ -2,7 +2,6 @@ package org.example.TravelAgencyApplication.UserManagement;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Builder;
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
-import org.example.TravelAgencyApplication.UserManagement.Registration.RegistrationTemplate;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 import org.springframework.stereotype.Service;
 

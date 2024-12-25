@@ -40,7 +40,7 @@ public class RegistrationMaker
                                             LanguageID, notificationReceiverType);
 
         //2. authenticate user
-        if (authenticator.verifyUser(userID))
+        if (authenticator.verifyUser(username))
         {
             //3. notify him that he has successfully been registered
             RegistrationTemplate template = new RegistrationTemplate();

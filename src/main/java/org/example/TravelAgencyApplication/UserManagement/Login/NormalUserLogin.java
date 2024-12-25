@@ -20,7 +20,7 @@ public class NormalUserLogin extends UserLogin
             int userID = userProvider.getUserIDByUsername(username);
 
             //trigger verification
-            authenticator.verifyUser(userID);
+            authenticator.verifyUser(username);
             return "Your account hasn't been verified yet. " +
                     "A verification code has been sent to your registered contact.";
 
