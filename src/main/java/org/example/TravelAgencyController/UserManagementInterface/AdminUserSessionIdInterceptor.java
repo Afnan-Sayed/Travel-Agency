@@ -1,11 +1,9 @@
-package org.example.TravelAgencyApplication;
+package org.example.TravelAgencyController.UserManagementInterface;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.TravelAgencyApplication.UserManagement.Authentication.SessionManager;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 public class AdminUserSessionIdInterceptor extends NormalUserSessionIdInterceptor
