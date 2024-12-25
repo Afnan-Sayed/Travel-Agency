@@ -30,7 +30,13 @@ public class AvailableHotelsViewer {
         return hotelRetriever.getHotelByID(hotelID);
     }
     @GetMapping("/search")
-    public ArrayList<HotelRoom> getFilteredHotelRooms(@RequestParam Integer roomID,@RequestParam String roomType,@RequestParam Integer roomNumber,@RequestParam Integer price,@RequestParam Boolean isBooked,@RequestParam Integer hotelID) {
-        return hotelRetriever.getFilteredHotelRooms(roomID, roomType, roomNumber, price, isBooked, hotelID);
+    public ArrayList<HotelRoom> getFilteredHotelRooms(@RequestParam(required = false) Integer roomID,
+                                                      @RequestParam(required = false) String roomType,
+                                                      @RequestParam(required = false) Integer roomNumber,
+                                                      @RequestParam(required = false) Integer minPrice,
+                                                      @RequestParam(required = false) Integer maxPrice,
+                                                      @RequestParam(required = false) Boolean isBooked,
+                                                      @RequestParam(required = false) Integer hotelID) {
+        return hotelRetriever.getFilteredHotelRooms(roomID, roomType, roomNumber, minPrice, maxPrice, isBooked, hotelID);
     }
 }

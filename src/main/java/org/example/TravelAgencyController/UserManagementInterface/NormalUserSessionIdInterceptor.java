@@ -31,7 +31,7 @@ public class NormalUserSessionIdInterceptor implements HandlerInterceptor
         if (userID == null)
         {
             response.setStatus(401); // Unauthorized
-            response.getWriter().write("Missing username");
+            response.getWriter().write("Missing userID");
             return false; // Stop further processing
         }
 

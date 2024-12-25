@@ -3,6 +3,8 @@ package org.example.TravelAgencyController.BookingInterface.HotelBookingInterfac
 import org.example.TravelAgencyApplication.BookingManagement.HotelBooking.HotelBooker;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
@@ -19,11 +21,12 @@ public class HotelBookerViewer {
         }
         return hotelBookerViewer;
     }
-    @GetMapping("/book/{hotelID}")
-    public boolean bookHotelRoom(@PathVariable Integer hotelID, @RequestParam Integer userID, @RequestParam Date date, @RequestParam Integer nights, @RequestParam Integer roomNumber, @RequestParam Integer bookingID) {
-        return hotelBooker.bookHotelRoom(hotelID, roomNumber, userID, bookingID, date, nights);
+    @PostMapping("/book/{hotelID}")
+    public boolean bookHotelRoom(@PathVariable Integer hotelID, @RequestParam Integer userID, @RequestParam String date, @RequestParam Integer nights, @RequestParam Integer roomNumber, @RequestParam Integer bookingID) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return hotelBooker.bookHotelRoom(hotelID, roomNumber, userID, bookingID, dateFormat.parse(date), nights);
     }
-    @GetMapping("/cancel/{hotelID}")
+    @DeleteMapping("/cancel/{hotelID}")
     public boolean cancelHotelRoom(@PathVariable Integer hotelID, @RequestParam Integer userID, @RequestParam Integer bookingID) {
         return hotelBooker.cancelHotelRoom(userID, hotelID, bookingID);
     }

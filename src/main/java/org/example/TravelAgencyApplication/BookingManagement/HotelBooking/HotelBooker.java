@@ -45,7 +45,7 @@ public class HotelBooker {
         }
     }
     public boolean bookHotelRoom(int hotelID,int roomNumber, int userID, int bookingID,Date date,int nights){
-        return bookHotelRoom(userID,hotelRetriever.getFilteredHotelRooms(null,null,roomNumber,null,null,hotelID).get(0),bookingID,nights,date);
+        return bookHotelRoom(userID,hotelRetriever.getFilteredHotelRooms(null,null,roomNumber,null,null,null,hotelID).get(0),bookingID,nights,date);
     }
     public boolean cancelHotelRoom(int userID,BookedHotelRoom room){
         if(hotelPortal.cancelBooking(room)&&hotelPortal.removeBookedHotelRoom(room)){

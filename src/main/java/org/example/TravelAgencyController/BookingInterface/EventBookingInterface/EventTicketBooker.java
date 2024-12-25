@@ -15,12 +15,12 @@ public class EventTicketBooker {
 
     @PostMapping("/book/{eventID}")
     public EventTicket bookEventTicket(@PathVariable Integer eventID,
-                                    @RequestParam(name = "user") int userID, @RequestParam(name = "booking") int bookingID) {
+                                    @RequestParam int userID, @RequestParam int bookingID) {
         return eventBooker.bookEvent(eventID, userID, bookingID);
     }
 
     @DeleteMapping("/cancel/{eventTicketID}")
-    public boolean cancelEventTicket(@PathVariable Integer eventTicketID, @RequestParam(name = "user") int userID) {
+    public boolean cancelEventTicket(@PathVariable Integer eventTicketID, @RequestParam int userID) {
         return eventBooker.cancelEventTicket(eventTicketID, userID);
     }
 }

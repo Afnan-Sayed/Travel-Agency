@@ -41,16 +41,22 @@ public class HotelRoomProvider {
     public Predicate<HotelRoom> getHotelRoomByRoomNumber(int roomNumber) {
         return hotelRoom -> hotelRoom.roomNumber == roomNumber;
     }
-    public Predicate<HotelRoom> getHotelRoomByPrice(int price) {
-        return hotelRoom -> hotelRoom.price == price;
+    public Predicate<HotelRoom> getHotelRoomByMinimumPrice(int price) {
+        return hotelRoom -> hotelRoom.price >= price;
     }
+
+    public Predicate<HotelRoom> getHotelRoomByMaximumPrice(int price) {
+        return hotelRoom -> hotelRoom.price <= price;
+    }
+
+
     public Predicate<HotelRoom> getHotelRoomByIsBooked(boolean isBooked) {
         return hotelRoom -> hotelRoom.isBooked == isBooked;
     }
     public Predicate<HotelRoom> getHotelRoomByHotelID(int hotelID) {
         return hotelRoom -> hotelRoom.hotelID == hotelID;
     }
-    public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer price, Boolean isBooked, Integer hotelID) {
+    public ArrayList<HotelRoom> getFilteredHotelRooms(Integer roomID, String roomType, Integer roomNumber, Integer minPrice, Integer maxPrice, Boolean isBooked, Integer hotelID) {
         ArrayList<Predicate<HotelRoom>> filters = new ArrayList<>();
         if (roomID != null) {
             filters.add(getHotelRoomByRoomID(roomID));
@@ -61,8 +67,11 @@ public class HotelRoomProvider {
         if (roomNumber != null) {
             filters.add(getHotelRoomByRoomNumber(roomNumber));
         }
-        if (price != null) {
-            filters.add(getHotelRoomByPrice(price));
+        if (minPrice != null) {
+            filters.add(getHotelRoomByMinimumPrice(minPrice));
+        }
+        if (maxPrice != null) {
+            filters.add(getHotelRoomByMaximumPrice(maxPrice));
         }
         if (isBooked != null) {
             filters.add(getHotelRoomByIsBooked(isBooked));

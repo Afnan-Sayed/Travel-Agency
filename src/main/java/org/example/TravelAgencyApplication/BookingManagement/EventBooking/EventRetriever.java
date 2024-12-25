@@ -59,48 +59,9 @@ public class EventRetriever {
         return null;
     }
 
-    public ArrayList<Event> getEventsBetweenDates(Date start, Date end) {
-        return getFilteredEvents(null, start, end, null, null, null, null);
-    }
-
-    public ArrayList<Event> getEventsBetweenPrices(Integer minPrice, Integer maxPrice) {
-        return getFilteredEvents(null, null, null, null, null, minPrice, maxPrice);
-    }
-
-    public ArrayList<EventTicket> getAllEventTickets() {
-        return getFilteredEventTickets(null, null, null, null, null,
-                null, null, null, null, null, null);
-    }
-
-    public ArrayList<EventTicket> getEventTicketsByUserID(Integer userID) {
-        return getFilteredEventTickets(userID, null, null, null, null,
-                null, null, null, null, null, null);
-    }
-
     public ArrayList<EventTicket> getEventTicketsByBookingID(Integer bookingID) {
         return getFilteredEventTickets(null, bookingID, null, null, null,
                 null, null, null, null, null, null);
     }
 
-    public ArrayList<EventTicket> getEventTicketsByEventID(Integer eventID) {
-        return getFilteredEventTickets(null, null, null, null, eventID,
-                null, null, null, null, null, null);
-    }
-
-    public EventTicket getEventTicketByEventTicketID(Integer eventTicketID) {
-        ArrayList<EventTicket> eventTickets = getFilteredEventTickets(null, null, eventTicketID, null, null,
-                null, null, null, null, null, null);
-        if (!eventTickets.isEmpty()) return eventTickets.getFirst();
-        return null;
-    }
-
-    public ArrayList<EventTicket> getEventTicketsBetweenDates(Date start, Date end) {
-        return getFilteredEventTickets(null, null, null, null, null, start, end, null,
-                null, null, null);
-    }
-
-    public ArrayList<EventTicket> getEventTicketsBetweenPrices(Integer minPrice, Integer maxPrice) {
-        return getFilteredEventTickets(null, null, null, null, null,
-                null, null, null, null, minPrice, maxPrice);
-    }
 }
