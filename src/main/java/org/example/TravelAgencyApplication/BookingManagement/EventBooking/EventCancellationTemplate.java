@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class EventCancellationTemplate extends Template {
     public EventCancellationTemplate() {
-        super(13, "###");
+        super(4, "###");
         messages = new ArrayList<>();
 
         messages.add("Your ticket for event " + getSpecialCharacter() + " has been cancelled.");

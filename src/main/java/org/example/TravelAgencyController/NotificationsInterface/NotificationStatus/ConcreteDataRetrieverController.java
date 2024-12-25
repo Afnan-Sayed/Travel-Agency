@@ -41,16 +41,16 @@ public class ConcreteDataRetrieverController {
     }
 
     @GetMapping("/user")
-    public ArrayList<Notification> getNotificationsForUser(@RequestParam Integer userID) {
-        return notificationLog.getConcreteDataRepresentative().NotificationsForAUser(userID);
+    public ArrayList<Notification> getNotificationsForUser(@RequestParam Integer targetUserID) {
+        return notificationLog.getConcreteDataRepresentative().NotificationsForAUser(targetUserID);
     }
     @GetMapping("/user/successful")
-    public ArrayList<Notification> getSuccessfulNotificationsForUser(@RequestParam Integer userID) {
-        return notificationLog.getConcreteDataRepresentative().SuccessfulNotificationsForAUser(userID);
+    public ArrayList<Notification> getSuccessfulNotificationsForUser(@RequestParam Integer targetUserID) {
+        return notificationLog.getConcreteDataRepresentative().SuccessfulNotificationsForAUser(targetUserID);
     }
     @GetMapping("/user/failed")
-    public ArrayList<Notification> getFailedNotificationsForUser(@RequestParam Integer userID) {
-        return notificationLog.getConcreteDataRepresentative().FailedNotificationsForAUser(userID);
+    public ArrayList<Notification> getFailedNotificationsForUser(@RequestParam Integer targetUserID) {
+        return notificationLog.getConcreteDataRepresentative().FailedNotificationsForAUser(targetUserID);
     }
 
     @GetMapping("/email/{email}")

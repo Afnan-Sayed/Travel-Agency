@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class EventBookingFailureTemplate extends Template {
     public EventBookingFailureTemplate() {
-        super(11, "###");
+        super(2, "###");
         messages = new ArrayList<>();
 
         messages.add("The request to book event " + getSpecialCharacter() + " has failed.");

@@ -10,7 +10,7 @@ public class RegistrationTemplate extends Template
 {
     public RegistrationTemplate()
     {
-        super(2, "@@@");
+        super(8, "@@@");
         this.messages = new ArrayList<>();
 
         this.messages.add("Dear " + getSpecialCharacter() + ", Thank you for joining us! Start planning your next trip.");

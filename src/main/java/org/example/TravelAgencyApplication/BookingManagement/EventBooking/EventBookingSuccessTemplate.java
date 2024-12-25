@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class EventBookingSuccessTemplate extends Template {
     public EventBookingSuccessTemplate() {
-        super(12, "###");
+        super(3, "###");
         messages = new ArrayList<>();
 
         messages.add("You have successfully booked a ticket for event " + getSpecialCharacter() + "!");

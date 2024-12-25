@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class HotelBookingSuccessTemplate extends Template {
     public HotelBookingSuccessTemplate() {
-        super(1,"###");
+        super(7,"###");
         this.messages=new ArrayList<>();
         this.messages.add(0, "Hello, you have successfully booked a hotel room at "+getSpecialCharacter()+". Your booking ID is: "+getSpecialCharacter()+". Enjoy your stay!");
         this.messages.add(1, "مرحبًا ، لقد حجزت غرفة فندق في "+getSpecialCharacter()+" بنجاح. رقم الحجز الخاص بك هو: "+getSpecialCharacter()+". استمتع بإقامتك!");

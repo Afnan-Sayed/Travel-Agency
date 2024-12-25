@@ -4,7 +4,7 @@ import org.example.TravelAgencyApplication.NotificationManagement.NotificationMa
 
 public class HotelBookingCancellationTemplate extends Template {
     public HotelBookingCancellationTemplate() {
-        super(1,"###");
+        super(5,"###");
         this.messages.add(0, "Hello, your hotel booking in "+getSpecialCharacter()+" has been cancelled. We hope to see you again soon.");
         this.messages.add(1, "مرحبًا ، تم إلغاء حجز الفندق الخاص بك في "+getSpecialCharacter()+" . نأمل أن نراك مرة أخرى قريبًا.");
         this.messages.add(2, "Bonjour, votre réservation d'hôtel à "+getSpecialCharacter()+" a été annulée. Nous espérons vous revoir bientôt.");
