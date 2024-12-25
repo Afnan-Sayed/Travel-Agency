@@ -4,7 +4,7 @@ import org.example.TravelAgencyApplication.UserManagement.Authentication.Authent
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service ("normalUserLogin")
 public class NormalUserLogin extends UserLogin
 {
     public NormalUserLogin(IUserProvider userProvider, Authenticator authenticator) {

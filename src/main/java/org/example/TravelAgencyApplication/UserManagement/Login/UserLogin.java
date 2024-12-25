@@ -11,7 +11,7 @@ import java.util.Objects;
 //IUserProvider, Authenticator
 
 @Service
-public abstract class UserLogin
+public abstract class UserLogin implements IUserLogin
 {
     protected IUserProvider userProvider;
     protected Authenticator authenticator;
