@@ -9,7 +9,7 @@ public class BookedHotelRoom {
         public int roomID;
         public int userID;
         public int bookingID;
-        public Hotel hotel;
+        public int hotelID;
         public Date date;
         public int nights;
         public int roomNum;

@@ -1,4 +1,3 @@
-/*
 package org.example.TravelAgencyApplication.DashboardRetriever.NotificationRetriever;
 
 
@@ -14,13 +13,12 @@ public class NotificationModifier {
         portal.getContentProviderClass().deleteNotification(notificationId);
     }
 
-    public void changeReadStatus(String notificationId) {
-        Notification N = portal.getContentProviderClass().getNotificationByNotificationID(notificationId).getFirst();
+    public void changeReadStatus(String notificationId, NotificationInfo N) {
         portal.getContentProviderClass().markAsRead(notificationId, !N.read);
+        N.read = !N.read;
     }
 
 
 
 
 }
-*/

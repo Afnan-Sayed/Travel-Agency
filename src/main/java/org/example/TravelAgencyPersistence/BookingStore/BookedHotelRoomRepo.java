@@ -5,8 +5,9 @@ import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.Booked
 import java.util.ArrayList;
 
 public class BookedHotelRoomRepo {
+    private static BookedHotelRoomRepo bookedHotelRoomRepo;
     private ArrayList<BookedHotelRoom> bookedHotelRooms;
-    public BookedHotelRoomRepo() {
+    private BookedHotelRoomRepo() {
         bookedHotelRooms = new ArrayList<>();
         BookedHotelRoom bookedHotelRoom1 = new BookedHotelRoom();
         bookedHotelRoom1.roomID = 1;
@@ -43,31 +44,31 @@ public class BookedHotelRoomRepo {
         bookedHotelRoom7.userID = 7;
         bookedHotelRooms.add(bookedHotelRoom7);
     }
+    public static BookedHotelRoomRepo getInstance() {
+        if (bookedHotelRoomRepo == null) {
+            bookedHotelRoomRepo = new BookedHotelRoomRepo();
+        }
+        return bookedHotelRoomRepo;
+    }
     public ArrayList<BookedHotelRoom> getAllBookedHotelRooms() {
         return bookedHotelRooms;
     }
-    public ArrayList<BookedHotelRoom> getBookedHotelRoomsByUserID(int userID) {
-        ArrayList<BookedHotelRoom> result = new ArrayList<>();
-        for (BookedHotelRoom bookedHotelRoom : bookedHotelRooms) {
-            if (bookedHotelRoom.userID == userID) {
-                result.add(bookedHotelRoom);
-            }
-        }
-        return result;
-    }
-    public BookedHotelRoom getBookedHotelRoomByRoomID(int roomID) {
-        for (BookedHotelRoom bookedHotelRoom : bookedHotelRooms) {
-            if (bookedHotelRoom.roomID == roomID) {
-                return bookedHotelRoom;
-            }
-        }
-        return null;
-    }
     public boolean addBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        bookedHotelRooms.add(bookedHotelRoom);
-        return true;
+        if(bookedHotelRooms.contains(bookedHotelRoom)) {
+            return false;
+        }
+        else{
+            bookedHotelRooms.add(bookedHotelRoom);
+            return true;
+        }
     }
     public boolean removeBookedHotelRoom(BookedHotelRoom bookedHotelRoom) {
-        return bookedHotelRooms.remove(bookedHotelRoom);
+        if(bookedHotelRooms.contains(bookedHotelRoom)) {
+            bookedHotelRooms.remove(bookedHotelRoom);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

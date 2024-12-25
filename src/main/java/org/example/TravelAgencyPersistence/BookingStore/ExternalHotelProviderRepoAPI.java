@@ -2,12 +2,14 @@ package org.example.TravelAgencyPersistence.BookingStore;
 
 import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.Hotel;
 import org.example.TravelAgencyPersistence.BookingStore.ExternalHotelProvider.HotelRoom;
+import org.example.TravelAgencyPersistence.BookingStore.UserHotelProvider.BookedHotelRoom;
 
 import java.util.ArrayList;
 
 public class ExternalHotelProviderRepoAPI {
+    private static ExternalHotelProviderRepoAPI externalHotelProviderRepoAPI;
     private ArrayList<Hotel> hotels;
-    public ExternalHotelProviderRepoAPI() {
+    private ExternalHotelProviderRepoAPI() {
         hotels = new ArrayList<>();
         Hotel hotel1 = new Hotel();
         hotel1.hotelID = 1;
@@ -24,7 +26,7 @@ public class ExternalHotelProviderRepoAPI {
         room1.roomNumber = 1;
         room1.price = 100;
         room1.isBooked = false;
-        room1.hotel = hotel1;
+        room1.hotelID = hotel1.hotelID;
         hotel1.rooms.add(room1);
 
         HotelRoom room2 = new HotelRoom();
@@ -33,7 +35,7 @@ public class ExternalHotelProviderRepoAPI {
         room2.roomNumber = 2;
         room2.price = 200;
         room2.isBooked = false;
-        room2.hotel = hotel1;
+        room2.hotelID = hotel1.hotelID;
         hotel1.rooms.add(room2);
 
         HotelRoom room3 = new HotelRoom();
@@ -42,7 +44,7 @@ public class ExternalHotelProviderRepoAPI {
         room3.roomNumber = 3;
         room3.price = 100;
         room3.isBooked = false;
-        room3.hotel = hotel1;
+        room3.hotelID = hotel1.hotelID;
         hotel1.rooms.add(room3);
 
         hotels.add(hotel1);
@@ -62,7 +64,7 @@ public class ExternalHotelProviderRepoAPI {
         room1.roomNumber = 1;
         room1.price = 100;
         room1.isBooked = false;
-        room1.hotel = hotel2;
+        room1.hotelID = hotel2.hotelID;
         hotel2.rooms.add(room1);
 
         room2 = new HotelRoom();
@@ -71,7 +73,7 @@ public class ExternalHotelProviderRepoAPI {
         room2.roomNumber = 2;
         room2.price = 200;
         room2.isBooked = false;
-        room2.hotel = hotel2;
+        room2.hotelID = hotel2.hotelID;
         hotel2.rooms.add(room2);
 
         room3 = new HotelRoom();
@@ -80,10 +82,19 @@ public class ExternalHotelProviderRepoAPI {
         room3.roomNumber = 3;
         room3.price = 100;
         room3.isBooked = false;
-        room3.hotel = hotel2;
+        room3.hotelID = hotel2.hotelID;
         hotel2.rooms.add(room3);
 
         hotels.add(hotel2);
+    }
+    public static ExternalHotelProviderRepoAPI getInstance() {
+        if (externalHotelProviderRepoAPI == null) {
+            externalHotelProviderRepoAPI = new ExternalHotelProviderRepoAPI();
+        }
+        return externalHotelProviderRepoAPI;
+    }
+    public ArrayList<Hotel> getAllHotels(){
+        return hotels;
     }
     public ArrayList<HotelRoom> getAllHotelRooms() {
         ArrayList<HotelRoom> result = new ArrayList<>();
@@ -92,32 +103,24 @@ public class ExternalHotelProviderRepoAPI {
         }
         return result;
     }
-    public ArrayList<HotelRoom> getHotelRoomsByHotelID(int hotelID) {
+    public boolean bookHotelRoom(BookedHotelRoom hotelRoom) {
         for (Hotel hotel : hotels) {
-            if (hotel.hotelID == hotelID) {
-                return hotel.rooms;
-            }
-        }
-        return null;
-    }
-    public boolean addHotel(Hotel hotel) {
-        return hotels.add(hotel);
-    }
-    public boolean addHotelRoom(HotelRoom room) {
-        for (Hotel hotel : hotels) {
-            if (hotel.hotelID == room.hotel.hotelID) {
-                return hotel.rooms.add(room);
+            for (HotelRoom room : hotel.rooms) {
+                if (room.roomID == hotelRoom.roomID && !room.isBooked) {
+                    room.isBooked = true;
+                    return true;
+                }
             }
         }
         return false;
     }
-    public boolean removeHotel(Hotel hotel) {
-        return hotels.remove(hotel);
-    }
-    public boolean removeHotelRoom(HotelRoom room) {
+    public boolean cancelBooking(BookedHotelRoom hotelRoom) {
         for (Hotel hotel : hotels) {
-            if (hotel.hotelID == room.hotel.hotelID) {
-                return hotel.rooms.remove(room);
+            for (HotelRoom room : hotel.rooms) {
+                if (room.roomID == hotelRoom.roomID && room.isBooked) {
+                    room.isBooked = false;
+                    return true;
+                }
             }
         }
         return false;
