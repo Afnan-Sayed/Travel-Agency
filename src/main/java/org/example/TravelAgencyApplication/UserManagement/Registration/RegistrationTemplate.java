@@ -1,9 +1,11 @@
 package org.example.TravelAgencyApplication.UserManagement.Registration;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class RegistrationTemplate extends Template
 {
     public RegistrationTemplate()

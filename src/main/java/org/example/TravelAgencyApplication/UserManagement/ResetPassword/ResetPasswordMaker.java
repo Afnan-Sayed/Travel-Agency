@@ -1,39 +1,42 @@
 package org.example.TravelAgencyApplication.UserManagement.ResetPassword;
 
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
-import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
+import org.springframework.stereotype.Service;
 
 //1. authenticate user
 //2. reset password
 
+@Service
 public class ResetPasswordMaker
 {
     private Authenticator authenticator;
-    private UserProvider userProvider;
+    private IUserProvider userProvider;
 
-    public ResetPasswordMaker()
+    public ResetPasswordMaker(Authenticator authenticator, IUserProvider userProvider)
     {
-        authenticator=new Authenticator();
-        this.userProvider= userProvider.getInstance();
+        this.authenticator=authenticator;
+        this.userProvider= userProvider;
     }
 
-    public void resetPassword(int userID, String newPass)
+    public String resetPassword(String username, String newPass)
     {
-            //1. authenticate user
-        if (authenticator.verifyUser(userID))
+        int status=userProvider.getAccountStatusByUsername(username);
+        if(status==1)
         {
-            //2. reset password
-            userProvider.getCredentialsProvider()
-                        .getCredentialsByUserID(userID)
-                        .setPassword(newPass);
+            int userID = userProvider.getUserIDByUsername(username);
+            //1. authenticate user
+            if (authenticator.verifyUser(username))
+            {
+                //2. reset password
+                userProvider.updatePassByID(userID, newPass);
 
-            //3. set status to be logged out
-            userProvider.getCredentialsProvider()
-                    .getCredentialsByUserID(userID)
-                    .setAccountStatus(3);
+                //3. set status to be logged out
+                userProvider.updateAccountStatusByID(userID, 3);
+                return "success";
+            }
+            else return "failed";
         }
-
-        else
-            throw new IllegalArgumentException("Invalid resetting password process");
+        return "not registered";
     }
 }

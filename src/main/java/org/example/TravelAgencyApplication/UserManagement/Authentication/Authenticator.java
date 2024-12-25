@@ -1,62 +1,48 @@
 package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
-import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
+import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Random;
+@Service
+// AGGREGATION WITH:
+// IUserProvider, VerificationCodeSender
 
 public class Authenticator
 {
-    private UserProvider userProvider;
-    private AuthenticationNotificationManager authNotifier;
+    private final IUserProvider userProvider;
+    private final VerificationCodeSender codeSender;
     private String userInput;
-    private final HashMap<Integer, String>verificationCode;
-
-    public String generateVerificationCode()
-    {
-        Random random = new Random();
-        int code = 100000 + random.nextInt(900000);
-        return String.valueOf(code);
-    }
 
     //constructor
-    public Authenticator()
+    public Authenticator(IUserProvider userProvider, VerificationCodeSender codeSender)
     {
-        this.userProvider = userProvider.getInstance();
-        this.authNotifier= new AuthenticationNotificationManager();
-        this.verificationCode = new HashMap<>();
+        this.userProvider = userProvider;
+        this.codeSender = codeSender;
     }
 
-    private void sendVerificationCode(int userID)
-    {
-        String code = generateVerificationCode();
-        verificationCode.put(userID, code);
-        authNotifier.sendNotification(userID);
+    public void setEnteredCode(String userInput) {
+        this.userInput=userInput;
     }
-    private String getUserInput()
+    //verify the user by comparing the input with the stored code
+    public boolean verifyUser(String username)
     {
-        return userInput;
-    }
+        int userID=userProvider.getUserIDByUsername(username);
+        codeSender.sendVerificationCode(userID);
 
-    //testing
-    public void setUserInput(String userInput)
-    {
-       this.userInput=userInput;
-    }
+        String input = getUserInput();
 
-    public boolean verifyUser(int userID)
-    {
-        sendVerificationCode(userID);
-        String input= getUserInput();
-        if (verificationCode.containsKey(userID))
+        String correctCode = codeSender.getVerificationCode(userID);
+
+        if (correctCode != null && correctCode.equals(input))
         {
-            String correctCode = verificationCode.get(userID);
-            if (correctCode.equals(input))
-            {
-                verificationCode.remove(userID);
-                return true;
-            }
+            //if the code matches, update the account status
+            userProvider.updateAccountStatusByID(userID, 1);
+            return true;
         }
         return false;
+    }
+
+    private String getUserInput() {
+        return userInput;
     }
 }

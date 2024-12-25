@@ -1,11 +1,14 @@
 package org.example.TravelAgencyApplication.UserManagement;
 
 import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Builder;
-import org.example.TravelAgencyApplication.UserManagement.Registration.RegistrationTemplate;
+import org.example.TravelAgencyApplication.NotificationManagement.NotificationMaker.Template;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+
+@Service
 public abstract class NotificationManagement
 {
     protected Builder builder;
@@ -20,42 +23,8 @@ public abstract class NotificationManagement
     protected abstract ArrayList<String> handleSpecialCharReplacement(int userID);
 
 
-    public final void sendNotification(int userID)
+    public final void sendNotification(Template template,int userID)
     {
-        int language;
-        int notificationReceiverType;
-        String receiver;
-
-        language = userProvider.getPersonalInfoProvider()
-                .getPersonalInfoByUserID(userID)
-                .getLast()
-                .getLanguageID();
-
-        notificationReceiverType = userProvider.getPersonalInfoProvider()
-                .getPersonalInfoByUserID(userID)
-                .getLast()
-                .getNotificationReceiverType();
-
-
-        if (notificationReceiverType == 1)
-        {
-            receiver = userProvider.getCredentialsProvider()
-                    .getCredentialsByUserID(userID)
-                    .getEmail();
-        }
-        else if (notificationReceiverType == 2)
-        {
-            receiver = userProvider.getCredentialsProvider()
-                    .getCredentialsByUserID(userID)
-                    .getPhoneNumber();
-        }
-        else
-        {
-            throw new IllegalArgumentException("Receiver type is not supported");
-        }
-
-        RegistrationTemplate template = new RegistrationTemplate();
-        //builder.makeNotification(template, handleSpecialCharReplacement(userID), language,
-               // userID, receiver, notificationReceiverType);
+        builder.makeNotification(template, handleSpecialCharReplacement(userID), userID);
     }
 }

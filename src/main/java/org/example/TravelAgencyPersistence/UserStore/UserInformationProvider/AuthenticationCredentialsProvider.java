@@ -2,11 +2,12 @@ package org.example.TravelAgencyPersistence.UserStore.UserInformationProvider;
 
 import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.AuthenticationCredentials;
 import org.example.TravelAgencyPersistence.UserStore.AuthenticationInformation.CredentialsProvider;
-import org.example.TravelAgencyPersistence.UserStore.PersonalInformation.UserPersonalInfo;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Repository
 public class AuthenticationCredentialsProvider
 {
     private CredentialsProvider credentialsProvider;
@@ -47,15 +48,15 @@ public class AuthenticationCredentialsProvider
     }
 
     // Add new credentials
-    public void addCredentials(UserPersonalInfo userPersonalInfo, AuthenticationCredentials credentials)
+    public void addCredentials(AuthenticationCredentials credentials)
     {
-        credentialsProvider.addCredentials(userPersonalInfo, credentials);
+        credentialsProvider.addCredentials(credentials);
     }
 
     //update existing credentials
-    public void updateCredentials(UserPersonalInfo userPersonalInfo, AuthenticationCredentials newCredentials)
+    public void updateCredentials(int userID, AuthenticationCredentials newCredentials)
     {
-        credentialsProvider.updateCredentials(userPersonalInfo, newCredentials);
+        credentialsProvider.updateCredentials(userID, newCredentials);
     }
 }
 
