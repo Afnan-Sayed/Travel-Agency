@@ -18,8 +18,7 @@ public class AuthenticationController
     {
         try
         {
-            authenticator.setEnteredCode(enteredCode);
-            boolean isVerified = authenticator.verifyUser(username);
+            boolean isVerified = authenticator.verifyUserCode(username, enteredCode);
 
             Response response = new Response();
             if (isVerified)

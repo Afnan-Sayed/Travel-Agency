@@ -19,8 +19,8 @@ public class UserProvider implements IUserProvider
 
     private UserProvider()
     {
-        CredentialsRepository CredRepo = new CredentialsRepository();
-        UserPersonalInfoRepository PerRepo = new UserPersonalInfoRepository();
+        CredentialsRepository CredRepo = CredentialsRepository.getInstance();
+        UserPersonalInfoRepository PerRepo = UserPersonalInfoRepository.getInstance();
 
         CredentialsProvider CP = new CredentialsProvider(CredRepo);
         UserPersonalInfoProvider PP = new UserPersonalInfoProvider(PerRepo);
@@ -112,7 +112,7 @@ public class UserProvider implements IUserProvider
         ArrayList<AuthenticationCredentials> credentials = authProvider.getCredentialsByUsername(username);
         if (!credentials.isEmpty())
             return credentials.getFirst().getPassword();
-        return "no users registered yet to login";
+        return null;
     }
 
     @Override

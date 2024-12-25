@@ -2,11 +2,12 @@ package org.example.TravelAgencyApplication.UserManagement.Authentication;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 @Service
-public class VerificationCodeSender implements IVerificationCodeProvider
+public class VerificationCodeSender
 {
     private final HashMap<Integer, String> verificationCode;
     private final AuthenticationNotificationManager authNotifier;
@@ -38,6 +39,8 @@ public class VerificationCodeSender implements IVerificationCodeProvider
     public void sendVerificationCode(int userID) {
         String code = generateVerificationCode(userID);
         AuthenticationTemplate template = new AuthenticationTemplate();
-        authNotifier.sendNotification(template, userID);
+        ArrayList<String> specialCharReplacement = new ArrayList<>();
+        specialCharReplacement.add(code);
+        authNotifier.sendNotification(template, specialCharReplacement, userID);
     }
 }

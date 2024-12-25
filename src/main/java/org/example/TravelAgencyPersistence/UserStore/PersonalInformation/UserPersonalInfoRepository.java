@@ -11,8 +11,19 @@ public class UserPersonalInfoRepository
 
     private HashMap<Integer, ArrayList<UserPersonalInfo>> userMap;
 
-    public UserPersonalInfoRepository() {
+    private static UserPersonalInfoRepository instance;
+    public static UserPersonalInfoRepository getInstance() {
+        if (instance == null) instance = new UserPersonalInfoRepository();
+        return instance;
+
+    }
+
+    private UserPersonalInfoRepository() {
         userMap = new HashMap<>();
+        //hardwired admin account
+        UserPersonalInfo adminPersonalInfo = new UserPersonalInfo(1, "Admin", "A", "1-1-2000", 0, 3);
+        userMap.putIfAbsent(1, new ArrayList<>());
+        userMap.get(1).add(adminPersonalInfo);
     }
 
     ////////////////////////////////////////////////////////////////////////

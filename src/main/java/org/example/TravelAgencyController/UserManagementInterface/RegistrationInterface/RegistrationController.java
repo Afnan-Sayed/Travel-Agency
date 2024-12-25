@@ -31,17 +31,17 @@ public class RegistrationController
         try
         {
             // Register the user and get the result (true or false)
-            boolean registrationSuccessful = registrationMaker.registerUser
+            Integer userID = registrationMaker.registerUser
             (
                   username, password, email, phoneNumber, name,
                   address, dateOfBirth, languageID, notificationReceiverType
             );
 
             Response response = new Response();
-            response.setStatus(registrationSuccessful);
+            response.setStatus(userID != null);
 
-            if (registrationSuccessful) {
-                response.setMessage("User registered successfully. A verification email has been sent");
+            if (userID != null) {
+                response.setMessage("User registered successfully. UserID: " + userID);
             } else {
                 response.setMessage("Registration failed. Invalid data provided");
             }

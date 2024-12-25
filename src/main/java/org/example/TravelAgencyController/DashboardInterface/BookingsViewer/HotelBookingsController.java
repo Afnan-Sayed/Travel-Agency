@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/{id}/dashboard/booking/hotels")
+@RequestMapping("/dashboard/booking/hotels")
 public class HotelBookingsController {
 
     public BookingRetrieverInterface retriever;
@@ -16,17 +16,17 @@ public class HotelBookingsController {
     }
 
     @GetMapping("/all")
-    public ArrayList<HotelBooking> getBookings(@PathVariable int id) {
-        return retriever.retrieveAllHotelBookings(id);
+    public ArrayList<HotelBooking> getBookings(@RequestParam int userID) {
+        return retriever.retrieveAllHotelBookings(userID);
     }
 
     @GetMapping("/old")
-    public ArrayList<HotelBooking> getBookingsOld(@PathVariable int id) {
-        return retriever.retrieveArchivedHotelBookings(id);
+    public ArrayList<HotelBooking> getBookingsOld(@RequestParam int userID) {
+        return retriever.retrieveArchivedHotelBookings(userID);
     }
 
     @GetMapping("/upcoming")
-    public ArrayList<HotelBooking> getBookingsUpcoming(@PathVariable int id) {
-        return retriever.retrieveUpcomingHotelBookings(id);
+    public ArrayList<HotelBooking> getBookingsUpcoming(@RequestParam int userID) {
+        return retriever.retrieveUpcomingHotelBookings(userID);
     }
 }

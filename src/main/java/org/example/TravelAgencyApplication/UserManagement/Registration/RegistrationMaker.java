@@ -27,7 +27,7 @@ public class RegistrationMaker
         this.notificationManager=notificationManager;
     }
 
-    public boolean registerUser
+    public Integer registerUser
             (
                     String username, String password,
                     String email, String phoneNumber,String name,
@@ -35,18 +35,14 @@ public class RegistrationMaker
                     int notificationReceiverType
             )
     {
-        int userID = userSaver.saveUserToDB(username, password, email,
+        Integer userID = userSaver.saveUserToDB(username, password, email,
                                             phoneNumber, name, address, dateOfBirth,
                                             LanguageID, notificationReceiverType);
 
         //2. authenticate user
-        if (authenticator.verifyUser(username))
-        {
-            //3. notify him that he has successfully been registered
-            RegistrationTemplate template = new RegistrationTemplate();
-            notificationManager.sendNotification(template, userID);
-            return true;
-        }
-        return false;
+        authenticator.sendVerificationCode(username);
+        return userID;
+
+
     }
 }

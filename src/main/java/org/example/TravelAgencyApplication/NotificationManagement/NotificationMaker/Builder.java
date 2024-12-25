@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Builder {
 
-    private QueueManager queueManager;
+    private QueueManager queueManager = QueueManager.getInstance();
     UserProvider provider;
     public Builder()
     {

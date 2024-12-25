@@ -27,4 +27,8 @@ public abstract class NotificationManagement
     {
         builder.makeNotification(template, handleSpecialCharReplacement(userID), userID);
     }
+
+    public final void sendNotification(Template template, ArrayList<String> specialCharReplacement, int userID) {
+        builder.makeNotification(template, specialCharReplacement, userID);
+    }
 }

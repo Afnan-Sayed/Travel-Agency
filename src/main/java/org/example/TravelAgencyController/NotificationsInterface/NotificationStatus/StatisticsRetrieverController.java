@@ -62,8 +62,8 @@ public class StatisticsRetrieverController {
         return notificationLog.getStatisticsDataRepresentative().NoOfFailedNotificationsForATemplate(templateID);
     }
 
-    @GetMapping("/user/{userID}/notifications")
-    public int getNotificationsForUser(@PathVariable Integer userID) {
+    @GetMapping("/user/notifications")
+    public int getNotificationsForUser(@RequestParam Integer userID) {
         return notificationLog.getStatisticsDataRepresentative().NoOfNotificationsForAUser(userID);
     }
 
@@ -72,13 +72,13 @@ public class StatisticsRetrieverController {
         return notificationLog.getStatisticsDataRepresentative().NoOfNotificationsForAnEmail(email);
     }
 
-    @GetMapping("/user/{userID}/successful")
-    public int getSuccessfulNotificationsForUser(@PathVariable Integer userID) {
+    @GetMapping("/user/successful")
+    public int getSuccessfulNotificationsForUser(@RequestParam Integer userID) {
         return notificationLog.getStatisticsDataRepresentative().NoOfSuccessfulNotificationsForAUser(userID);
     }
 
-    @GetMapping("/user/{userID}/failed")
-    public int getFailedNotificationsForUser(@PathVariable Integer userID) {
+    @GetMapping("/user/failed")
+    public int getFailedNotificationsForUser(@RequestParam Integer userID) {
         return notificationLog.getStatisticsDataRepresentative().NoOfFailedNotificationsForAUser(userID);
     }
 

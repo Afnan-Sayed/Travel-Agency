@@ -29,12 +29,12 @@ public class AvailableEventsViewer {
 
     @GetMapping("/search")
     public ArrayList<Event> getFilteredEvents(
-            @RequestParam(name = "minDate", defaultValue = "0000-1-1") String minDate,
-            @RequestParam(name = "maxDate", defaultValue = "9999-1-1") String maxDate,
-            @RequestParam(name = "minPrice", defaultValue = "0") Integer minPrice,
-            @RequestParam(name = "maxPrice", defaultValue = "1000000") Integer maxPrice,
-            @RequestParam(name = "name", defaultValue = "") String name,
-            @RequestParam(name = "desc", defaultValue = "") String desc) throws ParseException {
+            @RequestParam(defaultValue = "0000-1-1") String minDate,
+            @RequestParam(defaultValue = "9999-1-1") String maxDate,
+            @RequestParam(defaultValue = "0") Integer minPrice,
+            @RequestParam(defaultValue = "1000000") Integer maxPrice,
+            @RequestParam(defaultValue = "") String name,
+            @RequestParam(defaultValue = "") String desc) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return eventRetriever.getFilteredEvents(null, dateFormat.parse(minDate), dateFormat.parse(maxDate), name, desc, minPrice, maxPrice);
     }

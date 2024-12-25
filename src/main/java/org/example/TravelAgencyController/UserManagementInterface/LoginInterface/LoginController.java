@@ -52,12 +52,12 @@ public class LoginController
     {
         try
         {
-            boolean loginSuccessful = userLogin.verifyToLogin(username, password);
+            String sessionInfo = userLogin.verifyToLogin(username, password);
             Response response = new Response();
-            response.setStatus(loginSuccessful);
+            response.setStatus(sessionInfo != null);
 
-            if (loginSuccessful) {
-                response.setMessage(successMessage);
+            if (sessionInfo != null) {
+                response.setMessage(successMessage + sessionInfo);
             } else {
                 response.setMessage(failureMessage);
             }

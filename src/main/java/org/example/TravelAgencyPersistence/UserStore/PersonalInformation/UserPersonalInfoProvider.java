@@ -74,8 +74,8 @@ public class UserPersonalInfoProvider
         if (personalInfo.getName() == null || personalInfo.getName().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
-        if (personalInfo.getLanguageID() == 0) {
-            throw new IllegalArgumentException("LanguageID must be valid and not zero");
+        if (personalInfo.getLanguageID() < 0 || personalInfo.getLanguageID() > 3) {
+            throw new IllegalArgumentException("LanguageID must be between 0 and 3 inclusive");
         }
         if (personalInfo.getNotificationReceiverType() == 0) {
             throw new IllegalArgumentException("NotificationReceiverType must be valid and not zero");

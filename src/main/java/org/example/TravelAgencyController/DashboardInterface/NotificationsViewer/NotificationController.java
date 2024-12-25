@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/{id}/dashboard/notifications")
+@RequestMapping("/dashboard/notifications")
 public class NotificationController {
 
     public NotificationRetrieverInterface retriever;
@@ -18,39 +18,39 @@ public class NotificationController {
 
     @GetMapping("/all")
     public ArrayList<NotificationInfo> getNotifications(
-            @PathVariable int id,
+            @RequestParam int userID,
             @RequestParam(required = false) Boolean read,
             @RequestParam(required = false) String email
     ) {
         if (read ==null && email ==null){
-            return retriever.retrieve(id);
+            return retriever.retrieve(userID);
         }
         if (email!=null && read!=null){
-            return retriever.filter(id,read,email);
+            return retriever.filter(userID,read,email);
         }
         if (read==null){
-            return retriever.filter(id,email);
+            return retriever.filter(userID,email);
         }
         else{
-            return retriever.filter(id,read);
+            return retriever.filter(userID,read);
         }
     }
 
-    @PutMapping("/{notificationId}")
+    @PutMapping("/{notificationID}")
     public boolean markAsRead(
-            @PathVariable int id,
-            @PathVariable String notificationId,
+            @RequestParam int userID,
+            @PathVariable String notificationID,
             @RequestParam boolean read
     ) {
-        return retriever.readNotification(notificationId,read, id);
+        return retriever.readNotification(notificationID,read, userID);
     }//if return is false then it didn't complete
 
-    @DeleteMapping("/{notificationId}/delete")
+    @DeleteMapping("/{notificationID}/delete")
     public boolean deleteNotification(
-            @PathVariable int id,
-            @PathVariable String notificationId
+            @RequestParam int userID,
+            @PathVariable String notificationID
     ){
-        return retriever.delete(notificationId, id);
+        return retriever.delete(notificationID, userID);
     }//if return is false then it didn't complete
 
 

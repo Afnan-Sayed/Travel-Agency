@@ -10,6 +10,7 @@ public class SmsAPI {
         //simulates the rare event of the sms server to have issues unrelated to our system
         if(randomInt < 5)
             return 1;// simulation that something went wrong
+        System.out.println("Sent message: " + message + "\nTo phone number: " + phoneNumber);
         return 0;
     }
 }

@@ -57,13 +57,19 @@ public class MessageSender {
         else
         {
             //tries to process each notification 10 times before discarding it
-            return notification;
+            if(notification.status<10)
+                return notification;
+            else
+            {
+                portal.getContentProviderClass().addNotification(notification);
+                return null;
+            }
         }
     }
 
     private boolean IsUniqueID(String ID)
     {
-        if(portal.getContentProviderClass().getFilteredNotifications(false,false,false,false,null,null,null,ID).isEmpty())
+        if(!portal.getContentProviderClass().getFilteredNotifications(false,false,false,false,null,null,null,ID).isEmpty())
             return false;
         else
             return true;

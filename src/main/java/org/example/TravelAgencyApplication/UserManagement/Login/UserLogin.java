@@ -1,6 +1,7 @@
 package org.example.TravelAgencyApplication.UserManagement.Login;
 
 import org.example.TravelAgencyApplication.UserManagement.Authentication.Authenticator;
+import org.example.TravelAgencyApplication.UserManagement.Authentication.SessionManager;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.IUserProvider;
 import org.example.TravelAgencyPersistence.UserStore.UserInformationProvider.UserProvider;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,13 @@ public abstract class UserLogin implements IUserLogin
 {
     protected IUserProvider userProvider;
     protected Authenticator authenticator;
+    protected SessionManager sessionManager;
 
     public UserLogin(IUserProvider userProvider, Authenticator authenticator)
     {
         this.userProvider = userProvider;
         this.authenticator = authenticator;
+        this.sessionManager = SessionManager.getInstance();
     }
 
 
@@ -32,13 +35,15 @@ public abstract class UserLogin implements IUserLogin
     logged in 2
     logged out 3
     */
-    public final boolean verifyToLogin(String enteredUsername, String enteredPassword)
+    public final String verifyToLogin(String enteredUsername, String enteredPassword)
     {
-        //acc exist with this username?
-        boolean isNotFound = userProvider.doesUserExist(enteredUsername);
-
         //get correct password
         String correctPassword= userProvider.getPasswordByUsername(enteredUsername);
+
+        //user doesn't exist so password is null
+        if (correctPassword == null) {
+            return null;
+        }
 
         //passwords match?
         boolean passwordMatch=false;
@@ -50,12 +55,14 @@ public abstract class UserLogin implements IUserLogin
 
 
         //found user and is verified
-        if(!isNotFound && (isVerified!=0) && passwordMatch)
+        if((isVerified!=0) && passwordMatch)
         {
             //update status to be logged-in
             userProvider.updateAccountStatusByUsername(enteredUsername, 2);
-            return true; //logged-in
+            String userID = ""+userProvider.getUserIDByUsername(enteredUsername);
+            String sessionInfo = " Session ID: " + sessionManager.generateSessionID(userID) + " User ID: " + userID;
+            return sessionInfo; //logged-in
         }
-        return false; //failed
+        return null; //failed
     }
 }

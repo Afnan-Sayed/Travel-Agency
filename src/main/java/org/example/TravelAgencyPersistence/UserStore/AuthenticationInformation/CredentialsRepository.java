@@ -10,9 +10,17 @@ public class CredentialsRepository
 {
     private HashMap<Integer, AuthenticationCredentials> credentialsMap;
 
-    public CredentialsRepository()
-    {
+    private static CredentialsRepository instance;
+    public static CredentialsRepository getInstance() {
+        if (instance == null) instance = new CredentialsRepository();
+        return instance;
+    }
+
+    private CredentialsRepository() {
         credentialsMap = new HashMap<>();
+        //hardwired admin account
+        AuthenticationCredentials adminCredentials = new AuthenticationCredentials("admin", "admin", "admin@gmail.com", "010", 1, 1, true);
+        credentialsMap.put(1, adminCredentials);
     }
 
     public void addCredentials(AuthenticationCredentials credentials)
