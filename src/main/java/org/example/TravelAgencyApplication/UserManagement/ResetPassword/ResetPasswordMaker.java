@@ -26,7 +26,7 @@ public class ResetPasswordMaker
         {
             int userID = userProvider.getUserIDByUsername(username);
             //1. authenticate user
-            if (authenticator.verifyUser(userID))
+            if (authenticator.verifyUser(username))
             {
                 //2. reset password
                 userProvider.updatePassByID(userID, newPass);
