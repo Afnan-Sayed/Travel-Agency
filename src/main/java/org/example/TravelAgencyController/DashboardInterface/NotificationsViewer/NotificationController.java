@@ -37,23 +37,21 @@ public class NotificationController {
     }
 
     @PutMapping("/{notificationId}")
-    public String markAsRead(
+    public boolean markAsRead(
             @PathVariable int id,
             @PathVariable String notificationId,
             @RequestParam boolean read
     ) {
-        retriever.readNotification(notificationId,read);
-        return "User " + id + " set notification " + notificationId + " read status to " + read;
-    }
+        return retriever.readNotification(notificationId,read, id);
+    }//if return is false then it didn't complete
 
     @DeleteMapping("/{notificationId}/delete")
-    public String deleteNotification(
+    public boolean deleteNotification(
             @PathVariable int id,
             @PathVariable String notificationId
     ){
-        retriever.delete(notificationId);
-        return "User " + id + " deleted notification " + notificationId;
-    }
+        return retriever.delete(notificationId, id);
+    }//if return is false then it didn't complete
 
 
 }
