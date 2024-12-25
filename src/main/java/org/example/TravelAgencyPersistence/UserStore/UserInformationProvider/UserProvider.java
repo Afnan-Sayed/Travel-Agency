@@ -110,7 +110,9 @@ public class UserProvider implements IUserProvider
     public String getPasswordByUsername(String username)
     {
         ArrayList<AuthenticationCredentials> credentials = authProvider.getCredentialsByUsername(username);
-        return credentials.getFirst().getPassword();
+        if (!credentials.isEmpty())
+            return credentials.getFirst().getPassword();
+        return "no users registered yet to login";
     }
 
     @Override

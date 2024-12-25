@@ -19,8 +19,9 @@ public class ResetPasswordMaker
         this.userProvider= userProvider;
     }
 
-    public void resetPassword(int userID, String newPass)
+    public void resetPassword(String username, String newPass)
     {
+        int userID= userProvider.getUserIDByUsername(username);
             //1. authenticate user
         if (authenticator.verifyUser(userID))
         {
