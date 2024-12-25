@@ -11,7 +11,7 @@ import java.util.Date;
 public class EventRetriever {
     EventPortal eventPortal;
 
-    public static EventRetriever instance;
+    private static EventRetriever instance;
     public static EventRetriever getInstance() {
         if (instance == null) instance = new EventRetriever();
         return instance;
