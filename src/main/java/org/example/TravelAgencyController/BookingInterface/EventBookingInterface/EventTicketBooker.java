@@ -19,7 +19,7 @@ public class EventTicketBooker {
         return eventBooker.bookEvent(eventID, userID, bookingID);
     }
 
-    @PostMapping("/cancel/{eventTicketID}")
+    @DeleteMapping("/cancel/{eventTicketID}")
     public boolean cancelEventTicket(@PathVariable Integer eventTicketID, @RequestParam(name = "user") int userID) {
         return eventBooker.cancelEventTicket(eventTicketID, userID);
     }
