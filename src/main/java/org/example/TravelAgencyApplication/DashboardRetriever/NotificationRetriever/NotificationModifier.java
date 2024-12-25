@@ -6,15 +6,26 @@ import org.example.TravelAgencyPersistence.NotificationsStore.NotificationProvid
 
 public class NotificationModifier {
     private NotificationContentPortal portal;
+    private NotificationRetriever retriever;
 
-    public NotificationModifier() {portal = NotificationContentPortal.getInstance();}
-
-    public void deleteNotification(String notificationId) {
-        portal.getContentProviderClass().deleteNotification(notificationId);
+    public NotificationModifier() {
+        portal = NotificationContentPortal.getInstance();
+        retriever = new NotificationRetriever();
     }
 
-    public void changeReadStatus(String notificationId, boolean read) {
-        portal.getContentProviderClass().markAsRead(notificationId, read);
+    public boolean deleteNotification(String notificationId, int userID) {
+        if(retriever.checkNotification(notificationId,userID)){
+            return portal.getContentProviderClass().deleteNotification(notificationId);
+        }
+        else return false;
+    }
+
+    public boolean changeReadStatus(String notificationId, boolean read, int userID) {
+        if(retriever.checkNotification(notificationId,userID)){
+            portal.getContentProviderClass().markAsRead(notificationId, read);
+            return true;
+        }
+        else return false;
     }
 
 

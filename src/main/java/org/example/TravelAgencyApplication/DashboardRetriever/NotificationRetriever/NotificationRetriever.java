@@ -41,5 +41,13 @@ public class NotificationRetriever { //This class is concerned with retrieving a
         return retrieve(userId,false, false,null);
     }//default filters
 
+    public boolean checkNotification(String notificationID, int userID) {
+        ArrayList<Notification> notification = portal.getContentProviderClass().getFilteredNotifications(
+                true,false,false,false,
+                userID,null,null,notificationID
+        ) ;
+        //might return an error if more than 1 with the same id!
+        return notification.size() == 1;
+    }
 
 }
