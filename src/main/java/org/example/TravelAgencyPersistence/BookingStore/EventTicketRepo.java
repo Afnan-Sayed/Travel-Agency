@@ -38,12 +38,20 @@ public class EventTicketRepo {
         eventTickets.add(e5);
 
         EventTicket e6 = new EventTicket();
-        e6.event = eventRepo.getAllEvents().get(0); e6.userID = 2; e6.bookingID = 11; e6.eventTicketID = 6; e5.ticketNum = 101;
+        e6.event = eventRepo.getAllEvents().get(0); e6.userID = 2; e6.bookingID = 11; e6.eventTicketID = 6; e6.ticketNum = 101;
         eventTickets.add(e6);
 
         EventTicket e7 = new EventTicket();
         e7.event = eventRepo.getAllEvents().get(1); e7.userID = 5; e7.bookingID = 20; e7.eventTicketID = 7; e7.ticketNum = 345;
         eventTickets.add(e7);
+
+        EventTicket e8 = new EventTicket();
+        e8.event = eventRepo.getAllEvents().get(2); e8.userID = 2; e8.bookingID = 13; e8.eventTicketID = 9; e8.ticketNum = 52;
+        eventTickets.add(e8);
+
+        EventTicket e9 = new EventTicket();
+        e9.event = eventRepo.getAllEvents().get(2); e9.userID = 2; e9.bookingID = 13; e9.eventTicketID = 10; e9.ticketNum = 53;
+        eventTickets.add(e9);
     }
 
     public ArrayList<EventTicket> getAllEventTickets() {

@@ -37,12 +37,12 @@ public class NotificationRetrieverInterface {
 
 
     //modify
-    public void delete(String notificationID) {
-        modifier.deleteNotification(notificationID);
+    public boolean delete(String notificationID, int userID) {
+        return modifier.deleteNotification(notificationID, userID);
     }
 
-    public void readNotification(String notificationID, NotificationInfo notificationInfo) {
-        modifier.changeReadStatus(notificationID, notificationInfo);
+    public boolean readNotification(String notificationID, boolean read, int userID) {
+        return modifier.changeReadStatus(notificationID, read, userID);
     }
 
 }

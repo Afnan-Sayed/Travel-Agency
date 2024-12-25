@@ -28,7 +28,7 @@ public class HotelBookingsRetriever {
             if (hotelBookings.get(i).date.before(now) && !archived){
                 hotelBookings.remove(i--);
             }
-            else if (archived){
+            else if ((hotelBookings.get(i).date.equals(now) || hotelBookings.get(i).date.after(now)) && archived){
                 hotelBookings.remove(i--);
             }
         }
@@ -47,20 +47,25 @@ public class HotelBookingsRetriever {
 
     public ArrayList<HotelBooking> retrieveHotelBookings(ArrayList<BookedHotelRoom> hotelRooms){
         ArrayList<HotelBooking> bookings = new ArrayList<>();
-        for (int i=0; i<hotelRooms.size(); i++) {
-            Hotel hotel = getHotelByID(hotelRooms.get(i).hotelID);
-            int bookingID = hotelRooms.get(i).bookingID;
+        while (!hotelRooms.isEmpty()) {
+            Hotel hotel = getHotelByID(hotelRooms.getFirst().hotelID);
+            HotelInfo hotelInfo = new HotelInfo(
+                    hotel.hotelID,
+                    hotel.hotelName,
+                    hotel.latitude,
+                    hotel.longitude
+                    );
+
+            int bookingID = hotelRooms.getFirst().bookingID;
             ArrayList<HotelRoomInfo> rooms = new ArrayList<>();
-            for (int j=i; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
+            for (int j=0; j<hotelRooms.size(); j++) { //remove and put bookings with same ID in one booking
                 if (hotelRooms.get(j).bookingID == bookingID){
                     BookedHotelRoom room = hotelRooms.remove(j--);
                     rooms.add(new HotelRoomInfo(room.roomID, room.roomNum, room.date, room.nights));
                 }
             }
-            bookings.add(new HotelBooking(hotel,rooms));
+            bookings.add(new HotelBooking(bookingID, hotelInfo,rooms));
         }
         return bookings;
     }
-
-
 }

@@ -86,8 +86,16 @@ public class NotificationRepo {
         Notifications.add(n19);
 
         Notification n20 = new Notification();
-        n20.notificationID = "20";n20.templateID = 2; n20.receiverID = 120; n20.message = "Your trip details finalized"; n20.mail = "nora20@example.com"; n20.phoneNumber = "+1234567820"; n20.status = 1; n20.read = true;
+        n20.notificationID = "20";n20.templateID = 2; n20.receiverID = 120; n20.message = "Your trip 1 details finalized"; n20.mail = "nora20@example.com"; n20.phoneNumber = "+1234567820"; n20.status = 1; n20.read = true;
         Notifications.add(n20);
+
+        Notification n21 = new Notification();
+        n21.notificationID = "21";n21.templateID = 2; n21.receiverID = 120; n21.message = "Your trip 2 details finalized"; n21.mail = "nora20@example.com"; n21.phoneNumber = "+1234567820"; n21.status = 0; n21.read = true;
+        Notifications.add(n21);
+
+        Notification n22 = new Notification();
+        n22.notificationID = "22";n22.templateID = 3; n22.receiverID = 120; n22.message = "Booking reminder, almost there?"; n22.mail = "nora20@example.com"; n22.phoneNumber = "+1234567820"; n22.status = 0; n22.read = false;
+        Notifications.add(n22);
     }
     public ArrayList<Notification> getAllNotifications() {
         return Notifications;
