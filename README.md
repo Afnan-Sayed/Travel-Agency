@@ -1,5 +1,19 @@
 # Travel Agency Backend System
 
+# Table of Contents
+- [Description](#Description)
+- [Features](#Features)
+- [Technologies Used](#Technologies-Used)
+- [Design Patterns and SOLID Principles Used](#Design-Patterns-and-SOLID-Principles)
+- [API Endpoints](#API-Endpoints)
+- [Notification Module](Notification-Module)
+- [Installation and Setup](Installation-and-Setup)
+- [Contributing](#Contributing)
+- [Contributors](#team-members)
+
+---
+
+## Description
 A robust backend system designed for a travel agency, enabling users to book hotel rooms and event tickets, manage their bookings, and receive personalized notifications. 
 The system is built using *Java* programming language and the *Spring Boot* framework, with a focus on clean architecture using MVC architecture style, design patterns, and SOLID principles.
 
@@ -122,10 +136,21 @@ Clone the repository: https://github.com/Afnan-Sayed/Travel-Agency
 Testing
 Postman: Used for API testing.
 
-
+## Contributing
+Contributions to this project is welcome. If you would like to contribute, please follow these steps:
+1. Fork the repository
+2. Create a new branch for your feature or bug fix: `git checkout -b my-new-feature`
+3. Make changes and add them: `git add .`
+4. Commit your changes: `git commit -m "Add some feature"`
+5. Push to the branch: `git push origin my-new-feature`
+6. Submit a pull request explaining your changes
+   
 ## Contributors
-[Abdullah Hamad]
-[Adham Abbas] 
-[Afnan Sayed]
-[Ahmed Zaineldin]
-[Yahya Montasser]
+
+| Name              |   Linked-In                                                                |
+|-----------------  |---------------------------------------------------------------------       |
+| Abdullah Hamad    |  [Abdullah Hamad](https://www.linkedin.com/in/abdullah-mostafa-hamad/)     |
+| Adham Abbas       |  [Adham Abbas](https://www.linkedin.com/in/adham-mohamed-abbas/)           |
+| Afnan Sayed       |  [Afnan Sayed](https://www.linkedin.com/in/afnan-s-5354a0262/)             |
+| Ahmed Zaineldin   |  [Ahmed Zaineldin](https://www.linkedin.com/in/ahmed-zain-eldin/)          |
+| Yahya Montasser   |  [Yahya Montasser](https://www.linkedin.com/in/yahya-moussa-489aa8310/)    |
