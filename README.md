@@ -9,7 +9,7 @@
 - [Notification Module](Notification-Module)
 - [Installation and Setup](Installation-and-Setup)
 - [Contributing](#Contributing)
-- [Contributors](#team-members)
+- [Contributors](#Contributors)
 
 ---
 
